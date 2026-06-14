@@ -3,11 +3,19 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
 
-@custom-variant dark (&:is(.dark *));
-
+/* =========================================================================
+   FONT TOKENS
+   ========================================================================= */
 @theme inline {
     --font-heading: var(--font-sans);
     --font-sans: 'Inter Variable', sans-serif;
+}
+
+/* =========================================================================
+   DESIGN TOKENS (Tailwind Utility Mapping)
+   All color values reference CSS custom properties defined in :root & themes
+   ========================================================================= */
+@theme inline {
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -39,6 +47,32 @@
     --color-card: var(--card);
     --color-foreground: var(--foreground);
     --color-background: var(--background);
+
+    /* Custom color tokens */
+    --color-dark-accent: var(--dark-accent);
+    --color-dark-gray: var(--dark-gray);
+    --color-stat-bg: var(--stat-bg);
+    --color-profile-name: var(--profile-name);
+    --color-sort-text: var(--sort-text);
+    --color-card-text: var(--card-text);
+    --color-card-inner-title: var(--card-inner-title);
+    --color-success-tag-bg: var(--success-tag-bg);
+    --color-success-tag-border: var(--success-tag-border);
+    --color-success-tag-text: var(--success-tag-text);
+    --color-progress-tag-bg: var(--progress-tag-bg);
+    --color-progress-tag-border: var(--progress-tag-border);
+    --color-progress-tag-text: var(--progress-tag-text);
+    --color-warning-tag-bg: var(--warning-tag-bg);
+    --color-warning-tag-border: var(--warning-tag-border);
+    --color-warning-tag-text: var(--warning-tag-text);
+    --color-medium-tag-bg: var(--medium-tag-bg);
+    --color-medium-tag-border: var(--medium-tag-border);
+    --color-medium-tag-text: var(--medium-tag-text);
+    --color-open-tag-bg: var(--open-tag-bg);
+    --color-open-tag-border: var(--open-tag-border);
+    --color-open-tag-text: var(--open-tag-text);
+
+    /* Radius tokens */
     --radius-sm: calc(var(--radius) * 0.6);
     --radius-md: calc(var(--radius) * 0.8);
     --radius-lg: var(--radius);
@@ -48,83 +82,143 @@
     --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* =========================================================================
+   CORE COLORS (Shared Across All Themes)
+   ========================================================================= */
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
+    /* --- Brand / UI Colors --- */
+    --dark-accent: #0F172A;
+    --primary: #1E3A5F;
+    --secondary: #1961FF;
+    --dark-gray: #64748B;
+
+    /* --- Text Colors --- */
+    --foreground: #0A0A0A;
+    --card-text: #0A0A0A;
+    --card-inner-title: #1A1A1A;
+    --sort-text: #1A1A1A;
+    --profile-name: #737373;
+
+    /* --- Surface Colors --- */
+    --stat-bg: #F8FAFC;
+    --button: #FFFFFF;
+
+    /* --- Card Styles --- */
+    --card-bg: #FFFFFF;
+    --card-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.10);
+    --card-rounded: 16px;
+
+    /* --- shadcn Standard Tokens --- */
+    --card: #FFFFFF;
+    --card-foreground: #0A0A0A;
+    --popover: #FFFFFF;
+    --popover-foreground: #0A0A0A;
+    --primary-foreground: #FFFFFF;
+    --secondary-foreground: #FFFFFF;
+    --muted: #F8FAFC;
+    --muted-foreground: #64748B;
+    --accent: #1961FF;
+    --accent-foreground: #FFFFFF;
+    --destructive: #DC2626;
+    --border: #E2E8F0;
+    --input: #E2E8F0;
+    --ring: #1961FF;
     --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+
+    /* --- Sidebar Tokens --- */
+    --sidebar: #FFFFFF;
+    --sidebar-foreground: #0A0A0A;
+    --sidebar-primary: #1E3A5F;
+    --sidebar-primary-foreground: #FFFFFF;
+    --sidebar-accent: #1961FF;
+    --sidebar-accent-foreground: #FFFFFF;
+    --sidebar-border: #E2E8F0;
+    --sidebar-ring: #1961FF;
+
+    /* --- Chart Tokens --- */
+    --chart-1: #1E3A5F;
+    --chart-2: #1961FF;
+    --chart-3: #0F172A;
+    --chart-4: #64748B;
+    --chart-5: #16A34A;
+
+    /* =====================================================================
+       STATUS TAG COLORS
+       ===================================================================== */
+    /* --- Success Tag --- */
+    --success-tag-bg: #16A34A33;
+    --success-tag-border: #16A34A;
+    --success-tag-text: #16A34A;
+
+    /* --- Progress Tag --- */
+    --progress-tag-bg: #F59E0B33;
+    --progress-tag-border: #F59E0B;
+    --progress-tag-text: #F59E0B;
+
+    /* --- Warning/Destructive Tag --- */
+    --warning-tag-bg: #DC262633;
+    --warning-tag-border: #DC2626;
+    --warning-tag-text: #DC2626;
+
+    /* --- Medium Tag --- */
+    --medium-tag-bg: #1961FF33;
+    --medium-tag-border: #1961FF;
+    --medium-tag-text: #1961FF;
+
+    /* --- Open Tag --- */
+    --open-tag-bg: #0EA5E933;
+    --open-tag-border: #0EA5E9;
+    --open-tag-text: #0EA5E9;
 }
 
-.dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+/* =========================================================================
+   THEME: Default (White Background)
+   ========================================================================= */
+[data-theme="default"],
+:root {
+    --background: #FFFFFF;
 }
 
+/* =========================================================================
+   THEME: Gradient (Light Blue Gradient)
+   ========================================================================= */
+[data-theme="gradient"] {
+    --background: linear-gradient(180deg, #E4ECFF 0%, #E9F0FF 100%);
+}
+
+/* =========================================================================
+   SPECIAL SCREEN STYLES (Same in Both Themes)
+   ========================================================================= */
+
+/*
+   Transition Screen Background
+   Usage: apply this class to an element for the transition overlay
+*/
+.transition-screen-bg {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%),
+                url(<path-to-image>) lightgray 50% / cover no-repeat;
+}
+
+/*
+   Lock Screen Background
+   Usage: apply this class to an element for the lock screen overlay
+*/
+.lock-screen-bg {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #EDF2FF 92.3%),
+                url(<path-to-image>) lightgray -296.245px -445.599px / 175.403% 144.279% no-repeat;
+}
+
+/* =========================================================================
+   BASE LAYER STYLES
+   ========================================================================= */
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
+    body {
+        @apply bg-background text-foreground;
     }
-  html {
-    @apply font-sans;
+    html {
+        @apply font-sans;
     }
 }
