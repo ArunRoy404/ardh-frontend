@@ -13,6 +13,8 @@ import { IncomeIcon } from "../../components/SvgIcons/IncomeIcon"
 import { ExpensesIcon } from "../../components/SvgIcons/ExpensesIcon"
 import { MaintenanceIcon } from "../../components/SvgIcons/MaintenanceIcon"
 import { AlertCircle, ArrowRight } from "lucide-react"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../../components/ui/chart"
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts"
 
 const statsData = [
     {
@@ -74,6 +76,47 @@ const expenseCategories = [
     { name: "Salary", percentage: 30 },
     { name: "Insurance", percentage: 100 },
 ]
+
+const occupancyData = [
+    { status: "occupied", value: 3, fill: "#16A34A" },
+    { status: "vacant", value: 2, fill: "#F59E0B" },
+    { status: "maintenance", value: 2, fill: "#1961FF" },
+    { status: "reserved", value: 1, fill: "#1E3A5F" },
+]
+
+const occupancyConfig = {
+    value: {
+        label: "Value",
+    },
+    occupied: {
+        label: "Occupied",
+        color: "#16A34A",
+    },
+    vacant: {
+        label: "Vacant",
+        color: "#F59E0B",
+    },
+    maintenance: {
+        label: "Maintenance",
+        color: "#1961FF",
+    },
+    reserved: {
+        label: "Reserved",
+        color: "#1E3A5F",
+    },
+}
+
+const expenseData = expenseCategories.map(item => ({
+    name: item.name,
+    value: Math.round((item.percentage / 100) * 120000),
+}))
+
+const expenseConfig = {
+    value: {
+        label: "Expense",
+        color: "#1961FF",
+    },
+}
 
 const recentPayments = [
     { name: "Meera Iyer", type: "Rent", date: "May 5", amount: "₹45,000", status: "Paid" },
@@ -220,61 +263,50 @@ const DashboardPage = () => {
                     </div>
 
                     <div className="relative w-[220px] h-[220px] mx-auto flex items-center justify-center my-4">
-                        <svg width="220" height="220" viewBox="0 0 220 220" className="transform -rotate-90">
-                            <circle
-                                cx="110"
-                                cy="110"
-                                r="70"
-                                fill="transparent"
-                                stroke="#F1F5F9"
-                                strokeWidth="16"
-                            />
-                            {/* Occupied: 3/8 -> 37.5% -> strokeDasharray="164.93 439.82" */}
-                            <circle
-                                cx="110"
-                                cy="110"
-                                r="70"
-                                fill="transparent"
-                                stroke="#16A34A"
-                                strokeWidth="16"
-                                strokeDasharray="164.93 439.82"
-                                strokeDashoffset="0"
-                            />
-                            {/* Vacant: 2/8 -> 25% -> strokeDasharray="109.96 439.82" */}
-                            <circle
-                                cx="110"
-                                cy="110"
-                                r="70"
-                                fill="transparent"
-                                stroke="#F59E0B"
-                                strokeWidth="16"
-                                strokeDasharray="109.96 439.82"
-                                strokeDashoffset="-164.93"
-                            />
-                            {/* Maintenance: 2/8 -> 25% -> strokeDasharray="109.96 439.82" */}
-                            <circle
-                                cx="110"
-                                cy="110"
-                                r="70"
-                                fill="transparent"
-                                stroke="#1961FF"
-                                strokeWidth="16"
-                                strokeDasharray="109.96 439.82"
-                                strokeDashoffset="-274.89"
-                            />
-                            {/* Reserved: 1/8 -> 12.5% -> strokeDasharray="54.98 439.82" */}
-                            <circle
-                                cx="110"
-                                cy="110"
-                                r="70"
-                                fill="transparent"
-                                stroke="#1E3A5F"
-                                strokeWidth="16"
-                                strokeDasharray="54.98 439.82"
-                                strokeDashoffset="-384.85"
-                            />
-                        </svg>
-                        <div className="absolute flex flex-col items-center justify-center">
+                        <ChartContainer
+                            config={occupancyConfig}
+                            className="w-full h-full aspect-square"
+                            initialDimension={{ width: 220, height: 220 }}
+                        >
+                            <PieChart>
+                                <ChartTooltip
+                                    cursor={false}
+                                    content={
+                                        <ChartTooltipContent
+                                            hideLabel
+                                            formatter={(value, name) => {
+                                                const configItem = occupancyConfig[name];
+                                                return (
+                                                    <div className="flex items-center gap-2">
+                                                        <div 
+                                                            className="h-2.5 w-2.5 shrink-0 rounded-[2px]" 
+                                                            style={{ backgroundColor: configItem?.color }}
+                                                        />
+                                                        <span className="text-muted-foreground">{configItem?.label || name}:</span>
+                                                        <span className="font-mono font-semibold text-foreground">{value}</span>
+                                                    </div>
+                                                );
+                                            }}
+                                        />
+                                    }
+                                />
+                                <Pie
+                                    data={occupancyData}
+                                    dataKey="value"
+                                    nameKey="status"
+                                    innerRadius={55}
+                                    outerRadius={81}
+                                    strokeWidth={0}
+                                    startAngle={90}
+                                    endAngle={-270}
+                                >
+                                    {occupancyData.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                                    ))}
+                                </Pie>
+                            </PieChart>
+                        </ChartContainer>
+                        <div className="absolute flex flex-col items-center justify-center pointer-events-none">
                             <span 
                                 className="text-3xl font-semibold text-dark-accent"
                                 style={{ fontFamily: "'Adobe Aldine', Georgia, serif" }}
@@ -331,39 +363,67 @@ const DashboardPage = () => {
                         </Select>
                     </div>
 
-                    <div className="relative flex flex-col gap-4 py-4 flex-1 justify-center">
-                        {/* Grid Lines */}
-                        <div className="absolute inset-0 left-20 right-0 flex justify-between pointer-events-none z-0">
-                            <div className="h-[210px] border-r border-dashed border-slate-200"></div>
-                            <div className="h-[210px] border-r border-dashed border-slate-200"></div>
-                            <div className="h-[210px] border-r border-dashed border-slate-200"></div>
-                            <div className="h-[210px] border-r border-dashed border-slate-200"></div>
-                            <div className="h-[210px] border-r border-slate-200"></div>
-                        </div>
-
-                        {expenseCategories.map((item, idx) => (
-                            <div key={idx} className="flex items-center gap-4 text-xs relative z-10 font-sans" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                                <span className="w-16 text-dark-gray text-right truncate">{item.name}</span>
-                                <div className="flex-1 h-5 bg-transparent rounded-sm relative">
-                                    <div 
-                                        className="h-full bg-secondary transition-all duration-500 rounded-sm"
-                                        style={{ width: `${item.percentage}%` }}
-                                    />
-                                </div>
-                            </div>
-                        ))}
-                        
-                        {/* X Axis */}
-                        <div className="flex items-center gap-4 text-[10px] text-dark-gray font-sans mt-2 relative z-10" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                            <span className="w-16"></span>
-                            <div className="flex-1 flex justify-between">
-                                <span>₹0</span>
-                                <span>₹30,000</span>
-                                <span>₹60,000</span>
-                                <span>₹90,000</span>
-                                <span>₹120,000</span>
-                            </div>
-                        </div>
+                    <div className="flex-1 w-full min-h-[220px] relative mt-2">
+                        <ChartContainer
+                            config={expenseConfig}
+                            className="w-full h-full min-h-[220px]"
+                            initialDimension={{ width: 400, height: 220 }}
+                        >
+                            <BarChart
+                                layout="vertical"
+                                data={expenseData}
+                                margin={{ left: 10, right: 10, top: 0, bottom: 0 }}
+                                barGap={0}
+                            >
+                                <CartesianGrid 
+                                    horizontal={false} 
+                                    strokeDasharray="3 3" 
+                                    stroke="#E2E8F0"
+                                />
+                                <XAxis
+                                    type="number"
+                                    domain={[0, 120000]}
+                                    ticks={[0, 30000, 60000, 90000, 120000]}
+                                    tickFormatter={(value) => `₹${value.toLocaleString()}`}
+                                    stroke="#64748B"
+                                    fontSize={10}
+                                    tickLine={false}
+                                    axisLine={false}
+                                    dy={8}
+                                />
+                                <YAxis
+                                    dataKey="name"
+                                    type="category"
+                                    tickLine={false}
+                                    axisLine={false}
+                                    stroke="#64748B"
+                                    fontSize={12}
+                                    width={75}
+                                    tickFormatter={(val) => val}
+                                    className="font-sans"
+                                />
+                                <ChartTooltip
+                                    cursor={{ fill: "rgba(0, 0, 0, 0.03)" }}
+                                    content={
+                                        <ChartTooltipContent 
+                                            hideLabel 
+                                            formatter={(value) => (
+                                                <div className="flex items-center gap-1">
+                                                    <span className="text-muted-foreground">Expense:</span>
+                                                    <span className="font-mono font-semibold text-foreground">₹{value.toLocaleString()}</span>
+                                                </div>
+                                            )}
+                                        />
+                                    }
+                                />
+                                <Bar 
+                                    dataKey="value" 
+                                    fill="var(--color-value)" 
+                                    radius={4} 
+                                    barSize={24}
+                                />
+                            </BarChart>
+                        </ChartContainer>
                     </div>
                 </div>
             </div>
