@@ -6,10 +6,10 @@ const sizeMap = {
   lg: "h-20",
 };
 
-function Logo({ className, size = "md" }) {
+function Logo({ className, size = "md", collapsed = false }) {
   return (
     <img
-      src="/logo/ardh_logo.png"
+      src={collapsed ? "/logo/ardh_logo_single.png" : "/logo/ardh_logo.png"}
       alt="ARDH Logo"
       className={cn("w-auto object-contain", sizeMap[size], className)}
     />

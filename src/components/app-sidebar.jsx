@@ -1,13 +1,12 @@
 "use client"
 
 import * as React from "react"
+import { Link, useLocation } from "react-router"
 
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { Logo } from "@/components/shared/Logo/Logo"
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupLabel,
   SidebarHeader,
@@ -15,9 +14,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar"
-import { HugeiconsIcon } from "@hugeicons/react"
-import { LayoutBottomIcon, AudioWave01Icon, CommandIcon } from "@hugeicons/core-free-icons"
 import { DashboardIcon } from "@/components/SvgIcons/DashboardIcon"
 import { NotificationsIcon } from "@/components/SvgIcons/NotificationsIcon"
 import { BuildingsIcon } from "@/components/SvgIcons/BuildingsIcon"
@@ -33,6 +31,7 @@ import { ReportsIcon } from "@/components/SvgIcons/ReportsIcon"
 import { UserManagementIcon } from "@/components/SvgIcons/UserManagementIcon"
 import { SettingsIcon } from "@/components/SvgIcons/SettingsIcon"
 import { navSections } from "@/data/navData"
+import { cn } from "@/lib/utils"
 
 const iconMap = {
   "Dashboard Overview": DashboardIcon,
@@ -51,56 +50,52 @@ const iconMap = {
   "Settings": SettingsIcon,
 }
 
-// This is sample data.
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: (
-        <HugeiconsIcon icon={LayoutBottomIcon} strokeWidth={2} />
-      ),
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: (
-        <HugeiconsIcon icon={AudioWave01Icon} strokeWidth={2} />
-      ),
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: (
-        <HugeiconsIcon icon={CommandIcon} strokeWidth={2} />
-      ),
-      plan: "Free",
-    },
-  ],
-}
-
 export function AppSidebar({
   ...props
 }) {
+  const location = useLocation()
+  const { state } = useSidebar()
+  const isCollapsed = state === "collapsed"
+
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+      <SidebarHeader className="px-2 py-3">
+        <Logo
+          collapsed={isCollapsed}
+          size={isCollapsed ? "sm" : "md"}
+          className={cn(
+            isCollapsed ? "mx-auto" : "px-1"
+          )}
+        />
       </SidebarHeader>
       <SidebarContent>
         {navSections.map((section) => (
           <SidebarGroup key={section.title}>
-            <SidebarGroupLabel>{section.title}</SidebarGroupLabel>
+            <SidebarGroupLabel className="group-data-[collapsible=icon]:pointer-events-none">{section.title}</SidebarGroupLabel>
             <SidebarMenu>
               {section.items.map((item) => {
                 const IconComponent = iconMap[item.name]
+                const isActive = location.pathname === item.url
+
                 return (
-                  <SidebarMenuItem key={item.name}>
-                    <SidebarMenuButton render={<a href={item.url} />} tooltip={item.name}>
+                  <SidebarMenuItem
+                    key={item.name}
+                    className={cn(
+                      "relative border-l-2 border-transparent hover:border-dark-gray",
+                      isActive && "border-secondary"
+                    )}
+                  >
+                    <SidebarMenuButton
+                      isActive={isActive}
+                      tooltip={item.name}
+                      render={<Link to={item.url} />}
+                      className={cn(
+                        "rounded-none bg-transparent! text-dark-gray!",
+                        isActive
+                          ? "text-secondary! [&_svg]:text-secondary"
+                          : "text-dark-gray [&_svg]:text-dark-gray"
+                      )}
+                    >
                       <IconComponent />
                       <span>{item.name}</span>
                     </SidebarMenuButton>
@@ -111,9 +106,6 @@ export function AppSidebar({
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );
