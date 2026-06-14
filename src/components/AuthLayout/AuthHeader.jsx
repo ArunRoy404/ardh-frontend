@@ -15,10 +15,10 @@ function AuthHeader({ title, subtitle }) {
       </div>
 
       {/* Bottom Hero Text */}
-      <div className="relative z-10 space-y-3 pb-4">
-        {!!title && <h2 className="text">{title}</h2>}
+      <div className="relative z-10 space-y-3 pb-4 max-w-2xl">
+        {!!title && <h2 className="font-serif text-4xl font-bold text-dark-accent leading-tight">{title}</h2>}
         {!!subtitle && (
-          <p className="text-sm text-slate-500 leading-relaxed max-w-sm">
+          <p className="text-sm text-dark-gray  leading-relaxed">
             {subtitle}
           </p>
         )}

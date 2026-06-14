@@ -7,6 +7,7 @@ import FormContainer from "@/components/shared/Form/FormContainer/FormContainer"
 import CommonInput from "@/components/shared/Form/CommonInput/CommonInput";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router";
 
 const signInSchema = z.object({
   email: z
@@ -45,7 +46,7 @@ function SignInForm() {
       <FormContainer
         title={
           <>
-            Welcome Back <span className="text-blue-600 text-2xl">✦</span>
+            Welcome Back <span className="text-dark-accent text-2xl">✦</span>
           </>
         }
         subtitle="Sign in to your ARDH workspace"
@@ -87,32 +88,33 @@ function SignInForm() {
             name="rememberMe"
             control={control}
             render={({ field }) => (
-              <label className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer select-none">
+              <label className="flex items-center gap-2 text-sm text-dark-accent cursor-pointer select-none">
                 <Checkbox
                   checked={field.value}
+                  className={'data-checked:text-secondary! bg-white!'}
                   onCheckedChange={(checked) => field.onChange(checked)}
                 />
                 Remember me
               </label>
             )}
           />
-          <a
-            href="#"
-            className="text-sm font-semibold text-blue-600 hover:underline"
-          >
-            Forgot Password?
-          </a>
+          <Link to='/forgot-password'>
+            <Button variant="link" className="text-sm font-semibold text-secondary hover:underline">
+              Forgot Password?
+            </Button>
+          </Link>
+
         </div>
 
         <Button
           type="submit"
-          className="mt-2 w-full rounded-xl bg-blue-600 py-3.5 text-center text-sm font-semibold text-white shadow-md hover:bg-blue-700 h-auto cursor-pointer"
+          className={'w-full'}
         >
           Sign in
         </Button>
       </form>
 
-      <div className="flex items-center justify-center gap-1.5 text-xs text-slate-400 pt-4">
+      <div className="flex items-center justify-center gap-1.5 text-xs text-dark-gray pt-4">
         <ShieldCheck size={14} />
         <span>Secure access · Role-based permissions</span>
       </div>

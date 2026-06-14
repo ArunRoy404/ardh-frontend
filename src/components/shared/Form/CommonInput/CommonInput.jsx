@@ -17,14 +17,14 @@ function CommonInput({
   return (
     <div className="space-y-1.5">
       {label && (
-        <label htmlFor={name} className="text-xs font-semibold text-slate-500">
+        <label htmlFor={name} className="text-xs font-semibold text-dark-gray">
           {label}
         </label>
       )}
       <div className="relative">
         {Icon && (
-          <span className="absolute inset-y-0 left-0 z-10 flex items-center pl-4 text-slate-400 pointer-events-none">
-            <Icon size={18} />
+          <span className="absolute inset-y-0 left-0 z-10 flex items-center pl-4 text-dark-gray pointer-events-none">
+            <Icon size={16} />
           </span>
         )}
         <Controller
@@ -36,7 +36,8 @@ function CommonInput({
               type={type}
               placeholder={placeholder}
               className={cn(
-                "w-full rounded-xl border bg-white py-3.5 pl-11 pr-4 text-sm shadow-sm placeholder:text-slate-400 h-auto",
+                "w-full py-3 pl-11 pr-4 text-sm placeholder:text-dark-gray h-auto",
+                "!bg-white !shadow-none !border-none rounded-md",
                 rightElement && "pr-11",
                 className
               )}

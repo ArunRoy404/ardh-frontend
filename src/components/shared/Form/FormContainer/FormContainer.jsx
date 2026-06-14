@@ -6,11 +6,11 @@ function FormContainer({ title, subtitle }) {
       <div className="mb-4">
         <Logo size="lg" />
       </div>
-      <h2 className="flex items-center gap-1.5 font-serif text-3xl font-semibold text-slate-900">
+      <h2 className="flex items-center gap-1.5 font-serif text-3xl font-semibold text-dark-accent">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-1 text-sm text-slate-400">{subtitle}</p>
+        <p className="mt-1 text-sm text-dark-gray">{subtitle}</p>
       )}
     </div>
   );
