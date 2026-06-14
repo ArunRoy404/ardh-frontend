@@ -19,7 +19,6 @@ import { ShieldCheck } from "lucide-react";
  *   methods       – return value of useForm()
  *   onSubmit      – callback invoked with validated form data
  *   footer        – optional node rendered below the form
- *   formClassName – additional classes for the <form> element (default: "space-y-5")
  *   children      – form fields and buttons
  */
 function FormContainer({
@@ -49,7 +48,7 @@ function FormContainer({
       {/* ── Form with react-hook-form context ── */}
       <FormProvider {...methods}>
         <form
-          className={cn("space-y-5", formClassName)}
+          className={cn("space-y-5",)}
           onSubmit={methods.handleSubmit(onSubmit)}
           noValidate
         >

@@ -19,7 +19,6 @@ import {
  */
 function CommonOTPInput({
   name,
-  label,
   numDigits = 6,
   ...props
 }) {
@@ -27,11 +26,7 @@ function CommonOTPInput({
   const error = errors[name]?.message;
 
   return (
-    <div className="space-y-3">
-      {label && (
-        <p className="text-xs font-semibold text-dark-gray text-center">{label}</p>
-      )}
-
+    <div className="space-y-3 relative">
       <Controller
         name={name}
         control={control}
@@ -40,15 +35,15 @@ function CommonOTPInput({
             maxLength={numDigits}
             value={field.value}
             onChange={field.onChange}
-            containerClassName="justify-center"
+            containerClassName="justify-center w-full"
             {...props}
           >
-            <InputOTPGroup className="gap-3">
+            <InputOTPGroup className="flex justify-between w-full">
               {Array.from({ length: numDigits }).map((_, i) => (
                 <InputOTPSlot
                   key={i}
                   index={i}
-                  className="size-10 rounded-md border border-input bg-white text-sm font-semibold shadow-none"
+                  className="size-14 rounded-md border border-dark-gray bg-transparent! text-sm font-semibold shadow-none"
                 />
               ))}
             </InputOTPGroup>
@@ -57,7 +52,7 @@ function CommonOTPInput({
       />
 
       {error && (
-        <p className="text-xs text-red-500 text-center">{error}</p>
+        <p className="absolute -bottom-6 text-xs text-red-500 text-center w-full">{error}</p>
       )}
     </div>
   );

@@ -39,7 +39,6 @@ function OtpVerificationForm() {
       }
       methods={methods}
       onSubmit={onSubmit}
-      formClassName="space-y-6"
       footer="Secure verification · OTP expires in 10 minutes"
     >
       {/* ── 6-digit OTP input ── */}
@@ -49,19 +48,21 @@ function OtpVerificationForm() {
         numDigits={6}
       />
 
+      {/* ── Back to Forgot Password ── */}
+      <FormAction
+        label="Change email"
+        to="/forgot-password"
+      />
+
       {/* ── Verify button ── */}
       <Button type="submit" className="w-full" isNotImplemented>
         Verify Now
       </Button>
 
       {/* ── Resend code link ── */}
-      <ResendOTP/>
+      <ResendOTP />
 
-      {/* ── Back to Forgot Password ── */}
-      <FormAction
-        label="Change email"
-        to="/forgot-password"
-      />
+
 
     </FormContainer>
   );
