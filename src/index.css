@@ -105,7 +105,7 @@
 
     /* --- Card Styles --- */
     --card-bg: #FFFFFF;
-    --card-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.10);
+    --card-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.10); 
     --card-rounded: 16px;
 
     /* --- shadcn Standard Tokens --- */
