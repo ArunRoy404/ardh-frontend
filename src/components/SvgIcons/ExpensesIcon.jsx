@@ -1,0 +1,15 @@
+import { cn } from "@/lib/utils"
+
+export function ExpensesIcon({ className }) {
+  return (
+    <svg className={cn(className)} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M16.8984 16.9C19.5984 14.2 19.5984 9.7 16.8984 7V16.9Z" fill="#64748B"/>
+      <path d="M16.8984 16.9C19.5984 14.2 19.5984 9.7 16.8984 7" stroke="#64748B" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M7.09922 7.1001C4.39922 9.8001 4.39922 14.3001 7.09922 17.0001V7.1001Z" fill="#64748B"/>
+      <path d="M7.09922 7.1001C4.39922 9.8001 4.39922 14.3001 7.09922 17.0001" stroke="#64748B" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M9.69922 13.5998C9.69922 14.4998 10.3992 15.1998 11.2992 15.1998H12.9992C13.6992 15.1998 14.3992 14.5998 14.3992 13.7998C14.3992 12.8998 13.9992 12.5998 13.4992 12.3998L10.6992 11.3998C9.99922 11.2998 9.69922 10.9998 9.69922 10.1998C9.69922 9.3998 10.2992 8.7998 11.0992 8.7998H12.8992C13.7992 8.7998 14.4992 9.4998 14.4992 10.3998" stroke="#64748B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M12 7.7998V16.1998" stroke="#64748B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#64748B" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"/>
+    </svg>
+  );
+}

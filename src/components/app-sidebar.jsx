@@ -2,19 +2,54 @@
 
 import * as React from "react"
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { LayoutBottomIcon, AudioWave01Icon, CommandIcon, ComputerTerminalIcon, RoboticIcon, BookOpen02Icon, Settings05Icon, CropIcon, PieChartIcon, MapsIcon } from "@hugeicons/core-free-icons"
+import { LayoutBottomIcon, AudioWave01Icon, CommandIcon } from "@hugeicons/core-free-icons"
+import { DashboardIcon } from "@/components/SvgIcons/DashboardIcon"
+import { NotificationsIcon } from "@/components/SvgIcons/NotificationsIcon"
+import { BuildingsIcon } from "@/components/SvgIcons/BuildingsIcon"
+import { ApartmentsIcon } from "@/components/SvgIcons/ApartmentsIcon"
+import { TenantsIcon } from "@/components/SvgIcons/TenantsIcon"
+import { OwnersIcon } from "@/components/SvgIcons/OwnersIcon"
+import { IncomeIcon } from "@/components/SvgIcons/IncomeIcon"
+import { ExpensesIcon } from "@/components/SvgIcons/ExpensesIcon"
+import { MaintenanceIcon } from "@/components/SvgIcons/MaintenanceIcon"
+import { EquipmentIcon } from "@/components/SvgIcons/EquipmentIcon"
+import { VendorsIcon } from "@/components/SvgIcons/VendorsIcon"
+import { ReportsIcon } from "@/components/SvgIcons/ReportsIcon"
+import { UserManagementIcon } from "@/components/SvgIcons/UserManagementIcon"
+import { SettingsIcon } from "@/components/SvgIcons/SettingsIcon"
+import { navSections } from "@/data/navData"
+
+const iconMap = {
+  "Dashboard Overview": DashboardIcon,
+  "Notifications": NotificationsIcon,
+  "Buildings": BuildingsIcon,
+  "Apartments": ApartmentsIcon,
+  "Tenants": TenantsIcon,
+  "Owners": OwnersIcon,
+  "Income": IncomeIcon,
+  "Expenses": ExpensesIcon,
+  "Maintenance": MaintenanceIcon,
+  "Equipment": EquipmentIcon,
+  "Vendors": VendorsIcon,
+  "Reports": ReportsIcon,
+  "User Management": UserManagementIcon,
+  "Settings": SettingsIcon,
+}
 
 // This is sample data.
 const data = {
@@ -46,124 +81,6 @@ const data = {
       plan: "Free",
     },
   ],
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: (
-        <HugeiconsIcon icon={ComputerTerminalIcon} strokeWidth={2} />
-      ),
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: (
-        <HugeiconsIcon icon={RoboticIcon} strokeWidth={2} />
-      ),
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: (
-        <HugeiconsIcon icon={BookOpen02Icon} strokeWidth={2} />
-      ),
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: (
-        <HugeiconsIcon icon={Settings05Icon} strokeWidth={2} />
-      ),
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: (
-        <HugeiconsIcon icon={CropIcon} strokeWidth={2} />
-      ),
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: (
-        <HugeiconsIcon icon={PieChartIcon} strokeWidth={2} />
-      ),
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: (
-        <HugeiconsIcon icon={MapsIcon} strokeWidth={2} />
-      ),
-    },
-  ],
 }
 
 export function AppSidebar({
@@ -175,8 +92,24 @@ export function AppSidebar({
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        {navSections.map((section) => (
+          <SidebarGroup key={section.title}>
+            <SidebarGroupLabel>{section.title}</SidebarGroupLabel>
+            <SidebarMenu>
+              {section.items.map((item) => {
+                const IconComponent = iconMap[item.name]
+                return (
+                  <SidebarMenuItem key={item.name}>
+                    <SidebarMenuButton render={<a href={item.url} />} tooltip={item.name}>
+                      <IconComponent />
+                      <span>{item.name}</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                )
+              })}
+            </SidebarMenu>
+          </SidebarGroup>
+        ))}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
