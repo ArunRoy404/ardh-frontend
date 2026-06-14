@@ -1,7 +1,9 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva } from "class-variance-authority";
+import { toast } from "sonner";
 
 import { cn } from "@/lib/utils"
+import { Spinner } from "@/components/ui/spinner"
 
 const buttonVariants = cva(
   "group/button inline-flex shrink-0 items-center justify-center rounded-md border border-transparent bg-clip-padding text-xs/relaxed font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-2 aria-invalid:ring-destructive/20 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 px-8 py-5 cursor-pointer",
@@ -42,13 +44,33 @@ function Button({
   className,
   variant = "default",
   size = "default",
+  isLoading = false,
+  isNotImplemented = false,
+  onClick,
+  children,
   ...props
 }) {
+  const handleClick = (e) => {
+    if (isNotImplemented) {
+      toast.warning("The feature is not functional yet");
+      return;
+    }
+    onClick?.(e);
+  };
+
   return (
     <ButtonPrimitive
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props} />
+      className={cn(
+        buttonVariants({ variant, size, className }),
+        isLoading && "cursor-not-allowed bg-secondary/80"
+      )}
+      disabled={isLoading || props.disabled}
+      onClick={handleClick}
+      {...props}
+    >
+      {isLoading ? <Spinner /> : children}
+    </ButtonPrimitive>
   );
 }
 

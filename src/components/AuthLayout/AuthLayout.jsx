@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import AuthHeader from "@/components/AuthLayout/AuthHeader";
+import { Toaster } from "@/components/ui/sonner";
 
 function AuthLayout() {
   return (
@@ -20,6 +21,8 @@ function AuthLayout() {
       <div className="flex w-full flex-col justify-center px-6 py-12 sm:px-12 lg:w-1/2 lg:px-20 xl:px-24">
         <Outlet />
       </div>
+
+      <Toaster />
     </div>
   );
 }
