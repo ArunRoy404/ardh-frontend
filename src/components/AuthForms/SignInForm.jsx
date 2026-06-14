@@ -6,7 +6,9 @@ import FormContainer from "@/components/shared/Form/FormContainer/FormContainer"
 import CommonInput from "@/components/shared/Form/FormInput/CommonInput";
 import CommonCheckbox from "@/components/shared/Form/FormInput/CommonCheckbox";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router";
+import { LinkButton } from "../shared/LinkButton/LinkButton";
+
+
 
 function SignInForm() {
   const methods = useForm({
@@ -55,11 +57,7 @@ function SignInForm() {
               label="Remember me"
               className="data-checked:text-secondary!"
             />
-            <Link to='/forgot-password'>
-              <Button variant="link" className="text-sm font-semibold text-secondary hover:underline">
-                Forgot Password?
-              </Button>
-            </Link>
+          <LinkButton to='/forgot-password' variant='link'>Forgot Password?</LinkButton>
           </div>
 
           <Button
