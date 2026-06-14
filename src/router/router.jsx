@@ -1,12 +1,8 @@
-import SignInPage from "@/pages/auth/SignInPage";
 import { createBrowserRouter } from "react-router";
-
+import authRoutes from "@/router/AuthRouter";
 
 const router = createBrowserRouter([
-  {
-    path: "/sign-in",
-    element: <SignInPage />,
-  },
+  authRoutes
 ]);
 
-export default router;
+export default router; 
