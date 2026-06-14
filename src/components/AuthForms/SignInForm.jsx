@@ -1,41 +1,20 @@
-import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Mail, Lock, EyeOff, Eye, ShieldCheck } from "lucide-react";
+import { Mail, Lock, ShieldCheck } from "lucide-react";
+import { signInSchema, authDefaultValues } from "@/zodSchema/authZodSchema";
 import FormContainer from "@/components/shared/Form/FormContainer/FormContainer";
-import CommonInput from "@/components/shared/Form/CommonInput/CommonInput";
-import { Checkbox } from "@/components/ui/checkbox";
+import CommonInput from "@/components/shared/Form/FormInput/CommonInput";
+import CommonCheckbox from "@/components/shared/Form/FormInput/CommonCheckbox";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 
-const signInSchema = z.object({
-  email: z
-    .string()
-    .min(1, "Email is required")
-    .email("Please enter a valid email address"),
-  password: z
-    .string()
-    .min(1, "Password is required")
-    .min(6, "Password must be at least 6 characters"),
-  rememberMe: z.boolean(),
-});
-
 function SignInForm() {
-  const [showPassword, setShowPassword] = useState(false);
-
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const methods = useForm({
     resolver: zodResolver(signInSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-      rememberMe: false,
-    },
+    defaultValues: authDefaultValues,
   });
+
+  const { handleSubmit } = methods;
 
   const onSubmit = (data) => {
     console.log("Sign in data:", data);
@@ -52,67 +31,45 @@ function SignInForm() {
         subtitle="Sign in to your ARDH workspace"
       />
 
-      <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} noValidate>
-        <CommonInput
-          name="email"
-          control={control}
-          label="Email Address"
-          icon={Mail}
-          type="email"
-          placeholder="Enter your Email"
-          error={errors.email?.message}
-        />
-
-        <CommonInput
-          name="password"
-          control={control}
-          label="Password"
-          icon={Lock}
-          type={showPassword ? "text" : "password"}
-          placeholder="Password"
-          error={errors.password?.message}
-          rightElement={
-            <button
-              type="button"
-              onClick={() => setShowPassword((prev) => !prev)}
-              className="text-slate-400 hover:text-slate-600 transition-colors"
-              tabIndex={-1}
-            >
-              {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
-            </button>
-          }
-        />
-
-        <div className="flex items-center justify-between pt-1">
-          <Controller
-            name="rememberMe"
-            control={control}
-            render={({ field }) => (
-              <label className="flex items-center gap-2 text-sm text-dark-accent cursor-pointer select-none">
-                <Checkbox
-                  checked={field.value}
-                  className={'data-checked:text-secondary! bg-white!'}
-                  onCheckedChange={(checked) => field.onChange(checked)}
-                />
-                Remember me
-              </label>
-            )}
+      <FormProvider {...methods}>
+        <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} noValidate>
+          <CommonInput
+            name="email"
+            label="Email Address"
+            icon={Mail}
+            type="email"
+            placeholder="Enter your Email"
           />
-          <Link to='/forgot-password'>
-            <Button variant="link" className="text-sm font-semibold text-secondary hover:underline">
-              Forgot Password?
-            </Button>
-          </Link>
 
-        </div>
+          <CommonInput
+            name="password"
+            label="Password"
+            icon={Lock}
+            type="password"
+            placeholder="Password"
+          />
 
-        <Button
-          type="submit"
-          className={'w-full'}
-        >
-          Sign in
-        </Button>
-      </form>
+          <div className="flex items-center justify-between pt-1">
+            <CommonCheckbox
+              name="rememberMe"
+              label="Remember me"
+              className="data-checked:text-secondary!"
+            />
+            <Link to='/forgot-password'>
+              <Button variant="link" className="text-sm font-semibold text-secondary hover:underline">
+                Forgot Password?
+              </Button>
+            </Link>
+          </div>
+
+          <Button
+            type="submit"
+            className={'w-full'}
+          >
+            Sign in
+          </Button>
+        </form>
+      </FormProvider>
 
       <div className="flex items-center justify-center gap-1.5 text-xs text-dark-gray pt-4">
         <ShieldCheck size={14} />

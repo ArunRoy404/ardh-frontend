@@ -1,21 +1,26 @@
-import { Controller } from "react-hook-form";
+import { useState } from "react";
+import { useFormContext, Controller } from "react-hook-form";
+import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 function CommonInput({
   name,
-  control,
   label,
   icon: Icon,
   type = "text",
   placeholder,
-  error,
-  rightElement,
   className,
   ...props
 }) {
+  const [showPassword, setShowPassword] = useState(false);
+  const { control, formState: { errors } } = useFormContext();
+  const error = errors[name]?.message;
+  const isPasswordType = type === "password";
+  const resolvedType = isPasswordType ? (showPassword ? "text" : "password") : type;
+
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-1.5 relative">
       {label && (
         <label htmlFor={name} className="text-xs font-semibold text-dark-gray">
           {label}
@@ -33,12 +38,12 @@ function CommonInput({
           render={({ field }) => (
             <Input
               id={name}
-              type={type}
+              type={resolvedType}
               placeholder={placeholder}
               className={cn(
                 "w-full py-3 pl-11 pr-4 text-sm placeholder:text-dark-gray h-auto",
                 "!bg-white !shadow-none !border-none rounded-md",
-                rightElement && "pr-11",
+                isPasswordType && "pr-11",
                 className
               )}
               aria-invalid={error ? "true" : "false"}
@@ -47,14 +52,21 @@ function CommonInput({
             />
           )}
         />
-        {rightElement && (
+        {isPasswordType && (
           <div className="absolute inset-y-0 right-0 flex items-center pr-4">
-            {rightElement}
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="text-slate-400 hover:text-slate-600 transition-colors"
+              tabIndex={-1}
+            >
+              {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
+            </button>
           </div>
         )}
       </div>
       {error && (
-        <p className="text-xs text-red-500 mt-1">{error}</p>
+        <p className="absolute -bottom-1 translate-y-full text-xs text-red-500">{error}</p>
       )}
     </div>
   );
