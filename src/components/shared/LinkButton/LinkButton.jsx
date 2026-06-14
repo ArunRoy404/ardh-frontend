@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 
-function LinkButton({ to, children, className, ...props }) {
+function LinkButton({ to='/', children, className, ...props }) {
   return (
     <Link to={to}>
       <Button {...props} className={cn(

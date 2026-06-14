@@ -9,6 +9,7 @@ import FormContainer from "@/components/shared/Form/FormContainer/FormContainer"
 import CommonInput from "@/components/shared/Form/FormInput/CommonInput";
 import { Button } from "@/components/ui/button";
 import { LinkButton } from "@/components/shared/LinkButton/LinkButton";
+import FormAction from "../shared/Form/FormAction/FormAction";
 
 /**
  * ResetPasswordForm
@@ -60,17 +61,18 @@ function ResetPasswordForm() {
         placeholder="Confirm new password"
       />
 
+      {/* ── Back to Sign In ── */}
+      <FormAction
+        label="Back to Sign In"
+        to="/sign-in"
+      />
+      
       {/* ── Submit button ── */}
       <Button type="submit" className="w-full" isNotImplemented>
         Reset Password
       </Button>
 
-      {/* ── Back to Sign In ── */}
-      <div className="text-center pt-2">
-        <LinkButton to="/sign-in" variant="link">
-          Back to Sign In
-        </LinkButton>
-      </div>
+
     </FormContainer>
   );
 }

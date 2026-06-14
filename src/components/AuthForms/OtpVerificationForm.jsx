@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ShieldCheck } from "lucide-react";
 import {
   otpVerificationSchema,
   otpVerificationDefaultValues,
@@ -8,7 +7,8 @@ import {
 import FormContainer from "@/components/shared/Form/FormContainer/FormContainer";
 import CommonOTPInput from "@/components/shared/Form/FormInput/CommonOTPInput";
 import { Button } from "@/components/ui/button";
-import { LinkButton } from "@/components/shared/LinkButton/LinkButton";
+import FormAction from "../shared/Form/FormAction/FormAction";
+import ResendOTP from "../shared/Form/FormAction/ResendOTP";
 
 /**
  * OtpVerificationForm
@@ -27,11 +27,7 @@ function OtpVerificationForm() {
     console.log("OTP submitted:", data.otp);
   };
 
-  /* ── Placeholder: replace with actual resend API call ── */
-  const handleResend = (e) => {
-    e.preventDefault();
-    console.log("Resending OTP…");
-  };
+
 
   return (
     <FormContainer
@@ -59,23 +55,14 @@ function OtpVerificationForm() {
       </Button>
 
       {/* ── Resend code link ── */}
-      <div className="flex items-center justify-center gap-1 text-sm pt-1">
-        <span className="text-dark-gray">Didn't receive the code?</span>
-        <button
-          type="button"
-          onClick={handleResend}
-          className="font-semibold text-secondary hover:underline transition-colors cursor-pointer"
-        >
-          Resend Code
-        </button>
-      </div>
+      <ResendOTP/>
 
       {/* ── Back to Forgot Password ── */}
-      <div className="text-center pt-2">
-        <LinkButton to="/forgot-password" variant="link">
-          Change email
-        </LinkButton>
-      </div>
+      <FormAction
+        label="Change email"
+        to="/forgot-password"
+      />
+
     </FormContainer>
   );
 }

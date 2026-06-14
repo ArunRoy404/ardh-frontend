@@ -6,6 +6,7 @@ import FormContainer from "@/components/shared/Form/FormContainer/FormContainer"
 import CommonInput from "@/components/shared/Form/FormInput/CommonInput";
 import { Button } from "@/components/ui/button";
 import { LinkButton } from "@/components/shared/LinkButton/LinkButton";
+import FormAction from "../shared/Form/FormAction/FormAction";
 
 /**
  * ForgotPasswordForm
@@ -47,11 +48,11 @@ function ForgotPasswordForm() {
       </Button>
 
       {/* ── Back to Sign In ── */}
-      <div className="text-center pt-2">
-        <LinkButton to="/sign-in" variant="link">
-          Back to Sign In
-        </LinkButton>
-      </div>
+      <FormAction
+        label="Back to Sign In"
+        to="/sign-in"
+      />
+
     </FormContainer>
   );
 }

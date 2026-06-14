@@ -7,6 +7,7 @@ import CommonInput from "@/components/shared/Form/FormInput/CommonInput";
 import CommonCheckbox from "@/components/shared/Form/FormInput/CommonCheckbox";
 import { Button } from "@/components/ui/button";
 import { LinkButton } from "@/components/shared/LinkButton/LinkButton";
+import FormAction from "../shared/Form/FormAction/FormAction";
 
 /**
  * SignInForm
@@ -60,16 +61,16 @@ function SignInForm() {
       />
 
       {/* ── Remember me + Forgot Password link ── */}
-      <div className="flex items-center justify-between pt-1">
-        <CommonCheckbox
+      <FormAction 
+        label="Forgot Password?"
+        to="/forgot-password"
+      >
+         <CommonCheckbox
           name="rememberMe"
           label="Remember me"
-          className="data-checked:text-secondary!"
         />
-        <LinkButton to="/forgot-password" variant="link">
-          Forgot Password?
-        </LinkButton>
-      </div>
+      </FormAction>
+
 
       {/* ── Submit button (marked isNotImplemented for demo purposes) ── */}
       <Button type="submit" className="w-full" isNotImplemented>
