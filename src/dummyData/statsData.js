@@ -5,6 +5,7 @@ export const statsData = [
         iconType: "buildings",
         iconColor: "text-[#1E3A5F]",
         iconBg: "bg-[#E4ECFF]",
+        url: "/buildings",
     },
     {
         title: "Total Apartments",
@@ -12,6 +13,7 @@ export const statsData = [
         iconType: "apartments",
         iconColor: "text-[#64748B]",
         iconBg: "bg-[#F1F5F9]",
+        url: "/apartments",
     },
     {
         title: "Occupied",
@@ -19,6 +21,7 @@ export const statsData = [
         iconType: "tenants",
         iconColor: "text-[#1961FF]",
         iconBg: "bg-[#E4ECFF]",
+        url: "/tenants",
     },
     {
         title: "Vacant",
@@ -26,6 +29,7 @@ export const statsData = [
         iconType: "apartments",
         iconColor: "text-[#F59E0B]",
         iconBg: "bg-[#FEF3C7]",
+        url: "/apartments",
     },
     {
         title: "Monthly Income",
@@ -33,6 +37,7 @@ export const statsData = [
         iconType: "income",
         iconColor: "text-[#16A34A]",
         iconBg: "bg-[#DCFCE7]",
+        url: "/income",
     },
     {
         title: "Monthly Expense",
@@ -40,6 +45,7 @@ export const statsData = [
         iconType: "expenses",
         iconColor: "text-[#DC2626]",
         iconBg: "bg-[#FEE2E2]",
+        url: "/expenses",
     },
     {
         title: "Pending Payments",
@@ -47,6 +53,7 @@ export const statsData = [
         iconType: "alert",
         iconColor: "text-[#F59E0B]",
         iconBg: "bg-[#FEF3C7]",
+        url: "/income",
     },
     {
         title: "Open Maintenance",
@@ -54,5 +61,6 @@ export const statsData = [
         iconType: "maintenance",
         iconColor: "text-[#64748B]",
         iconBg: "bg-[#F1F5F9]",
+        url: "/maintenance",
     },
 ]

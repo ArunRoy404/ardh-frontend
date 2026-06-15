@@ -15,6 +15,7 @@ const DashboardStat = () => {
                     iconType={stat.iconType}
                     iconColor={stat.iconColor}
                     iconBg={stat.iconBg}
+                    url={stat.url}
                 />
             ))}
         </div>
