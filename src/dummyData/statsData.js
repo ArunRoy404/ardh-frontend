@@ -1,0 +1,58 @@
+export const statsData = [
+    {
+        title: "Total Buildings",
+        value: "3",
+        iconType: "buildings",
+        iconColor: "text-[#1E3A5F]",
+        iconBg: "bg-[#E4ECFF]",
+    },
+    {
+        title: "Total Apartments",
+        value: "19",
+        iconType: "apartments",
+        iconColor: "text-[#64748B]",
+        iconBg: "bg-[#F1F5F9]",
+    },
+    {
+        title: "Occupied",
+        value: "4",
+        iconType: "tenants",
+        iconColor: "text-[#1961FF]",
+        iconBg: "bg-[#E4ECFF]",
+    },
+    {
+        title: "Vacant",
+        value: "2",
+        iconType: "apartments",
+        iconColor: "text-[#F59E0B]",
+        iconBg: "bg-[#FEF3C7]",
+    },
+    {
+        title: "Monthly Income",
+        value: "₹130,000",
+        iconType: "income",
+        iconColor: "text-[#16A34A]",
+        iconBg: "bg-[#DCFCE7]",
+    },
+    {
+        title: "Monthly Expense",
+        value: "₹130,000",
+        iconType: "expenses",
+        iconColor: "text-[#DC2626]",
+        iconBg: "bg-[#FEE2E2]",
+    },
+    {
+        title: "Pending Payments",
+        value: "4",
+        iconType: "alert",
+        iconColor: "text-[#F59E0B]",
+        iconBg: "bg-[#FEF3C7]",
+    },
+    {
+        title: "Open Maintenance",
+        value: "2",
+        iconType: "maintenance",
+        iconColor: "text-[#64748B]",
+        iconBg: "bg-[#F1F5F9]",
+    },
+]

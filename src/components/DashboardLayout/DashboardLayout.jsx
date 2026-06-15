@@ -1,20 +1,10 @@
 import { AppSidebar } from "@/components/app-sidebar"
 import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
-import {
     SidebarInset,
     SidebarProvider,
-    SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { Outlet } from "react-router"
-import DashboardHeader from "./DashboardHeader"
+import DashboardHeader from "./DashboardNavbar"
 
 const DashboardLayout = () => {
     return (
@@ -22,7 +12,7 @@ const DashboardLayout = () => {
             <AppSidebar />
             <SidebarInset>
                 <DashboardHeader />
-                <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+                <div  className="flex flex-col gap-6 p-4 w-full max-w-480 mx-auto">
                     <Outlet />
                 </div>
             </SidebarInset>

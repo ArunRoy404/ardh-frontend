@@ -4,9 +4,9 @@ import { NotificationsIcon } from "../SvgIcons/NotificationsIcon"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip"
 
-const DashboardHeader = () => {
+const DashboardNavbar = () => {
     return (
-        <header className="sticky top-0 z-50 bg-white  border-b flex h-16 shrink-0 items-center justify-between gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-4">
+        <nav className="sticky top-0 z-50 bg-white  border-b flex h-16 shrink-0 items-center justify-between gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 px-4">
             <div className="flex items-center gap-2">
                 <SidebarTrigger className="p-4!" />
             </div>
@@ -36,8 +36,8 @@ const DashboardHeader = () => {
                     </Tooltip>
                 </TooltipProvider>
             </div>
-        </header>
+        </nav>
     )
 }
 
-export default DashboardHeader 
+export default DashboardNavbar 
