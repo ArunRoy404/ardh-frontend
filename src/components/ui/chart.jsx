@@ -26,6 +26,90 @@ function useChart() {
   return context
 }
 
+const MIN_RESIZE = 15
+
+function DebouncedResponsiveContainer({ children, initialDimension = INITIAL_DIMENSION }) {
+  const containerRef = React.useRef(null)
+  const timerRef = React.useRef(null)
+  const mountedRef = React.useRef(false)
+  const prevDimensionsRef = React.useRef(initialDimension)
+  const [dimensions, setDimensions] = React.useState(initialDimension)
+  const [opacity, setOpacity] = React.useState(1)
+
+  React.useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    mountedRef.current = true
+
+    const observer = new ResizeObserver((entries) => {
+      const entry = entries[0]
+      if (!entry) return
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current)
+      }
+
+      timerRef.current = setTimeout(() => {
+        if (!mountedRef.current) return
+        const { width, height } = entry.contentRect
+        if (width > 0 && height > 0) {
+          const prev = prevDimensionsRef.current
+          const widthDiff = Math.abs(width - prev.width)
+          const heightDiff = Math.abs(height - prev.height)
+          // Skip if change is too small to notice
+          if (widthDiff < MIN_RESIZE && heightDiff < MIN_RESIZE) return
+
+          prevDimensionsRef.current = { width, height }
+
+          // Cross-fade: fade out, swap dimensions, fade back in
+          setOpacity(0)
+          setTimeout(() => {
+            setDimensions({ width, height })
+            // Use double rAF to ensure new dimensions have painted
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                setOpacity(1)
+              })
+            })
+          }, 150)
+        }
+      }, 1000)
+    })
+
+    observer.observe(container)
+
+    return () => {
+      mountedRef.current = false
+      observer.disconnect()
+      if (timerRef.current) {
+        clearTimeout(timerRef.current)
+      }
+    }
+  }, [])
+
+  return (
+    <div ref={containerRef} style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+      <div
+        style={{
+          opacity,
+          transition: 'opacity 0.15s ease-in-out',
+          width: dimensions.width,
+          height: dimensions.height,
+          overflow: 'hidden',
+        }}
+      >
+        <RechartsPrimitive.ResponsiveContainer
+          width={dimensions.width}
+          height={dimensions.height}
+        >
+          {children}
+        </RechartsPrimitive.ResponsiveContainer>
+      </div>
+    </div>
+  )
+}
+
 function ChartContainer({
   id,
   className,
@@ -48,9 +132,9 @@ function ChartContainer({
         )}
         {...props}>
         <ChartStyle id={chartId} config={config} />
-        <RechartsPrimitive.ResponsiveContainer initialDimension={initialDimension}>
+        <DebouncedResponsiveContainer initialDimension={initialDimension}>
           {children}
-        </RechartsPrimitive.ResponsiveContainer>
+        </DebouncedResponsiveContainer>
       </div>
     </ChartContext.Provider>
   );
