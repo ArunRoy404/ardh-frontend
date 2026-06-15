@@ -44,7 +44,7 @@ const NotificationsPage = () => {
             <DashboardHeader
                 title="Notifications"
                 description="Stay updated with the latest activities and alerts"
-                // showBreadcrumb
+                showBreadcrumb
             />
 
             {/* Notifications List Container */}
