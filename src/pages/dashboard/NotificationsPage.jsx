@@ -1,59 +1,9 @@
-import React from "react"
 import { ApartmentsIcon } from "../../components/SvgIcons/ApartmentsIcon"
 import { MaintenanceIcon } from "../../components/SvgIcons/MaintenanceIcon"
 import { IncomeIcon } from "../../components/SvgIcons/IncomeIcon"
 import { AlertCircle } from "lucide-react"
-
-const notificationsData = [
-    {
-        type: "vacant",
-        title: "Vacant Apartments",
-        detail: "2 apartments are vacant",
-        date: "May 24, 9:37 AM",
-    },
-    {
-        type: "maintenance-info",
-        title: "Maintenance: hi",
-        detail: "Status: in progress • Green Valley Apartments",
-        date: "May 24, 9:37 AM",
-    },
-    {
-        type: "critical",
-        title: "Critical Maintenance",
-        detail: "CCTV camera malfunction",
-        date: "May 24, 9:37 AM",
-    },
-    {
-        type: "maintenance-info",
-        title: "Maintenance: Water leakage in bathroom",
-        detail: "Status: in progress • Sunrise Tower",
-        date: "May 24, 9:37 AM",
-    },
-    {
-        type: "maintenance-info",
-        title: "Maintenance: AC not cooling",
-        detail: "Status: open • Skyline Residency",
-        date: "May 24, 9:37 AM",
-    },
-    {
-        type: "maintenance-info",
-        title: "Maintenance: Parking lot lights broken",
-        detail: "Status: open • Sunrise Tower",
-        date: "May 24, 9:37 AM",
-    },
-    {
-        type: "maintenance-info",
-        title: "Maintenance: Common area painting",
-        detail: "Status: open • Green Valley Apartments",
-        date: "May 24, 9:37 AM",
-    },
-    {
-        type: "payment",
-        title: "Overdue Payment",
-        detail: "₹20,000 from Unknown",
-        date: "May 24, 9:37 AM",
-    },
-]
+import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader"
+import useNotificationsStore from "@/dummyDataStore/useNotificationsStore"
 
 const getNotificationIconData = (type) => {
     const sizeClass = "size-5"
@@ -87,49 +37,37 @@ const getNotificationIconData = (type) => {
 }
 
 const NotificationsPage = () => {
+    const { notificationsData } = useNotificationsStore()
     return (
-        <div className="flex flex-col gap-6 p-4">
+        <>
             {/* Header Block */}
-            <div className="mb-6">
-                <h1 
-                    className="text-3xl font-semibold text-[#1A1A1A] tracking-tight"
-                    style={{ fontFamily: "'Adobe Aldine', Georgia, serif" }}
-                >
-                    Notifications
-                </h1>
-                
-                {/* Breadcrumbs */}
-                <div 
-                    className="flex items-center gap-1.5 text-xs text-[#64748B] mt-1"
-                    style={{ fontFamily: "'DM Sans', sans-serif" }}
-                >
-                    <span className="hover:text-[#0A0A0A] cursor-pointer">Dashboard</span>
-                    <span className="text-[10px]">▸</span>
-                    <span className="text-secondary font-medium">Notifications</span>
-                </div>
-            </div>
+            <DashboardHeader
+                title="Notifications"
+                description="Stay updated with the latest activities and alerts"
+                // showBreadcrumb
+            />
 
             {/* Notifications List Container */}
-            <div className="flex flex-col bg-white  overflow-hidden">
+            <div className="flex flex-col">
                 {notificationsData.map((item, idx) => {
                     const iconData = getNotificationIconData(item.type)
                     return (
-                        <div 
+                        <div
                             key={idx}
-                            className="flex p-2 items-start gap-2 self-stretch border-b border-[#EEE] justify-between hover:bg-slate-50 transition-colors"
+                            className="flex p-3 items-start gap-3 self-stretch border-b border-[#EEE] justify-between hover:bg-slate-50 transition-colors"
                         >
-                            <div className="flex gap-2 items-start">
-                                <div className={`p-2 rounded-full flex items-center justify-center ${iconData.bg}`}>
+                            <div className="flex gap-3 items-start">
+                                <div className={`p-2.5 rounded-full flex items-center justify-center ${iconData.bg}`}>
                                     {iconData.icon}
                                 </div>
                                 <div className="flex flex-col justify-center min-h-[36px]">
-                                    <h3 
-                                        className="text-[18px] font-medium text-[#1A1A1A] leading-tight"
+                                    <h3
+                                        className="text-[15px] font-medium text-[#1A1A1A] leading-tight"
                                         style={{ fontFamily: "'Adobe Aldine', Georgia, serif" }}
                                     >
                                         {item.title}
                                     </h3>
-                                    <p 
+                                    <p
                                         className="text-[12px] font-normal text-[#64748B] mt-0.5"
                                         style={{ fontFamily: "'DM Sans', sans-serif" }}
                                     >
@@ -137,8 +75,8 @@ const NotificationsPage = () => {
                                     </p>
                                 </div>
                             </div>
-                            
-                            <span 
+
+                            <span
                                 className="text-[12px] font-normal text-[#64748B] whitespace-nowrap pt-1"
                                 style={{ fontFamily: "'DM Sans', sans-serif" }}
                             >
@@ -148,7 +86,7 @@ const NotificationsPage = () => {
                     )
                 })}
             </div>
-        </div>
+        </>
     )
 }
 
