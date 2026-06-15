@@ -80,6 +80,10 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
+
+
+
+    --color-input-bg: var(--input-bg);
 }
 
 /* =========================================================================
@@ -141,6 +145,8 @@
     --chart-3: #0F172A;
     --chart-4: #64748B;
     --chart-5: #16A34A;
+
+    --input-bg: #F8FAFC;
 
     /* =====================================================================
        STATUS TAG COLORS

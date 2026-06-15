@@ -23,7 +23,7 @@ const CommonCard = ({ children, className, title, headerChild }) => {
                     </div>
                 )
             }
-
+ 
             {children}
         </div>
     )

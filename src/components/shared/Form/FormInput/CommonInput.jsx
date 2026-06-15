@@ -42,7 +42,7 @@ function CommonInput({
               placeholder={placeholder}
               className={cn(
                 "w-full py-3 pl-11 pr-4 text-sm placeholder:text-dark-gray h-auto",
-                "!bg-white !shadow-none !border-none rounded-md",
+                "!bg-input-bg !shadow-none !border-none rounded-md",
                 isPasswordType && "pr-11",
                 className
               )}

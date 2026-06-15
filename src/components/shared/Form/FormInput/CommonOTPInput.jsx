@@ -43,7 +43,7 @@ function CommonOTPInput({
                 <InputOTPSlot
                   key={i}
                   index={i}
-                  className="size-14 rounded-md border border-dark-gray bg-transparent! text-sm font-semibold shadow-none"
+                  className="size-14 rounded-md border border-dark-gray bg-input-bg! text-sm font-semibold shadow-none"
                 />
               ))}
             </InputOTPGroup>
