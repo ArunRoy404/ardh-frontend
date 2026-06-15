@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { Layers, Pencil, Trash2, PlusCircle } from "lucide-react"
+import { Layers, Pencil, Trash2 } from "lucide-react"
 import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader"
 import CommonCard from "@/components/shared/CommonCard/CommonCard"
-import { ApartmentsIcon } from "@/components/SvgIcons/ApartmentsIcon"
 import { Button } from "@/components/ui/button"
+import AddBuilding from "@/components/Buildings/AddBuilding/AddBuilding"
 
 const BuildingsPage = () => {
   // Initial building data matching the Figma image (2 cards of Sunrise Tower)
@@ -33,10 +33,7 @@ const BuildingsPage = () => {
         title="Buildings"
         showBreadcrumb
       >
-        <Button>
-          <PlusCircle className="w-4 h-4" />
-          Add New Buildings
-        </Button>
+        <AddBuilding />
       </DashboardHeader>
 
       {/* Buildings Grid Layout */}
