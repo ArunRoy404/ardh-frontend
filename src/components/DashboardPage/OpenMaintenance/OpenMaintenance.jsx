@@ -1,26 +1,22 @@
-import React from "react"
-import { ArrowRight } from "lucide-react"
 import useMaintenanceStore from "../../../dummyDataStore/useMaintenanceStore"
 import { getPriorityBadge, getStatusBadge } from "../../../dummyData/openMaintenance"
+import CommonCard from "@/components/shared/CommonCard/CommonCard"
+import { LinkButton } from "@/components/shared/LinkButton/LinkButton"
+import { LinkButtonCard } from "@/components/shared/LinkButton/LinkButtonCard"
 
 const OpenMaintenance = () => {
     const { openMaintenance } = useMaintenanceStore()
 
     return (
-        <div className="bg-white p-6 rounded-[16px] shadow-[0_0_10px_0_rgba(0,0,0,0.10)] border border-slate-50 flex flex-col">
-            <div className="flex items-center justify-between mb-4">
-                <h2
-                    className="text-xl font-semibold text-foreground"
-                    style={{ fontFamily: "'Adobe Aldine', Georgia, serif" }}
-                >
-                    Open Maintenance
-                </h2>
-                <button className="flex items-center gap-1 text-xs text-secondary font-medium hover:underline cursor-pointer">
-                    <span>View All</span>
-                    <ArrowRight className="size-3.5" />
-                </button>
-            </div>
-
+        <CommonCard
+            title="Open Maintenance"
+            headerChild={
+                <LinkButtonCard to="/maintenance">
+                    View All
+                </LinkButtonCard>
+            }
+            className="min-h-0"
+        >
             <div
                 className="flex flex-col divide-y divide-slate-100 font-sans"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
@@ -48,7 +44,7 @@ const OpenMaintenance = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </CommonCard>
     )
 }
 

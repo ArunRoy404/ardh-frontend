@@ -1,26 +1,21 @@
-import React from "react"
-import { ArrowRight } from "lucide-react"
 import usePaymentsStore from "../../../dummyDataStore/usePaymentsStore"
 import { getStatusBadge } from "../../../dummyData/openMaintenance"
+import CommonCard from "@/components/shared/CommonCard/CommonCard"
+import { LinkButtonCard } from "@/components/shared/LinkButton/LinkButtonCard"
 
 const RecentPayments = () => {
     const { recentPayments } = usePaymentsStore()
 
     return (
-        <div className="bg-white p-6 rounded-[16px] shadow-[0_0_10px_0_rgba(0,0,0,0.10)] border border-slate-50 flex flex-col">
-            <div className="flex items-center justify-between mb-4">
-                <h2
-                    className="text-xl font-semibold text-foreground"
-                    style={{ fontFamily: "'Adobe Aldine', Georgia, serif" }}
-                >
-                    Recent Payments
-                </h2>
-                <button className="flex items-center gap-1 text-xs text-secondary font-medium hover:underline cursor-pointer">
-                    <span>View All</span>
-                    <ArrowRight className="size-3.5" />
-                </button>
-            </div>
-
+        <CommonCard
+            title="Recent Payments"
+            headerChild={
+                <LinkButtonCard to="/income">
+                    View All
+                </LinkButtonCard>
+            }
+            className="min-h-0"
+        >
             <div
                 className="flex flex-col divide-y divide-slate-100 font-sans"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
@@ -48,7 +43,7 @@ const RecentPayments = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </CommonCard>
     )
 }
 

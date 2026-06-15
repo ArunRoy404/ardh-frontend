@@ -1,25 +1,21 @@
-import React from "react"
-import { ArrowRight } from "lucide-react"
+
 import useActivitiesStore from "../../../dummyDataStore/useActivitiesStore"
+import CommonCard from "@/components/shared/CommonCard/CommonCard"
+import { LinkButtonCard } from "@/components/shared/LinkButton/LinkButtonCard"
 
 const RecentActivities = () => {
     const { recentActivities } = useActivitiesStore()
 
     return (
-        <div className="bg-white p-6 rounded-[16px] shadow-[0_0_10px_0_rgba(0,0,0,0.10)] border border-slate-50 flex flex-col">
-            <div className="flex items-center justify-between mb-4">
-                <h2
-                    className="text-xl font-semibold text-foreground"
-                    style={{ fontFamily: "'Adobe Aldine', Georgia, serif" }}
-                >
-                    Recent Activities
-                </h2>
-                <button className="flex items-center gap-1 text-xs text-secondary font-medium hover:underline cursor-pointer">
-                    <span>View All</span>
-                    <ArrowRight className="size-3.5" />
-                </button>
-            </div>
-
+        <CommonCard
+            title="Recent Activities"
+            headerChild={
+                <LinkButtonCard to="/notifications">
+                    View All
+                </LinkButtonCard>
+            }
+            className="min-h-0"
+        >
             <div
                 className="relative flex flex-col gap-6 pl-4 font-sans"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
@@ -36,7 +32,7 @@ const RecentActivities = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </CommonCard>
     )
 }
 

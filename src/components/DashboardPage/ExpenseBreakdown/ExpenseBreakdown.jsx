@@ -1,39 +1,27 @@
 import React from "react"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "../../ui/select"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../../ui/chart"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts"
 import useExpenseStore from "../../../dummyDataStore/useExpenseStore"
+import CommonCard from "@/components/shared/CommonCard/CommonCard"
+import CommonSelect from "@/components/shared/CommonSelect/CommonSelect"
 
 const ExpenseBreakdown = () => {
     const { expenseData, expenseConfig } = useExpenseStore()
 
     return (
-        <div className="bg-white p-6 rounded-[16px] shadow-[0_0_10px_0_rgba(0,0,0,0.10)] border border-slate-50 flex flex-col justify-between min-h-[350px]">
-            <div className="flex items-center justify-between mb-4">
-                <h2
-                    className="text-xl font-semibold text-foreground"
-                    style={{ fontFamily: "'Adobe Aldine', Georgia, serif" }}
-                >
-                    Expense Breakdown
-                </h2>
-                <Select defaultValue="this-week">
-                    <SelectTrigger className="w-[110px] text-xs font-sans border-border bg-white">
-                        <SelectValue placeholder="This Week" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="this-week">This Week</SelectItem>
-                        <SelectItem value="this-month">This Month</SelectItem>
-                        <SelectItem value="this-year">This Year</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
-
+        <CommonCard
+            title="Expense Breakdown"
+            headerChild={
+                <CommonSelect
+                    defaultValue="this-week"
+                    options={[
+                        { value: "this-week", label: "This Week" },
+                        { value: "this-month", label: "This Month" },
+                        { value: "this-year", label: "This Year" },
+                    ]}
+                />
+            }
+        >
             <div className="flex-1 w-full min-h-[220px] relative mt-2">
                 <ChartContainer
                     config={expenseConfig}
@@ -100,7 +88,7 @@ const ExpenseBreakdown = () => {
                     </BarChart>
                 </ChartContainer>
             </div>
-        </div>
+        </CommonCard>
     )
 }
 

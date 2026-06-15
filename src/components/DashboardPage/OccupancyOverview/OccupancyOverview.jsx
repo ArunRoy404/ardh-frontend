@@ -1,38 +1,26 @@
-import React from "react"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "../../ui/select"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../../ui/chart"
 import { PieChart, Pie, Cell } from "recharts"
 import useOccupancyStore from "../../../dummyDataStore/useOccupancyStore"
+import CommonCard from "@/components/shared/CommonCard/CommonCard"
+import CommonSelect from "@/components/shared/CommonSelect/CommonSelect"
 
 const OccupancyOverview = () => {
     const { occupancyData, occupancyConfig } = useOccupancyStore()
 
     return (
-        <div className="bg-white p-6 rounded-[16px] shadow-[0_0_10px_0_rgba(0,0,0,0.10)] border border-slate-50 flex flex-col justify-between min-h-[350px]">
-            <div className="flex items-center justify-between mb-4">
-                <h2
-                    className="text-xl font-semibold text-foreground"
-                    style={{ fontFamily: "'Adobe Aldine', Georgia, serif" }}
-                >
-                    Occupancy Overview
-                </h2>
-                <Select defaultValue="this-week">
-                    <SelectTrigger className="w-[110px] text-xs font-sans border-border bg-white">
-                        <SelectValue placeholder="This Week" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="this-week">This Week</SelectItem>
-                        <SelectItem value="this-month">This Month</SelectItem>
-                        <SelectItem value="this-year">This Year</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
+        <CommonCard
+            title="Occupancy Overview"
+            headerChild={
+                <CommonSelect
+                    defaultValue="this-week"
+                    options={[
+                        { value: "this-week", label: "This Week" },
+                        { value: "this-month", label: "This Month" },
+                        { value: "this-year", label: "This Year" },
+                    ]}
+                />
+            }
+        >
 
             <div className="relative w-[220px] h-[220px] mx-auto flex items-center justify-center my-4">
                 <ChartContainer
@@ -85,7 +73,6 @@ const OccupancyOverview = () => {
                 <div className="absolute flex flex-col items-center justify-center pointer-events-none">
                     <span
                         className="text-3xl font-semibold text-dark-accent"
-                        style={{ fontFamily: "'Adobe Aldine', Georgia, serif" }}
                     >
                         {occupancyData.reduce((acc, item) => acc + item.value, 0)
                             .toString()
@@ -99,6 +86,8 @@ const OccupancyOverview = () => {
                     </span>
                 </div>
             </div>
+
+
 
             <div
                 className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-4 text-xs font-sans text-dark-gray"
@@ -117,7 +106,7 @@ const OccupancyOverview = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </CommonCard>
     )
 }
 
