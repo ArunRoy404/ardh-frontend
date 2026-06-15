@@ -3,6 +3,8 @@ import LogoutIcon from "../SvgIcons/LogoutIcon"
 import { NotificationsIcon } from "../SvgIcons/NotificationsIcon"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip"
+import { Link } from "react-router"
+import { toast } from "sonner"
 
 const DashboardNavbar = () => {
     return (
@@ -12,10 +14,10 @@ const DashboardNavbar = () => {
             </div>
 
             <div className="flex items-center gap-4">
-                <button className="relative cursor-pointer text-muted-foreground hover:text-foreground flex items-center justify-center">
+                <Link to="/notifications" className="relative cursor-pointer text-muted-foreground hover:text-foreground flex items-center justify-center">
                     <NotificationsIcon className="size-6" />
                     <span className="absolute top-0 right-0 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">3</span>
-                </button>
+                </Link>
 
                 <div className="flex items-center justify-center gap-2">
                     <Avatar className="cursor-pointer size-8">
@@ -27,7 +29,7 @@ const DashboardNavbar = () => {
 
                 <TooltipProvider>
                     <Tooltip>
-                        <TooltipTrigger className="flex items-center justify-center text-red-500 hover:text-red-600 cursor-pointer">
+                        <TooltipTrigger className="flex items-center justify-center text-red-500 hover:text-red-600 cursor-pointer" onClick={() => toast.warning('Functionality not implemented yet.')}>
                             <LogoutIcon className="size-6" />
                         </TooltipTrigger>
                         <TooltipContent>
