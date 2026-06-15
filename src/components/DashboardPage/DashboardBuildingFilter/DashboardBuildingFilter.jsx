@@ -1,12 +1,12 @@
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
+import CommonSelect from "@/components/shared/CommonSelect/CommonSelect"
 
 
+const dummyBuildings = [
+    { value: "all", label: "All Buildings" },
+    { value: "sunrise", label: "Sunrise Tower" },
+    { value: "skyline", label: "Skyline Residency" },
+    { value: "greenvalley", label: "Green Valley" },
+]
 
 
 const DashboardBuildingFilter = () => {
@@ -18,17 +18,11 @@ const DashboardBuildingFilter = () => {
             >
                 Filter by Building:
             </span>
-            <Select defaultValue="all">
-                <SelectTrigger className="w-[140px] text-xs font-sans border-border bg-white text-[#1A1A1A]">
-                    <SelectValue placeholder="All Buildings" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectItem value="all">All Buildings</SelectItem>
-                    <SelectItem value="sunrise">Sunrise Tower</SelectItem>
-                    <SelectItem value="skyline">Skyline Residency</SelectItem>
-                    <SelectItem value="greenvalley">Green Valley</SelectItem>
-                </SelectContent>
-            </Select>
+            <CommonSelect
+                defaultValue="all"
+                placeholder="Choose Building"
+                options={dummyBuildings}
+            />
         </div>
     )
 }

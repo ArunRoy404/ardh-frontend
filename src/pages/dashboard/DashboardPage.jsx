@@ -1,11 +1,14 @@
-import DashboardStat from "../../components/DashboardPage/DashboardStat/DashboardStat"
-import OccupancyOverview from "../../components/DashboardPage/OccupancyOverview/OccupancyOverview"
-import ExpenseBreakdown from "../../components/DashboardPage/ExpenseBreakdown/ExpenseBreakdown"
-import RecentPayments from "../../components/DashboardPage/RecentPayments/RecentPayments"
-import RecentActivities from "../../components/DashboardPage/RecentActivities/RecentActivities"
-import OpenMaintenance from "../../components/DashboardPage/OpenMaintenance/OpenMaintenance"
+import DashboardStat from "@/components/DashboardPage/DashboardStat/DashboardStat"
+import OccupancyOverview from "@/components/DashboardPage/OccupancyOverview/OccupancyOverview"
+import ExpenseBreakdown from "@/components/DashboardPage/ExpenseBreakdown/ExpenseBreakdown"
+import RecentPayments from "@/components/DashboardPage/RecentPayments/RecentPayments"
+import RecentActivities from "@/components/DashboardPage/RecentActivities/RecentActivities"
+import OpenMaintenance from "@/components/DashboardPage/OpenMaintenance/OpenMaintenance"
 import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader"
 import DashboardBuildingFilter from "@/components/DashboardPage/DashboardBuildingFilter/DashboardBuildingFilter"
+
+
+
 
 const DashboardPage = () => {
     return (
@@ -38,5 +41,7 @@ const DashboardPage = () => {
         </>
     )
 }
+
+
 
 export default DashboardPage 
