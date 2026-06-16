@@ -5,10 +5,7 @@ import { TenantsIcon } from "../../SvgIcons/TenantsIcon"
 import { IncomeIcon } from "../../SvgIcons/IncomeIcon"
 import { ExpensesIcon } from "../../SvgIcons/ExpensesIcon"
 import { MaintenanceIcon } from "../../SvgIcons/MaintenanceIcon"
-import { AlertCircle } from "lucide-react"
-
-
-
+import { AlertCircle, Home } from "lucide-react"
 
 const iconMap = {
     buildings: (className) => <BuildingsIcon className={className} />,
@@ -18,19 +15,15 @@ const iconMap = {
     expenses: (className) => <ExpensesIcon className={className} />,
     maintenance: (className) => <MaintenanceIcon className={className} />,
     alert: (className) => <AlertCircle className={className} />,
+    vacant: (className) => <Home className={className} />,
+    home: (className) => <Home className={className} />,
 }
-
-
-
 
 const DashboardStatCard = ({ title, value, iconType, iconColor, iconBg, url }) => {
     const IconComponent = iconMap[iconType]
 
-    return (
-        <Link
-            to={url}
-            className="bg-stat-bg p-6 rounded-2xl flex items-center justify-between transition-all duration-300 hover:shadow-md border border-slate-100 cursor-pointer"
-        >
+    const cardContent = (
+        <>
             <div className="flex flex-col gap-2">
                 <span
                     className="text-base text-dark-gray font-normal"
@@ -47,7 +40,24 @@ const DashboardStatCard = ({ title, value, iconType, iconColor, iconBg, url }) =
             <div className={`p-3 rounded-full flex items-center justify-center ${iconBg}`}>
                 {IconComponent && IconComponent(`size-6 ${iconColor}`)}
             </div>
-        </Link>
+        </>
+    )
+
+    if (url) {
+        return (
+            <Link
+                to={url}
+                className="bg-stat-bg p-6 rounded-md flex items-center justify-between transition-all duration-300 hover:shadow-md border border cursor-pointer"
+            >
+                {cardContent}
+            </Link>
+        )
+    }
+
+    return (
+        <div className="bg-stat-bg p-6 rounded-md flex items-center justify-between border border">
+            {cardContent}
+        </div>
     )
 }
 
