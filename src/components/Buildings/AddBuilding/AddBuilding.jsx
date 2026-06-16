@@ -43,6 +43,8 @@ import {
     DialogClose,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
+import CommonSelect from "@/components/shared/CommonSelect/CommonSelect";
 
 /* ── Toolbar Button ── */
 const ToolbarBtn = ({ onClick, isActive, children, title }) => (
@@ -100,10 +102,11 @@ const AddBuilding = () => {
     const onSubmit = (data) => {
         const description = editor?.getHTML() || "";
         console.log("Building data:", { ...data, description, uploadedImages });
-        setOpen(false);
         methods.reset();
         editor?.commands.clearContent();
         setUploadedImages([]);
+        toast.warning("Feature not implemented yet!")
+        // setOpen(false);
     };
 
     const handleOpenChange = (value) => {
@@ -227,19 +230,17 @@ const AddBuilding = () => {
                                     name="status"
                                     control={methods.control}
                                     render={({ field }) => (
-                                        <Select
+                                        <CommonSelect
+                                            options={[
+                                                { label: "Active", value: "active" },
+                                                { label: "Inactive", value: "inactive" },
+                                                { label: "Under Construction", value: "under-construction" },
+                                            ]}
                                             value={field.value}
                                             onValueChange={field.onChange}
-                                        >
-                                            <SelectTrigger className="w-full h-auto py-3 px-4 text-sm !bg-input-bg !shadow-none !border-none rounded-md">
-                                                <SelectValue placeholder="Select status" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="active">Active</SelectItem>
-                                                <SelectItem value="inactive">Inactive</SelectItem>
-                                                <SelectItem value="under-construction">Under Construction</SelectItem>
-                                            </SelectContent>
-                                        </Select>
+                                            placeholder="Select status"
+                                            triggerClassname="w-full py-5.5 border-none"
+                                        />
                                     )}
                                 />
                             </div>
@@ -335,14 +336,14 @@ const AddBuilding = () => {
                                             <Palette className="w-4 h-4" />
                                         </ToolbarBtn>
                                         {openPicker === 'color' && (
-                                            <div className="absolute top-full left-0 mt-1 z-50 p-2 bg-white rounded-lg shadow-lg border border-border grid grid-cols-7 gap-1" style={{minWidth:'140px'}}>
-                                                {['#000000','#434343','#666666','#999999','#b7b7b7','#cccccc','#ffffff','#DC2626','#EA580C','#D97706','#65A30D','#16A34A','#2563EB','#9333EA','#EC4899','#FF6B6B','#FFA500','#FFD93D','#6BCB77','#4D96FF','#A29BFE'].map(c => (
+                                            <div className="absolute top-full left-0 mt-1 z-50 p-2 bg-white rounded-lg shadow-lg border border-border grid grid-cols-7 gap-1" style={{ minWidth: '140px' }}>
+                                                {['#000000', '#434343', '#666666', '#999999', '#b7b7b7', '#cccccc', '#ffffff', '#DC2626', '#EA580C', '#D97706', '#65A30D', '#16A34A', '#2563EB', '#9333EA', '#EC4899', '#FF6B6B', '#FFA500', '#FFD93D', '#6BCB77', '#4D96FF', '#A29BFE'].map(c => (
                                                     <button
                                                         key={c}
                                                         type="button"
                                                         onClick={() => { editor?.chain().focus().setColor(c).run(); setOpenPicker(null); }}
                                                         className="w-5 h-5 rounded border border-border cursor-pointer hover:scale-110 transition-transform"
-                                                        style={{backgroundColor: c, border: c === '#ffffff' ? '1px solid #ddd' : undefined}}
+                                                        style={{ backgroundColor: c, border: c === '#ffffff' ? '1px solid #ddd' : undefined }}
                                                         title={c}
                                                     />
                                                 ))}
@@ -367,14 +368,14 @@ const AddBuilding = () => {
                                             <HighlighterIcon className="w-4 h-4" />
                                         </ToolbarBtn>
                                         {openPicker === 'highlight' && (
-                                            <div className="absolute top-full left-0 mt-1 z-50 p-2 bg-white rounded-lg shadow-lg border border-border grid grid-cols-7 gap-1" style={{minWidth:'140px'}}>
-                                                {['#FFFF00','#FFD93D','#FF9F43','#FF6B6B','#A29BFE','#55EFC4','#81ECEC','#74B9FF','#FDA7DF','#E17055','#DFE6E9','#B2BEC3'].map(c => (
+                                            <div className="absolute top-full left-0 mt-1 z-50 p-2 bg-white rounded-lg shadow-lg border border-border grid grid-cols-7 gap-1" style={{ minWidth: '140px' }}>
+                                                {['#FFFF00', '#FFD93D', '#FF9F43', '#FF6B6B', '#A29BFE', '#55EFC4', '#81ECEC', '#74B9FF', '#FDA7DF', '#E17055', '#DFE6E9', '#B2BEC3'].map(c => (
                                                     <button
                                                         key={c}
                                                         type="button"
-                                                        onClick={() => { editor?.chain().focus().toggleHighlight({color: c}).run(); setOpenPicker(null); }}
+                                                        onClick={() => { editor?.chain().focus().toggleHighlight({ color: c }).run(); setOpenPicker(null); }}
                                                         className="w-5 h-5 rounded border border-border cursor-pointer hover:scale-110 transition-transform"
-                                                        style={{backgroundColor: c}}
+                                                        style={{ backgroundColor: c }}
                                                         title={c}
                                                     />
                                                 ))}
