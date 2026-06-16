@@ -1,17 +1,24 @@
-import { Check, Settings } from "lucide-react"
+import { Eye, Pencil, Trash2 } from "lucide-react"
 import { toast } from "sonner"
 import CommonTable from "@/components/shared/CommonTable/CommonTable"
+import MaintenanceCardsContainer from "./MaintenanceCardsContainer"
 
 const actionItems = [
   {
-    label: "Resolve",
-    icon: <Check className="w-3.5 h-3.5 text-green-600" />,
-    onClick: (row) => toast.success(`Resolving request ${row.ticketId}`),
+    label: "View Details",
+    icon: <Eye className="w-3.5 h-3.5 text-dark-gray" />,
+    onClick: (row) => toast.info(`Viewing maintenance ${row.ticketId} — Not implemented yet`),
   },
   {
-    label: "Assign Tech",
-    icon: <Settings className="w-3.5 h-3.5 text-dark-gray" />,
-    onClick: (row) => toast.success(`Assigning technician for ${row.ticketId}`),
+    label: "Edit",
+    icon: <Pencil className="w-3.5 h-3.5 text-dark-gray" />,
+    onClick: (row) => toast.info(`Editing maintenance ${row.ticketId} — Not implemented yet`),
+  },
+  {
+    label: "Delete",
+    icon: <Trash2 className="w-3.5 h-3.5 text-destructive" />,
+    className: "text-destructive hover:bg-red-50",
+    onClick: (row) => toast.error(`Deleting maintenance ${row.ticketId} — Not implemented yet`),
   },
 ]
 
@@ -43,16 +50,34 @@ const columns = [
 
 const MaintenanceTable = ({ data, loading = false }) => {
   return (
-    <CommonTable
-      columns={columns}
-      data={data}
-      actions={actionItems}
-      searchable={true}
-      itemsPerPage={10}
-      emptyMessage="No maintenance requests found."
-      loading={loading}
-      actionKey="id"
-    />
+    <>
+      {/* Cards for small screens */}
+      <div className="block md:hidden">
+        <MaintenanceCardsContainer
+          data={data}
+          loading={loading}
+          actions={actionItems}
+          actionKey="id"
+          itemsPerPage={10}
+          searchable={true}
+          emptyMessage="No maintenance requests found."
+        />
+      </div>
+
+      {/* Table for medium+ screens */}
+      <div className="hidden md:block">
+        <CommonTable
+          columns={columns}
+          data={data}
+          actions={actionItems}
+          searchable={true}
+          itemsPerPage={10}
+          emptyMessage="No maintenance requests found."
+          loading={loading}
+          actionKey="id"
+        />
+      </div>
+    </>
   )
 }
 
