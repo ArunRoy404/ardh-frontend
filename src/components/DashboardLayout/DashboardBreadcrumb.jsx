@@ -13,6 +13,7 @@ const pathNameMap = {
     "/": "Dashboard",
     "/notifications": "Notifications",
     "/buildings": "Buildings",
+    "/dashboard/buildings": "Buildings",
     "/apartments": "Apartments",
     "/tenants": "Tenants",
     "/owners": "Owners",
@@ -43,12 +44,32 @@ const DashboardBreadcrumb = () => {
     let currentPath = ""
     segments.forEach((segment, index) => {
         currentPath += `/${segment}`
+        
+        // Skip duplicate "Dashboard" segment
+        if (currentPath === "/dashboard") {
+            return
+        }
+
         const isLast = index === segments.length - 1
+        
+        // If the path is /dashboard/buildings, redirect breadcrumb link to /buildings
+        let resolvedPath = currentPath
+        if (currentPath === "/dashboard/buildings") {
+            resolvedPath = "/buildings"
+        }
+
+        let label = pathNameMap[currentPath] || segment
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (char) => char.toUpperCase())
+
+        // Map building ID to the readable building name
+        if (currentPath.startsWith("/dashboard/buildings/")) {
+            label = "Sunrise Tower"
+        }
+
         items.push({
-            label: pathNameMap[currentPath] || segment
-                .replace(/-/g, " ")
-                .replace(/\b\w/g, (char) => char.toUpperCase()),
-            path: currentPath,
+            label,
+            path: resolvedPath,
             isLast,
         })
     })

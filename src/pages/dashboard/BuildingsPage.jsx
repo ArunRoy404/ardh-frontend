@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Layers, Pencil, Trash2 } from "lucide-react"
+import { Link } from "react-router"
 import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader"
 import CommonCard from "@/components/shared/CommonCard/CommonCard"
 import { Button } from "@/components/ui/button"
@@ -70,7 +71,7 @@ const BuildingsPage = () => {
             </div>
 
             {/* 3. Tags Container */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 my-3">
               {building?.tags?.map((tag, index) => (
                 <div key={index} className="flex items-center justify-center gap-1 px-4 py-2 border border-[#F8FAFC] bg-white rounded-[4px] ">
                   <Layers className="w-3.5 h-3.5 text-[#64748B]" />
@@ -83,9 +84,11 @@ const BuildingsPage = () => {
 
             {/* 4. Action Row */}
             <div className="flex items-center gap-2 w-full">
-              <Button className="flex-1">
-                View Details
-              </Button>
+              <Link to={`/dashboard/buildings/${building.id}`} className="flex-1">
+                <Button className="w-full">
+                  View Details
+                </Button>
+              </Link>
               <Button variant="icon" className="border-secondary rounded-full w-11 h-11 bg-secondary/10 text-secondary" >
                 <Pencil />
               </Button>

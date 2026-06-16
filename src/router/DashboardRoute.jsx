@@ -2,6 +2,7 @@ import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import DashboardPage from "@/pages/dashboard/DashboardPage";
 import NotificationsPage from "@/pages/dashboard/NotificationsPage";
 import BuildingsPage from "@/pages/dashboard/BuildingsPage";
+import BuildingDetails from "@/pages/BuildingDetails/BuildingDetails";
 import ApartmentsPage from "@/pages/dashboard/ApartmentsPage";
 import TenantsPage from "@/pages/dashboard/TenantsPage";
 import OwnersPage from "@/pages/dashboard/OwnersPage";
@@ -28,6 +29,10 @@ const dashboardRoutes = {
     {
       path: "/buildings",
       element: <BuildingsPage />,
+    },
+    {
+      path: "/dashboard/buildings/:buildingid",
+      element: <BuildingDetails />,
     },
     {
       path: "/apartments",
