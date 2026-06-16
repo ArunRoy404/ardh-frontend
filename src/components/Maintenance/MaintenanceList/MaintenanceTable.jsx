@@ -1,9 +1,8 @@
 import { Eye, Pencil, Trash2 } from "lucide-react"
 import { toast } from "sonner"
 import CommonTable from "@/components/shared/CommonTable/CommonTable"
-import MaintenanceCardsContainer from "./MaintenanceCardsContainer"
 
-const actionItems = [
+export const actionItems = [
   {
     label: "View Details",
     icon: <Eye className="w-3.5 h-3.5 text-dark-gray" />,
@@ -22,7 +21,7 @@ const actionItems = [
   },
 ]
 
-const columns = [
+export const maintenanceColumns = [
   {
     key: "ticketId",
     label: "Ticket ID",
@@ -50,34 +49,16 @@ const columns = [
 
 const MaintenanceTable = ({ data, loading = false }) => {
   return (
-    <>
-      {/* Cards for small screens */}
-      <div className="block md:hidden">
-        <MaintenanceCardsContainer
-          data={data}
-          loading={loading}
-          actions={actionItems}
-          actionKey="id"
-          itemsPerPage={10}
-          searchable={true}
-          emptyMessage="No maintenance requests found."
-        />
-      </div>
-
-      {/* Table for medium+ screens */}
-      <div className="hidden md:block">
-        <CommonTable
-          columns={columns}
-          data={data}
-          actions={actionItems}
-          searchable={true}
-          itemsPerPage={10}
-          emptyMessage="No maintenance requests found."
-          loading={loading}
-          actionKey="id"
-        />
-      </div>
-    </>
+    <CommonTable
+      columns={maintenanceColumns}
+      data={data}
+      actions={actionItems}
+      searchable={true}
+      itemsPerPage={10}
+      emptyMessage="No maintenance requests found."
+      loading={loading}
+      actionKey="id"
+    />
   )
 }
 

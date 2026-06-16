@@ -7,8 +7,8 @@ import { toast } from "sonner"
 import DashboardStat from "@/components/DashboardPage/DashboardStat/DashboardStat"
 import BuldingDetailsInfo from "@/components/BuildingDetails/BuldingDetailsInfo"
 import BuildingDetailsTab from "@/components/BuildingDetails/BuildingDetailsTab"
-import ApartmentsTable from "@/components/Apartments/ApartmentsTable/ApartmentsTable"
-import MaintenanceTable from "@/components/Maintenance/MaintenanceTable/MaintenanceTable"
+import ApartmentsList from "@/components/Apartments/ApartmentsList/ApartmentsList"
+import MaintenanceList from "@/components/Maintenance/MaintenanceList/MaintenanceList"
 
 const BuildingDetails = () => {
   const [activeTab, setActiveTab] = useState("apartments")
@@ -129,12 +129,12 @@ const BuildingDetails = () => {
         defaultTab="apartments"
         onTabChange={handleTabChange}
         apartmentsContent={
-          <ApartmentsTable
+          <ApartmentsList
             data={apartmentsData}
           />
         }
         maintenanceContent={
-          <MaintenanceTable
+          <MaintenanceList
             data={maintenanceData}
           />
         }

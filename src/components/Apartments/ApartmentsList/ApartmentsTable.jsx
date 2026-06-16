@@ -1,9 +1,8 @@
 import { Eye, Pencil, Trash2 } from "lucide-react"
 import { toast } from "sonner"
 import CommonTable from "@/components/shared/CommonTable/CommonTable"
-import ApartmentCardsContainer from "./ApartmentCardsContainer"
 
-const actionItems = [
+export const actionItems = [
   {
     label: "View Details",
     icon: <Eye className="w-3.5 h-3.5 text-dark-gray" />,
@@ -22,7 +21,7 @@ const actionItems = [
   },
 ]
 
-const columns = [
+export const apartmentsColumns = [
   { key: "flat", label: "Flat", className: "text-dark-accent font-medium" },
   { key: "type", label: "Type", className: "text-dark-gray" },
   { key: "floor", label: "Floor", className: "text-dark-gray" },
@@ -51,34 +50,16 @@ const columns = [
 
 const ApartmentsTable = ({ data, loading = false }) => {
   return (
-    <>
-      {/* Cards for small screens */}
-      <div className="block md:hidden">
-        <ApartmentCardsContainer
-          data={data}
-          loading={loading}
-          actions={actionItems}
-          actionKey="id"
-          itemsPerPage={10}
-          searchable={true}
-          emptyMessage="No apartments found."
-        />
-      </div>
-
-      {/* Table for medium+ screens */}
-      <div className="hidden md:block">
-        <CommonTable
-          columns={columns}
-          data={data}
-          actions={actionItems}
-          searchable={true}
-          itemsPerPage={10}
-          emptyMessage="No apartments found."
-          loading={loading}
-          actionKey="id"
-        />
-      </div>
-    </>
+    <CommonTable
+      columns={apartmentsColumns}
+      data={data}
+      actions={actionItems}
+      searchable={true}
+      itemsPerPage={10}
+      emptyMessage="No apartments found."
+      loading={loading}
+      actionKey="id"
+    />
   )
 }
 
