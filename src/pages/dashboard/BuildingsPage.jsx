@@ -70,7 +70,7 @@ const BuildingsPage = () => {
             </div>
 
             {/* 3. Tags Container */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 my-3">
               {building?.tags?.map((tag, index) => (
                 <div key={index} className="flex items-center justify-center gap-1 px-4 py-2 border border-[#F8FAFC] bg-white rounded-[4px] ">
                   <Layers className="w-3.5 h-3.5 text-[#64748B]" />
