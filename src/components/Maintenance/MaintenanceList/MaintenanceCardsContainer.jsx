@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from "react"
-import { MoreHorizontal, Search } from "lucide-react"
-import { FormProvider, useForm } from "react-hook-form"
+import { MoreHorizontal } from "lucide-react"
 import { cn } from "@/lib/utils"
-import CommonInput from "@/components/shared/Form/FormInput/CommonInput"
 import TablePagination from "@/components/shared/CommonTable/TablePagination"
 
 const MaintenanceCardsContainer = ({
@@ -11,14 +9,11 @@ const MaintenanceCardsContainer = ({
   actions = [],
   actionKey = "id",
   itemsPerPage = 10,
-  searchable = false,
-  searchPlaceholder = "Search .....",
   emptyMessage = "No maintenance requests found.",
 }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [activeDropdownId, setActiveDropdownId] = useState(null)
   const dropdownRef = useRef(null)
-  const searchForm = useForm({ defaultValues: { search: "" } })
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -63,15 +58,6 @@ const MaintenanceCardsContainer = ({
 
   return (
     <div>
-      {/* Search */}
-      {searchable && (
-        <div className="w-full max-w-xs mb-4">
-          <FormProvider {...searchForm}>
-            <CommonInput name="search" icon={Search} placeholder={searchPlaceholder} />
-          </FormProvider>
-        </div>
-      )}
-
       {/* Cards */}
       <div className="space-y-3">
         {paginatedData.length > 0 ? (

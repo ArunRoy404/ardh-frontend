@@ -1,9 +1,6 @@
-import { useState, useMemo, useEffect } from "react"
-import { Search } from "lucide-react"
-import { FormProvider, useForm } from "react-hook-form"
+import { useState, useMemo } from "react"
 import { maintenanceColumns } from "@/components/DataTableColumns/maintenanceColumns"
 import DataTable from "@/components/DataTable/DataTable"
-import CommonInput from "@/components/shared/Form/FormInput/CommonInput"
 import TablePagination from "@/components/shared/CommonTable/TablePagination"
 
 // Re-export for use by MaintenanceCardsContainer
@@ -11,29 +8,11 @@ export { actionItems } from "@/components/DataTableColumns/maintenanceColumns"
 
 const MaintenanceTable = ({ data = [], loading = false }) => {
   const [currentPage, setCurrentPage] = useState(1)
-  const searchForm = useForm({ defaultValues: { search: "" } })
-  const searchValue = searchForm.watch("search")
-
-  const filteredData = useMemo(() => {
-    if (!searchValue) return data
-
-    const query = searchValue.toLowerCase()
-    return data.filter((item) =>
-      Object.values(item).some((val) =>
-        String(val).toLowerCase().includes(query)
-      )
-    )
-  }, [data, searchValue])
 
   const paginatedData = useMemo(() => {
     const start = (currentPage - 1) * 10
-    return filteredData.slice(start, start + 10)
-  }, [filteredData, currentPage])
-
-  // Reset to page 1 when filter changes
-  useEffect(() => {
-    if (currentPage !== 1) setCurrentPage(1)
-  }, [searchValue, currentPage])
+    return data.slice(start, start + 10)
+  }, [data, currentPage])
 
   if (loading) {
     return (
@@ -71,20 +50,12 @@ const MaintenanceTable = ({ data = [], loading = false }) => {
 
   return (
     <div>
-      {/* Search */}
-      <div className="w-full max-w-xs mb-4">
-        <FormProvider {...searchForm}>
-          <CommonInput name="search" icon={Search} placeholder="Search ....." />
-        </FormProvider>
-      </div>
-
-      {/* Table */}
       <DataTable columns={maintenanceColumns} data={paginatedData} />
 
-      {/* Pagination */}
+
       <TablePagination
         currentPage={currentPage}
-        totalItems={filteredData.length}
+        totalItems={data.length}
         itemsPerPage={10}
         onPageChange={setCurrentPage}
       />

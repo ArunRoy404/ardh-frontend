@@ -1,9 +1,12 @@
+import CommonSearch from "@/components/shared/CommonSearch/CommonSearch"
 import ApartmentsTable, { actionItems } from "./ApartmentsTable"
 import ApartmentCardsContainer from "./ApartmentCardsContainer"
 
 const ApartmentsList = ({ data, loading = false }) => {
   return (
     <>
+      <CommonSearch />
+
       {/* Cards for small screens */}
       <div className="block md:hidden">
         <ApartmentCardsContainer
@@ -12,7 +15,6 @@ const ApartmentsList = ({ data, loading = false }) => {
           actions={actionItems}
           actionKey="id"
           itemsPerPage={10}
-          searchable={true}
           emptyMessage="No apartments found."
         />
       </div>

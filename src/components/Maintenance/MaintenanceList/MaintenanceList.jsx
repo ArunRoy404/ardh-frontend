@@ -1,9 +1,12 @@
+import CommonSearch from "@/components/shared/CommonSearch/CommonSearch"
 import MaintenanceTable, { actionItems } from "./MaintenanceTable"
 import MaintenanceCardsContainer from "./MaintenanceCardsContainer"
 
 const MaintenanceList = ({ data, loading = false }) => {
   return (
     <>
+      <CommonSearch />
+
       {/* Cards for small screens */}
       <div className="block md:hidden">
         <MaintenanceCardsContainer
@@ -12,7 +15,6 @@ const MaintenanceList = ({ data, loading = false }) => {
           actions={actionItems}
           actionKey="id"
           itemsPerPage={10}
-          searchable={true}
           emptyMessage="No maintenance requests found."
         />
       </div>
