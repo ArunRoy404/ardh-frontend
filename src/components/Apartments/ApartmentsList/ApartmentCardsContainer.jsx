@@ -20,11 +20,10 @@ const ApartmentCardsContainer = ({
     const isOccupied = status === "Occupied"
     return (
       <span
-        className={`px-2.5 py-0.5 rounded-[6px] text-xs font-semibold inline-block border ${
-          isOccupied
+        className={`px-2.5 py-0.5 rounded-[6px] text-xs font-semibold inline-block border ${isOccupied
             ? "bg-success-tag-bg text-success-tag-text border-success-tag-border"
             : "bg-progress-tag-bg text-progress-tag-text border-progress-tag-border"
-        }`}
+          }`}
       >
         {status}
       </span>
@@ -92,9 +91,7 @@ const ApartmentCardsContainer = ({
                 </div>
 
                 {/* Actions dropdown */}
-                <div className="mt-3 pt-3 border-t border-[#E2E8F0] flex justify-end">
-                  <ApartmentAction apartment={row} />
-                </div>
+                <ApartmentAction apartment={row} />
               </div>
             )
           })
