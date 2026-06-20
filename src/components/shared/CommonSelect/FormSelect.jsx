@@ -13,7 +13,7 @@ const FormSelect = ({
   const error = errors[name]?.message;
 
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-1.5 relative">
       {label && (
         <label htmlFor={name} className="text-xs font-semibold text-dark-gray">
           {label}
@@ -34,7 +34,7 @@ const FormSelect = ({
         )}
       />
       {error && (
-        <p className="text-[10px] text-red-500 font-semibold">{error}</p>
+        <p className="absolute -bottom-2.5 text-[10px] text-red-500 font-semibold">{error}</p>
       )}
     </div>
   );
