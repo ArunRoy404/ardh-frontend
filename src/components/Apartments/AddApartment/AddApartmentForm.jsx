@@ -40,28 +40,19 @@ const AddApartmentForm = () => {
         onSubmit={methods.handleSubmit(onSubmit)}
         className="flex flex-col gap-4"
       >
-        {/* Row 1: Building Name, Flat Number */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <FormSelect
-            name="buildingName"
-            label="Building Name*"
-            options={[
-              { label: "Buildings", value: "buildings" },
-              { label: "Sunrise Tower", value: "sunrise-tower" },
-              { label: "Skyline Apartments", value: "skyline-apartments" },
-            ]}
-            placeholder="Select building"
-          />
+        {/* Row 1: Building Name */}
+        <FormSelect
+          name="buildingName"
+          label="Building Name*"
+          options={[
+            { label: "Buildings", value: "buildings" },
+            { label: "Sunrise Tower", value: "sunrise-tower" },
+            { label: "Skyline Apartments", value: "skyline-apartments" },
+          ]}
+          placeholder="Select building"
+        />
 
-          <CommonInput
-            name="flatNumber"
-            label="Flat Number*"
-            placeholder="Type flat no..."
-            className="pl-4"
-          />
-        </div>
-
-        {/* Row 2: Nestaway ID, Flat Number (2) */}
+        {/* Row 2: Nestaway ID, Flat Number */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FormSelect
             name="nestawayId"
@@ -74,7 +65,7 @@ const AddApartmentForm = () => {
           />
 
           <CommonInput
-            name="flatNumber2"
+            name="flatNumber"
             label="Flat Number*"
             placeholder="Type flat no..."
             className="pl-4"

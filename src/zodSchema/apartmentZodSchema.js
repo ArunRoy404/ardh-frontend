@@ -5,9 +5,8 @@ import { z } from "zod";
  * ─────────────────────────────────────────── */
 export const apartmentSchema = z.object({
   buildingName: z.string().min(1, "Building name is required"),
-  flatNumber: z.string().min(1, "Flat number is required"),
   nestawayId: z.string().min(1, "Nestaway ID is required"),
-  flatNumber2: z.string().min(1, "Flat number 2 is required"),
+  flatNumber: z.string().min(1, "Flat number is required"),
   floor: z.string().min(1, "Floor is required"),
   apartmentType: z.string().min(1, "Apartment type is required"),
   area: z.string().min(1, "Area is required"),
@@ -23,9 +22,8 @@ export const apartmentSchema = z.object({
 
 export const apartmentDefaultValues = {
   buildingName: "",
-  flatNumber: "",
   nestawayId: "",
-  flatNumber2: "",
+  flatNumber: "",
   floor: "0",
   apartmentType: "2BHK",
   area: "",
