@@ -3,9 +3,6 @@ import { apartmentColumns } from "@/components/DataTableColumns/apartmentColumns
 import DataTable from "@/components/DataTable/DataTable"
 import TablePagination from "@/components/shared/CommonTable/TablePagination"
 
-// Re-export for use by ApartmentCardsContainer
-export { actionItems } from "@/components/DataTableColumns/apartmentColumns"
-
 const ApartmentsTable = ({ data = [], loading = false }) => {
   const [currentPage, setCurrentPage] = useState(1)
 

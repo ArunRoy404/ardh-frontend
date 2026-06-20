@@ -1,5 +1,5 @@
 import CommonSearch from "@/components/shared/CommonSearch/CommonSearch"
-import ApartmentsTable, { actionItems } from "./ApartmentsTable"
+import ApartmentsTable from "./ApartmentsTable"
 import ApartmentCardsContainer from "./ApartmentCardsContainer"
 
 const ApartmentsList = ({ data, loading = false }) => {
@@ -12,7 +12,6 @@ const ApartmentsList = ({ data, loading = false }) => {
         <ApartmentCardsContainer
           data={data}
           loading={loading}
-          actions={actionItems}
           actionKey="id"
           itemsPerPage={10}
           emptyMessage="No apartments found."
