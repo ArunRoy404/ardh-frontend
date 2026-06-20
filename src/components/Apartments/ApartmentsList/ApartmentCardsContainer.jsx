@@ -102,7 +102,7 @@ const ApartmentCardsContainer = ({
         )}
       </div>
 
-      {/* Pagination */}
+      {/* Pagination */} 
       <TablePagination
         currentPage={currentPage}
         totalItems={data.length}
