@@ -5,6 +5,7 @@ import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader"
 import CommonCard from "@/components/shared/CommonCard/CommonCard"
 import { Button } from "@/components/ui/button"
 import AddBuilding from "@/components/Buildings/AddBuilding/AddBuilding"
+import CommonDeleteDialog from "@/components/shared/CommonDeleteDialog/CommonDeleteDialog"
 
 const BuildingsPage = () => {
   // Initial building data matching the Figma image (2 cards of Sunrise Tower)
@@ -92,9 +93,15 @@ const BuildingsPage = () => {
               <Button variant="icon" className="border-secondary rounded-full w-11 h-11 bg-secondary/10 text-secondary" >
                 <Pencil />
               </Button>
-              <Button variant="icon" className="border-destructive rounded-full w-11 h-11 bg-destructive/10 text-destructive" >
-                <Trash2 />
-              </Button>
+              <CommonDeleteDialog
+                itemName={building.title}
+                itemType="Building"
+                trigger={
+                  <Button variant="icon" className="border-destructive rounded-full w-11 h-11 bg-destructive/10 text-destructive" >
+                    <Trash2 />
+                  </Button>
+                }
+              />
             </div>
           </CommonCard>
         ))}

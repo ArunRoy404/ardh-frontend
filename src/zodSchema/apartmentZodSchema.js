@@ -25,7 +25,7 @@ export const apartmentDefaultValues = {
   nestawayId: "",
   flatNumber: "",
   floor: "0",
-  apartmentType: "2BHK",
+  apartmentType: "2BHK", 
   area: "",
   bedrooms: "2",
   bathrooms: "2",

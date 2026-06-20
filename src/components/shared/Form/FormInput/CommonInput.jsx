@@ -66,7 +66,7 @@ function CommonInput({
         )}
       </div>
       {error && (
-        <p className="absolute bottom-1.5 translate-y-full text-[10px] text-red-500 font-semibold">{error}</p>
+        <p className="px-1 bg-white absolute bottom-1.5 translate-y-full text-[10px] text-red-500 font-semibold">{error}</p>
       )}
     </div>
   );
