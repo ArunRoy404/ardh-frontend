@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
-import { useForm, FormProvider, Controller } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BuildingsIcon } from "@/components/SvgIcons/BuildingsIcon";
 import CommonInput from "@/components/shared/Form/FormInput/CommonInput";
-import CommonSelect from "@/components/shared/CommonSelect/CommonSelect";
+import FormSelect from "@/components/shared/CommonSelect/FormSelect";
 import CommonTextEditor from "@/components/shared/Form/CommonTextEditor/CommonTextEditor";
 import CommonImageUpload from "@/components/shared/Form/CommonImageUpload/CommonImageUpload";
 import {
@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { buildingSchema, buildingDefaultValues } from "@/zodSchema/buildingZodSchema";
+
+
 
 const AddBuildingForm = () => {
   const [uploadedImages, setUploadedImages] = useState([]);
@@ -38,6 +40,7 @@ const AddBuildingForm = () => {
   return (
     <FormProvider {...methods}>
       <form
+        // eslint-disable-next-line react-hooks/refs
         onSubmit={methods.handleSubmit(onSubmit)}
         className="flex flex-col gap-4"
       >
@@ -105,28 +108,16 @@ const AddBuildingForm = () => {
           />
 
           {/* Status Dropdown */}
-          <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-dark-gray">
-              Status*
-            </label>
-            <Controller
-              name="status"
-              control={methods.control}
-              render={({ field }) => (
-                <CommonSelect
-                  options={[
-                    { label: "Active", value: "active" },
-                    { label: "Inactive", value: "inactive" },
-                    { label: "Under Construction", value: "under-construction" },
-                  ]}
-                  value={field.value}
-                  onValueChange={field.onChange}
-                  placeholder="Select status"
-                  triggerClassname="w-full py-5.5 border-none"
-                />
-              )}
-            />
-          </div>
+          <FormSelect
+            name="status"
+            label="Status*"
+            options={[
+              { label: "Active", value: "active" },
+              { label: "Inactive", value: "inactive" },
+              { label: "Under Construction", value: "under-construction" },
+            ]}
+            placeholder="Select status"
+          />
         </div>
 
         {/* Description - CommonTextEditor */}

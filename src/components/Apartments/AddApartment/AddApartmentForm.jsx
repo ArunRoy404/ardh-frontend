@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
-import { useForm, FormProvider, Controller } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ApartmentsIcon } from "@/components/SvgIcons/ApartmentsIcon";
 import CommonInput from "@/components/shared/Form/FormInput/CommonInput";
-import CommonSelect from "@/components/shared/CommonSelect/CommonSelect";
+import FormSelect from "@/components/shared/CommonSelect/FormSelect";
 import CommonCheckbox from "@/components/shared/Form/FormInput/CommonCheckbox";
 import CommonTextEditor from "@/components/shared/Form/CommonTextEditor/CommonTextEditor";
 import {
@@ -14,8 +14,6 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { apartmentSchema, apartmentDefaultValues } from "@/zodSchema/apartmentZodSchema";
-
-
 
 const AddApartmentForm = () => {
   const [resetKey, setResetKey] = useState(0);
@@ -38,38 +36,22 @@ const AddApartmentForm = () => {
   return (
     <FormProvider {...methods}>
       <form
+        // eslint-disable-next-line react-hooks/refs
         onSubmit={methods.handleSubmit(onSubmit)}
         className="flex flex-col gap-4"
       >
         {/* Row 1: Building Name, Flat Number */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-dark-gray">
-              Building Name*
-            </label>
-            <Controller
-              name="buildingName"
-              control={methods.control}
-              render={({ field }) => (
-                <CommonSelect
-                  options={[
-                    { label: "Buildings", value: "buildings" },
-                    { label: "Sunrise Tower", value: "sunrise-tower" },
-                    { label: "Skyline Apartments", value: "skyline-apartments" },
-                  ]}
-                  value={field.value}
-                  onValueChange={field.onChange}
-                  placeholder="Select building"
-                  triggerClassname="w-full py-5.5 border-none"
-                />
-              )}
-            />
-            {methods.formState.errors.buildingName && (
-              <p className="text-[10px] text-red-500 font-semibold">
-                {methods.formState.errors.buildingName.message}
-              </p>
-            )}
-          </div>
+          <FormSelect
+            name="buildingName"
+            label="Building Name*"
+            options={[
+              { label: "Buildings", value: "buildings" },
+              { label: "Sunrise Tower", value: "sunrise-tower" },
+              { label: "Skyline Apartments", value: "skyline-apartments" },
+            ]}
+            placeholder="Select building"
+          />
 
           <CommonInput
             name="flatNumber"
@@ -81,32 +63,15 @@ const AddApartmentForm = () => {
 
         {/* Row 2: Nestaway ID, Flat Number (2) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-dark-gray">
-              Nestaway ID*
-            </label>
-            <Controller
-              name="nestawayId"
-              control={methods.control}
-              render={({ field }) => (
-                <CommonSelect
-                  options={[
-                    { label: "e.g..NW-1234", value: "nw-1234" },
-                    { label: "NW-5678", value: "nw-5678" },
-                  ]}
-                  value={field.value}
-                  onValueChange={field.onChange}
-                  placeholder="Select Nestaway ID"
-                  triggerClassname="w-full py-5.5 border-none"
-                />
-              )}
-            />
-            {methods.formState.errors.nestawayId && (
-              <p className="text-[10px] text-red-500 font-semibold">
-                {methods.formState.errors.nestawayId.message}
-              </p>
-            )}
-          </div>
+          <FormSelect
+            name="nestawayId"
+            label="Nestaway ID*"
+            options={[
+              { label: "e.g..NW-1234", value: "nw-1234" },
+              { label: "NW-5678", value: "nw-5678" },
+            ]}
+            placeholder="Select Nestaway ID"
+          />
 
           <CommonInput
             name="flatNumber2"
@@ -125,34 +90,17 @@ const AddApartmentForm = () => {
             className="pl-4"
           />
 
-          <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-dark-gray">
-              Apartment Type*
-            </label>
-            <Controller
-              name="apartmentType"
-              control={methods.control}
-              render={({ field }) => (
-                <CommonSelect
-                  options={[
-                    { label: "1BHK", value: "1BHK" },
-                    { label: "2BHK", value: "2BHK" },
-                    { label: "3BHK", value: "3BHK" },
-                    { label: "4BHK", value: "4BHK" },
-                  ]}
-                  value={field.value}
-                  onValueChange={field.onChange}
-                  placeholder="Select type"
-                  triggerClassname="w-full py-5.5 border-none"
-                />
-              )}
-            />
-            {methods.formState.errors.apartmentType && (
-              <p className="text-[10px] text-red-500 font-semibold">
-                {methods.formState.errors.apartmentType.message}
-              </p>
-            )}
-          </div>
+          <FormSelect
+            name="apartmentType"
+            label="Apartment Type*"
+            options={[
+              { label: "1BHK", value: "1BHK" },
+              { label: "2BHK", value: "2BHK" },
+              { label: "3BHK", value: "3BHK" },
+              { label: "4BHK", value: "4BHK" },
+            ]}
+            placeholder="Select type"
+          />
 
           <CommonInput
             name="area"
@@ -215,33 +163,16 @@ const AddApartmentForm = () => {
         </div>
 
         {/* Row 7: Owner */}
-        <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-dark-gray">
-            Owner*
-          </label>
-          <Controller
-            name="owner"
-            control={methods.control}
-            render={({ field }) => (
-              <CommonSelect
-                options={[
-                  { label: "Select Owner", value: "select-owner" },
-                  { label: "John Doe", value: "john-doe" },
-                  { label: "Jane Smith", value: "jane-smith" },
-                ]}
-                value={field.value}
-                onValueChange={field.onChange}
-                placeholder="Select Owner"
-                triggerClassname="w-full py-5.5 border-none"
-              />
-            )}
-          />
-          {methods.formState.errors.owner && (
-            <p className="text-[10px] text-red-500 font-semibold">
-              {methods.formState.errors.owner.message}
-            </p>
-          )}
-        </div>
+        <FormSelect
+          name="owner"
+          label="Owner*"
+          options={[
+            { label: "Select Owner", value: "select-owner" },
+            { label: "John Doe", value: "john-doe" },
+            { label: "Jane Smith", value: "jane-smith" },
+          ]}
+          placeholder="Select Owner"
+        />
 
         {/* Row 8: Notes */}
         <CommonTextEditor
