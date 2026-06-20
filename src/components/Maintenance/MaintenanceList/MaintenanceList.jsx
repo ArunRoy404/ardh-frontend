@@ -1,5 +1,5 @@
 import CommonSearch from "@/components/shared/CommonSearch/CommonSearch"
-import MaintenanceTable, { actionItems } from "./MaintenanceTable"
+import MaintenanceTable from "./MaintenanceTable"
 import MaintenanceCardsContainer from "./MaintenanceCardsContainer"
 
 const MaintenanceList = ({ data, loading = false }) => {
@@ -12,7 +12,6 @@ const MaintenanceList = ({ data, loading = false }) => {
         <MaintenanceCardsContainer
           data={data}
           loading={loading}
-          actions={actionItems}
           actionKey="id"
           itemsPerPage={10}
           emptyMessage="No maintenance requests found."

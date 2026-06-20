@@ -1,29 +1,15 @@
-import { useState, useRef, useEffect, useMemo } from "react"
-import { MoreHorizontal } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { useState, useMemo } from "react"
+import MaintenanceAction from "./MaintenanceAction/MaintenanceAction"
 import TablePagination from "@/components/shared/CommonTable/TablePagination"
 
 const MaintenanceCardsContainer = ({
   data = [],
   loading = false,
-  actions = [],
   actionKey = "id",
   itemsPerPage = 10,
   emptyMessage = "No maintenance requests found.",
 }) => {
   const [currentPage, setCurrentPage] = useState(1)
-  const [activeDropdownId, setActiveDropdownId] = useState(null)
-  const dropdownRef = useRef(null)
-
-  useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setActiveDropdownId(null)
-      }
-    }
-    window.addEventListener("click", handleOutsideClick)
-    return () => window.removeEventListener("click", handleOutsideClick)
-  }, [])
 
   const paginatedData = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage
@@ -98,47 +84,7 @@ const MaintenanceCardsContainer = ({
                 </div>
 
                 {/* Actions dropdown */}
-                {actions.length > 0 && (
-                  <div className="mt-3 pt-3 border-t border-[#E2E8F0] flex justify-end">
-                    <div className="relative">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          setActiveDropdownId(activeDropdownId === rowId ? null : rowId)
-                        }}
-                        className="p-1.5 hover:bg-slate-100 rounded-full transition-colors text-slate-500 cursor-pointer"
-                      >
-                        <MoreHorizontal className="w-5 h-5" />
-                      </button>
-
-                      {activeDropdownId === rowId && (
-                        <div
-                          ref={dropdownRef}
-                          className="absolute right-0 top-10 z-50 w-36 bg-white border border-[#E2E8F0] rounded-xl shadow-lg p-1"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          {actions.map((action, actIdx) => (
-                            <button
-                              key={actIdx}
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                action.onClick?.(row)
-                                setActiveDropdownId(null)
-                              }}
-                              className={cn(
-                                "w-full text-left px-3 py-2 text-xs rounded-lg flex items-center gap-2 transition-colors",
-                                action.className || "text-dark-accent hover:bg-slate-50"
-                              )}
-                            >
-                              {action.icon}
-                              {action.label}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
+                <MaintenanceAction maintenance={row} />
               </div>
             )
           })

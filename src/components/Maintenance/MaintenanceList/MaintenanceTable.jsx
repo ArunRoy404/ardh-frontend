@@ -3,9 +3,6 @@ import { maintenanceColumns } from "@/components/DataTableColumns/maintenanceCol
 import DataTable from "@/components/DataTable/DataTable"
 import TablePagination from "@/components/shared/CommonTable/TablePagination"
 
-// Re-export for use by MaintenanceCardsContainer
-export { actionItems } from "@/components/DataTableColumns/maintenanceColumns"
-
 const MaintenanceTable = ({ data = [], loading = false }) => {
   const [currentPage, setCurrentPage] = useState(1)
 
