@@ -1,8 +1,9 @@
 import ApartmentsList from "@/components/Apartments/ApartmentsList/ApartmentsList";
 import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
 import { useMemo } from "react";
+import AddApartment from "@/components/Apartments/AddApartment/AddApartment";
 
 const ApartmentsPage = () => {
   // Apartments Mock Data (12 items for pagination demo)
@@ -34,10 +35,7 @@ const ApartmentsPage = () => {
             <Upload />
             Bulk Upload
           </Button>
-          <Button>
-            <PlusCircle className="w-4 h-4" />
-            Add New Apartment
-          </Button>
+          <AddApartment />
         </div>
       </DashboardHeader>
 

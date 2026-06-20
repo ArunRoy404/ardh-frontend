@@ -1,6 +1,5 @@
-import React, { useState, useMemo } from "react"
-import { useParams } from "react-router"
-import { Pencil, Plus } from "lucide-react"
+import { useState, useMemo } from "react"
+import { Pencil } from "lucide-react"
 import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
@@ -9,6 +8,7 @@ import BuldingDetailsInfo from "@/components/BuildingDetails/BuldingDetailsInfo"
 import BuildingDetailsTab from "@/components/BuildingDetails/BuildingDetailsTab"
 import ApartmentsList from "@/components/Apartments/ApartmentsList/ApartmentsList"
 import MaintenanceList from "@/components/Maintenance/MaintenanceList/MaintenanceList"
+import AddApartment from "@/components/Apartments/AddApartment/AddApartment"
 
 const BuildingDetails = () => {
   const [activeTab, setActiveTab] = useState("apartments")
@@ -107,12 +107,7 @@ const BuildingDetails = () => {
             <Pencil className="w-4 h-4" />
             Edit
           </Button>
-          <Button
-            onClick={() => toast.info("Opening Add New Apartment modal...")}
-          >
-            <Plus className="w-4 h-4" />
-            Add New Apartment
-          </Button>
+          <AddApartment />
         </div>
       </DashboardHeader>
 
