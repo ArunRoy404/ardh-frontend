@@ -1,64 +1,94 @@
-import { Eye, Pencil, Trash2 } from "lucide-react"
-import { toast } from "sonner"
-import CommonTable from "@/components/shared/CommonTable/CommonTable"
+import { useState, useMemo, useEffect } from "react"
+import { Search } from "lucide-react"
+import { FormProvider, useForm } from "react-hook-form"
+import { maintenanceColumns } from "@/components/DataTableColumns/maintenanceColumns"
+import DataTable from "@/components/DataTable/DataTable"
+import CommonInput from "@/components/shared/Form/FormInput/CommonInput"
+import TablePagination from "@/components/shared/CommonTable/TablePagination"
 
-export const actionItems = [
-  {
-    label: "View Details",
-    icon: <Eye className="w-3.5 h-3.5 text-dark-gray" />,
-    onClick: (row) => toast.info(`Viewing maintenance ${row.ticketId} — Not implemented yet`),
-  },
-  {
-    label: "Edit",
-    icon: <Pencil className="w-3.5 h-3.5 text-dark-gray" />,
-    onClick: (row) => toast.info(`Editing maintenance ${row.ticketId} — Not implemented yet`),
-  },
-  {
-    label: "Delete",
-    icon: <Trash2 className="w-3.5 h-3.5 text-destructive" />,
-    className: "text-destructive hover:bg-red-50",
-    onClick: (row) => toast.error(`Deleting maintenance ${row.ticketId} — Not implemented yet`),
-  },
-]
+// Re-export for use by MaintenanceCardsContainer
+export { actionItems } from "@/components/DataTableColumns/maintenanceColumns"
 
-export const maintenanceColumns = [
-  {
-    key: "ticketId",
-    label: "Ticket ID",
-    className: "text-primary font-semibold",
-  },
-  {
-    key: "issue",
-    label: "Issue",
-    className: "text-dark-accent font-medium",
-  },
-  { key: "flat", label: "Flat", className: "text-dark-gray" },
-  { key: "type", label: "Category", className: "text-dark-gray" },
-  { key: "tenant", label: "Tenant", className: "text-dark-accent" },
-  {
-    key: "status",
-    label: "Status",
-    className: "",
-    render: (row) => (
-      <span className="bg-open-tag-bg text-open-tag-text border border-open-tag-border px-2.5 py-0.5 rounded-[6px] text-xs font-semibold inline-block">
-        {row.status}
-      </span>
-    ),
-  },
-]
+const MaintenanceTable = ({ data = [], loading = false }) => {
+  const [currentPage, setCurrentPage] = useState(1)
+  const searchForm = useForm({ defaultValues: { search: "" } })
+  const searchValue = searchForm.watch("search")
 
-const MaintenanceTable = ({ data, loading = false }) => {
+  const filteredData = useMemo(() => {
+    if (!searchValue) return data
+
+    const query = searchValue.toLowerCase()
+    return data.filter((item) =>
+      Object.values(item).some((val) =>
+        String(val).toLowerCase().includes(query)
+      )
+    )
+  }, [data, searchValue])
+
+  const paginatedData = useMemo(() => {
+    const start = (currentPage - 1) * 10
+    return filteredData.slice(start, start + 10)
+  }, [filteredData, currentPage])
+
+  // Reset to page 1 when filter changes
+  useEffect(() => {
+    if (currentPage !== 1) setCurrentPage(1)
+  }, [searchValue, currentPage])
+
+  if (loading) {
+    return (
+      <div className="bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-sm">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-left">
+            <thead>
+              <tr className="bg-[#F8FAFC] border-b border-[#E2E8F0]">
+                {["Ticket ID", "Issue", "Flat", "Category", "Tenant", "Status", "Action"].map((col) => (
+                  <th
+                    key={col}
+                    className="px-6 py-4 text-xs font-semibold text-dark-gray uppercase tracking-wider"
+                  >
+                    {col}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {Array.from({ length: 5 }).map((_, idx) => (
+                <tr key={idx} className="border-b border-[#E2E8F0]">
+                  {Array.from({ length: 7 }).map((__, colIdx) => (
+                    <td key={colIdx} className="px-6 py-4">
+                      <div className="h-4 bg-slate-100 rounded animate-pulse w-3/4" />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <CommonTable
-      columns={maintenanceColumns}
-      data={data}
-      actions={actionItems}
-      searchable={true}
-      itemsPerPage={10}
-      emptyMessage="No maintenance requests found."
-      loading={loading}
-      actionKey="id"
-    />
+    <div>
+      {/* Search */}
+      <div className="w-full max-w-xs mb-4">
+        <FormProvider {...searchForm}>
+          <CommonInput name="search" icon={Search} placeholder="Search ....." />
+        </FormProvider>
+      </div>
+
+      {/* Table */}
+      <DataTable columns={maintenanceColumns} data={paginatedData} />
+
+      {/* Pagination */}
+      <TablePagination
+        currentPage={currentPage}
+        totalItems={filteredData.length}
+        itemsPerPage={10}
+        onPageChange={setCurrentPage}
+      />
+    </div>
   )
 }
 
