@@ -85,7 +85,7 @@ const BuildingsPage = () => {
 
             {/* 4. Action Row */}
             <div className="flex items-center gap-2 w-full">
-              <Link to={`/dashboard/buildings/${building.id}`} className="flex-1">
+              <Link to={`/buildings/${building.id}`} className="flex-1">
                 <Button className="w-full">
                   View Details
                 </Button>

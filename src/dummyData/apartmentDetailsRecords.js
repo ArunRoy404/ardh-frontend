@@ -1,0 +1,21 @@
+export const apartmentDetails = {
+  flat: "Flat 101",
+  building: "Sunrise tower",
+  type: "2BHK",
+  occupancyStatus: "Occupied",
+  monthlyRent: "₹30,000",
+  maintenance: "₹3,000",
+  tenant: "Ankit Varma",
+  expectedRent: "₹25,000",
+  expectedMaintenance: "₹3,000",
+  expectedWater: "₹500",
+  difference: "₹28,500",
+  floor: "1",
+  area: "1100 sqft",
+  bedrooms: "2",
+  bathrooms: "2",
+  balcony: "Yes",
+  parking: "-",
+  owner: "Rajesh kumar",
+  nestawayId: "-"
+}

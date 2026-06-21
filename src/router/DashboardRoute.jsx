@@ -14,6 +14,7 @@ import VendorsPage from "@/pages/dashboard/VendorsPage";
 import ReportsPage from "@/pages/dashboard/ReportsPage";
 import UserManagementPage from "@/pages/dashboard/UserManagementPage";
 import SettingsPage from "@/pages/dashboard/SettingsPage";
+import ApartmentDetails from "@/pages/ApartmentDetails/ApartmentDetails";
 
 const dashboardRoutes = {
   element: <DashboardLayout />,
@@ -31,12 +32,16 @@ const dashboardRoutes = {
       element: <BuildingsPage />,
     },
     {
-      path: "/dashboard/buildings/:buildingid",
+      path: "/buildings/:buildingid",
       element: <BuildingDetails />,
     },
     {
       path: "/apartments",
       element: <ApartmentsPage />,
+    },
+    {
+      path: "/apartments/:apartmentid",
+      element: <ApartmentDetails />,
     },
     {
       path: "/tenants",
