@@ -31,7 +31,7 @@ const CommonDialog = ({
         {title}
       </Button>
 
-      <DialogContent className="sm:max-w-2xl max-h-[90vh]">
+      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className={titleClassName}>{title}</DialogTitle>
         </DialogHeader>
