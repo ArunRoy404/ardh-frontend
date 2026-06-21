@@ -7,7 +7,7 @@ import ListSkeleton from "@/components/skeletons/ListSkeleton"
 const IncomeList = ({ loading = false }) => {
   const { incomeRecords } = useIncomeStore()
 
-  if (loading) return <ListSkeleton cardRows={4} cardsCount={3} tableColumns={8} tableRows={5} />
+  if (loading) return        <ListSkeleton cardRows={4} hasMiddleContent={true} cardsCount={3} tableColumns={8} tableRows={5} />
 
 
   return (

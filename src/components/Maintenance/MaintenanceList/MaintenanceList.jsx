@@ -7,7 +7,7 @@ import ListSkeleton from "@/components/skeletons/ListSkeleton"
 const MaintenanceList = ({ loading = false }) => {
   const { maintenanceRecords } = useMaintenanceStore()
 
-  if (loading) return <ListSkeleton cardRows={3} cardsCount={3} tableColumns={7} tableRows={5} />
+  if (loading) return        <ListSkeleton cardRows={3} hasMiddleContent={true} cardsCount={3} tableColumns={7} tableRows={5} />
 
 
   return (

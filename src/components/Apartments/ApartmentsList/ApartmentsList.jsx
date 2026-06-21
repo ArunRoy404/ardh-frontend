@@ -7,7 +7,7 @@ import ListSkeleton from "@/components/skeletons/ListSkeleton"
 const ApartmentsList = ({ loading = false }) => {
   const { apartmentRecords } = useApartmentStore()
 
-  if (loading) return <ListSkeleton cardRows={4} cardsCount={3} tableColumns={7} tableRows={5} />
+  if (loading) return <ListSkeleton cardRows={4} hasMiddleContent={false} cardsCount={3} tableColumns={7} tableRows={5} />
 
 
   return (
