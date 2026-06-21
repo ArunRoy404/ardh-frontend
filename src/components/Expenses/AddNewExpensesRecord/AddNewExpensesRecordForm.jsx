@@ -1,12 +1,13 @@
 import { useRef, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { XCircle, Paperclip } from "lucide-react";
+import { XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ExpensesIcon } from "@/components/SvgIcons/ExpensesIcon";
 import CommonInput from "@/components/shared/Form/FormInput/CommonInput";
 import FormSelect from "@/components/shared/CommonSelect/FormSelect";
 import CommonTextEditor from "@/components/shared/Form/CommonTextEditor/CommonTextEditor";
+import CommonFileInput from "@/components/shared/CommonFileInput/CommonFileInput";
 import { DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { expenseSchema, expenseDefaultValues } from "@/zodSchema/expenseZodSchema";
@@ -15,7 +16,6 @@ const AddNewExpensesRecordForm = () => {
   const [resetKey, setResetKey] = useState(0);
   const [attachmentFile, setAttachmentFile] = useState(null);
   const notesRef = useRef("");
-  const fileInputRef = useRef(null);
 
   const methods = useForm({
     resolver: zodResolver(expenseSchema),
@@ -30,13 +30,6 @@ const AddNewExpensesRecordForm = () => {
     setAttachmentFile(null);
     notesRef.current = "";
     toast.warning("Feature not implemented yet!");
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setAttachmentFile(file);
-    }
   };
 
   return (
@@ -167,25 +160,12 @@ const AddNewExpensesRecordForm = () => {
         </div>
 
         {/* Attachment / Evidence - Full Width */}
-        <div className="space-y-1.5 relative">
-          <label className="text-xs font-semibold text-dark-gray">Attachment / Evidence *</label>
-          <div
-            onClick={() => fileInputRef.current?.click()}
-            className="flex items-center gap-2 py-3 px-4 rounded-md bg-input-bg border-none text-sm text-dark-gray cursor-pointer hover:bg-input-bg/80 transition-colors w-full"
-          >
-            <Paperclip className="w-4 h-4 text-dark-gray flex-shrink-0" />
-            <span className="truncate font-sans text-dark-gray text-xs">
-              {attachmentFile ? attachmentFile.name : "Attach receipt or evidence"}
-            </span>
-          </div>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept=".pdf,.jpg,.jpeg,.png"
-            className="hidden"
-            onChange={handleFileChange}
-          />
-        </div>
+        <CommonFileInput
+          label="Attachment / Evidence *"
+          value={attachmentFile}
+          onChange={setAttachmentFile}
+          placeholder="Attach receipt or evidence"
+        />
 
         {/* Notes Editor */}
         <CommonTextEditor

@@ -1,12 +1,13 @@
 import { useRef, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { XCircle, Paperclip } from "lucide-react";
+import { XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TenantsIcon } from "@/components/SvgIcons/TenantsIcon";
 import CommonInput from "@/components/shared/Form/FormInput/CommonInput";
 import FormSelect from "@/components/shared/CommonSelect/FormSelect";
 import CommonTextEditor from "@/components/shared/Form/CommonTextEditor/CommonTextEditor";
+import CommonFileInput from "@/components/shared/CommonFileInput/CommonFileInput";
 import { DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { tenantSchema, tenantDefaultValues } from "@/zodSchema/tenantZodSchema";
@@ -15,7 +16,6 @@ const AddTenantsForm = () => {
   const [resetKey, setResetKey] = useState(0);
   const [idProofFile, setIdProofFile] = useState(null);
   const notesRef = useRef("");
-  const fileInputRef = useRef(null);
 
   const methods = useForm({
     resolver: zodResolver(tenantSchema),
@@ -30,13 +30,6 @@ const AddTenantsForm = () => {
     setIdProofFile(null);
     notesRef.current = "";
     toast.warning("Feature not implemented yet!");
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setIdProofFile(file);
-    }
   };
 
   return (
@@ -91,25 +84,12 @@ const AddTenantsForm = () => {
             placeholder="e.g.123456789"
             className="pl-4"
           />
-          <div className="space-y-1.5 relative">
-            <label className="text-xs font-semibold text-dark-gray">ID Proof Attachment *</label>
-            <div
-              onClick={() => fileInputRef.current?.click()}
-              className="flex items-center gap-2 py-3.5 px-4 rounded-md bg-input-bg border-none text-sm text-dark-gray cursor-pointer hover:bg-input-bg/80 transition-colors w-full"
-            >
-              <Paperclip className="w-4 h-4 text-dark-gray flex-shrink-0" />
-              <span className="truncate font-sans text-dark-gray text-xs">
-                {idProofFile ? idProofFile.name : "Click to attach ID proof (PDF, JPG, PNG)"}
-              </span>
-            </div>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".pdf,.jpg,.jpeg,.png"
-              className="hidden"
-              onChange={handleFileChange}
-            />
-          </div>
+          <CommonFileInput
+            label="ID Proof Attachment *"
+            value={idProofFile}
+            onChange={setIdProofFile}
+            placeholder="Click to attach ID proof (PDF, JPG, PNG)"
+          />
         </div>
 
         {/* Property Assignment Section */}
