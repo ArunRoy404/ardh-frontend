@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { Eye, Pencil, Trash2 } from "lucide-react"
-import { toast } from "sonner"
 import CommonAction from "@/components/shared/CommonAction/CommonAction"
 import CommonDeleteDialog from "@/components/shared/CommonDeleteDialog/CommonDeleteDialog"
 
@@ -16,9 +15,7 @@ const IncomeAction = ({ income }) => {
         {
             icon: Pencil,
             label: "Edit",
-            onClick: () => {
-                toast.info(`Editing ${income.type} from ${income.tenant} — Not implemented yet`)
-            },
+            link: `/income/${income.id}/edit`,
         },
         {
             icon: Trash2,
@@ -34,7 +31,7 @@ const IncomeAction = ({ income }) => {
             <CommonDeleteDialog
                 open={deleteDialogOpen}
                 onOpenChange={setDeleteDialogOpen}
-                itemName={`${income.type} - ${income.tenant}`}
+                itemName={`${income.type} - ${income.tenant} - ${income.amount}`}
                 itemType="Income Record"
             />
         </>

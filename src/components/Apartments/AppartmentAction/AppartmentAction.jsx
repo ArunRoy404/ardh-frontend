@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { Eye, Pencil, Trash2 } from "lucide-react"
-import { toast } from "sonner"
 import CommonAction from "@/components/shared/CommonAction/CommonAction"
 import CommonDeleteDialog from "@/components/shared/CommonDeleteDialog/CommonDeleteDialog"
 
@@ -16,9 +15,7 @@ const ApartmentAction = ({ apartment }) => {
         {
             icon: Pencil,
             label: "Edit Flat",
-            onClick: () => {
-                toast.info(`Editing Flat ${apartment.flat} — Not implemented yet`)
-            },
+            link: `/apartments/${apartment.id}/edit`,
         },
         {
             icon: Trash2,

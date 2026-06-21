@@ -1,8 +1,11 @@
+import { useState } from "react"
 import { Eye, Pencil, Trash2 } from "lucide-react"
-import { toast } from "sonner"
 import CommonAction from "@/components/shared/CommonAction/CommonAction"
+import CommonDeleteDialog from "@/components/shared/CommonDeleteDialog/CommonDeleteDialog"
 
 const MaintenanceAction = ({ maintenance }) => {
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+
     const items = [
         {
             icon: Eye,
@@ -12,21 +15,29 @@ const MaintenanceAction = ({ maintenance }) => {
         {
             icon: Pencil,
             label: "Edit",
-            onClick: () => {
-                toast.info(`Editing maintenance ${maintenance.ticketId} — Not implemented yet`)
-            },
+            link: `/maintenance/${maintenance.id}/edit`,
         },
         {
             icon: Trash2,
             label: "Delete",
             variant: "destructive",
             onClick: () => {
-                toast.error(`Deleting maintenance ${maintenance.ticketId} — Not implemented yet`)
+                setDeleteDialogOpen(true)
             },
         },
     ]
 
-    return <CommonAction items={items} />
+    return (
+        <>
+            <CommonAction items={items} />
+            <CommonDeleteDialog
+                open={deleteDialogOpen}
+                onOpenChange={setDeleteDialogOpen}
+                itemName={`${maintenance.issue}`}
+                itemType="Maintenance"
+            />
+        </>
+    )
 }
 
 export default MaintenanceAction
