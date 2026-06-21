@@ -15,6 +15,8 @@ import ReportsPage from "@/pages/dashboard/ReportsPage";
 import UserManagementPage from "@/pages/dashboard/UserManagementPage";
 import SettingsPage from "@/pages/dashboard/SettingsPage";
 import ApartmentDetails from "@/pages/ApartmentDetails/ApartmentDetails";
+import TenantDetails from "@/pages/TenantDetails/TenantDetails";
+
 
 const dashboardRoutes = {
   element: <DashboardLayout />,
@@ -46,6 +48,10 @@ const dashboardRoutes = {
     {
       path: "/tenants",
       element: <TenantsPage />,
+    },
+    {
+      path: "/tenants/:tenantid",
+      element: <TenantDetails />,
     },
     {
       path: "/owners",

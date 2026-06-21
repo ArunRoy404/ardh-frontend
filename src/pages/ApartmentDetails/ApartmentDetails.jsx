@@ -20,15 +20,15 @@ const ApartmentDetails = () => {
         showBreadcrumb
       >
         <div className="flex items-center gap-3">
-          <Button onClick={() => toast.info("Opening Add New Record modal...")} className="flex items-center gap-2">
+          <Button isNotImplemented>
             <PlusCircle className="w-4 h-4" />
             Add New Record
           </Button>
-          <Button variant="outline" onClick={() => toast.info("Opening Edit Flat details modal...")} className="flex items-center gap-2">
+          <Button variant="outline" isNotImplemented>
             <Pencil className="w-4 h-4" />
             Edit
           </Button>
-          <Button variant="outline" size="icon" onClick={() => toast.info("Opening Delete Flat dialog...")} className="bg-red-50 text-red-600 border-red-200 hover:bg-red-100 hover:text-red-700">
+          <Button size="icon" variant="destructive" isNotImplemented>
             <Trash2 className="w-4 h-4" />
           </Button>
         </div>
