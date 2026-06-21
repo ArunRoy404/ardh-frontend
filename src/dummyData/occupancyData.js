@@ -1,8 +1,8 @@
 export const occupancyData = [
-    { status: "occupied", value: 3, fill: "#16A34A" },
-    { status: "vacant", value: 2, fill: "#F59E0B" },
-    { status: "maintenance", value: 2, fill: "#1961FF" },
-    { status: "reserved", value: 1, fill: "#1E3A5F" },
+    { status: "occupied", value: 3, fill: "var(--success-tag-text)" },
+    { status: "vacant", value: 2, fill: "var(--progress-tag-text)" },
+    { status: "maintenance", value: 2, fill: "var(--accent)" },
+    { status: "reserved", value: 1, fill: "var(--primary)" },
 ]
 
 export const occupancyConfig = {
@@ -11,18 +11,18 @@ export const occupancyConfig = {
     },
     occupied: {
         label: "Occupied",
-        color: "#16A34A",
+        color: "var(--success-tag-text)",
     },
     vacant: {
         label: "Vacant",
-        color: "#F59E0B",
+        color: "var(--progress-tag-text)",
     },
     maintenance: {
         label: "Maintenance",
-        color: "#1961FF",
+        color: "var(--accent)",
     },
     reserved: {
         label: "Reserved",
-        color: "#1E3A5F",
+        color: "var(--primary)",
     },
 }

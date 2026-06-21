@@ -14,6 +14,19 @@ import VendorsPage from "@/pages/dashboard/VendorsPage";
 import ReportsPage from "@/pages/dashboard/ReportsPage";
 import UserManagementPage from "@/pages/dashboard/UserManagementPage";
 import SettingsPage from "@/pages/dashboard/SettingsPage";
+import ApartmentDetails from "@/pages/ApartmentDetails/ApartmentDetails";
+import TenantDetails from "@/pages/TenantDetails/TenantDetails";
+import OwnerDetailsPage from "@/pages/OwnerDetails/OwnerDetailsPage";
+import IncomeDetailsPage from "@/pages/IncomeDetails/IncomeDetailsPage";
+import ExpensesDetailsPage from "@/pages/ExpensesDetails/ExpensesDetailsPage";
+import EquipmentDetailsPage from "@/pages/EquipmentDetails/EquipmentDetailsPage";
+import VendorsDetailsPage from "@/pages/VendorDetails/VendorsDetailsPage";
+import MaintenanceDetailsPage from "@/pages/MaintenanceDetails/MaintenanceDetailsPage";
+
+
+
+
+
 
 const dashboardRoutes = {
   element: <DashboardLayout />,
@@ -31,7 +44,7 @@ const dashboardRoutes = {
       element: <BuildingsPage />,
     },
     {
-      path: "/dashboard/buildings/:buildingid",
+      path: "/buildings/:buildingid",
       element: <BuildingDetails />,
     },
     {
@@ -39,32 +52,64 @@ const dashboardRoutes = {
       element: <ApartmentsPage />,
     },
     {
+      path: "/apartments/:apartmentid",
+      element: <ApartmentDetails />,
+    },
+    {
       path: "/tenants",
       element: <TenantsPage />,
+    },
+    {
+      path: "/tenants/:tenantid",
+      element: <TenantDetails />,
     },
     {
       path: "/owners",
       element: <OwnersPage />,
     },
     {
+      path: "/owners/:ownerid",
+      element: <OwnerDetailsPage />,
+    },
+    {
       path: "/income",
       element: <IncomePage />,
+    },
+    {
+      path: "/income/:incomeid",
+      element: <IncomeDetailsPage />,
     },
     {
       path: "/expenses",
       element: <ExpensesPage />,
     },
     {
+      path: "/expenses/:expenseid",
+      element: <ExpensesDetailsPage />,
+    },
+    {
       path: "/maintenance",
       element: <MaintenancePage />,
+    },
+    {
+      path: "/maintenance/:maintenanceid",
+      element: <MaintenanceDetailsPage />,
     },
     {
       path: "/equipment",
       element: <EquipmentPage />,
     },
     {
+      path: "/equipment/:equipmentid",
+      element: <EquipmentDetailsPage />,
+    },
+    {
       path: "/vendors",
       element: <VendorsPage />,
+    },
+    {
+      path: "/vendors/:vendorid",
+      element: <VendorsDetailsPage />,
     },
     {
       path: "/reports",

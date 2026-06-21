@@ -5,7 +5,7 @@ import { TenantsIcon } from "../../SvgIcons/TenantsIcon"
 import { IncomeIcon } from "../../SvgIcons/IncomeIcon"
 import { ExpensesIcon } from "../../SvgIcons/ExpensesIcon"
 import { MaintenanceIcon } from "../../SvgIcons/MaintenanceIcon"
-import { AlertCircle, Home } from "lucide-react"
+import { AlertCircle, Home, Clock, CheckCircle, Wrench } from "lucide-react"
 
 const iconMap = {
     buildings: (className) => <BuildingsIcon className={className} />,
@@ -17,6 +17,9 @@ const iconMap = {
     alert: (className) => <AlertCircle className={className} />,
     vacant: (className) => <Home className={className} />,
     home: (className) => <Home className={className} />,
+    clock: (className) => <Clock className={className} />,
+    checkCircle: (className) => <CheckCircle className={className} />,
+    wrench: (className) => <Wrench className={className} />,
 }
 
 const DashboardStatCard = ({ title, value, iconType, iconColor, iconBg, url }) => {

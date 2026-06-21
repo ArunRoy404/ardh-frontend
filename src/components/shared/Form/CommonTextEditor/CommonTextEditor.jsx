@@ -29,8 +29,8 @@ const ToolbarBtn = ({ onClick, isActive, children, title }) => (
         onClick={onClick}
         title={title}
         className={cn(
-            "p-1.5 rounded hover:bg-slate-200 transition-colors cursor-pointer",
-            isActive && "bg-slate-200 text-primary"
+            "p-1.5 rounded hover:bg-muted transition-colors cursor-pointer",
+            isActive && "bg-muted text-primary"
         )}
     >
         {children}

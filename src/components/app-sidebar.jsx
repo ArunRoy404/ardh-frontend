@@ -75,7 +75,10 @@ export function AppSidebar({
             <SidebarMenu>
               {section.items.map((item) => {
                 const IconComponent = iconMap[item.name]
-                const isActive = location.pathname === item.url
+                const pathWithoutDashboard = location.pathname.replace(/^\/dashboard/, "") || "/"
+                const isActive = item.url === "/"
+                  ? pathWithoutDashboard === "/"
+                  : pathWithoutDashboard.startsWith(item.url)
 
                 return (
                   <SidebarMenuItem

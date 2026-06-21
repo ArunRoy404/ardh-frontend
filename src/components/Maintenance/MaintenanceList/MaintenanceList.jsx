@@ -1,25 +1,32 @@
-import MaintenanceTable, { actionItems } from "./MaintenanceTable"
+import CommonSearch from "@/components/shared/CommonSearch/CommonSearch"
+import MaintenanceTable from "./MaintenanceTable"
 import MaintenanceCardsContainer from "./MaintenanceCardsContainer"
+import useMaintenanceStore from "@/dummyDataStore/useMaintenanceStore"
+import ListSkeleton from "@/components/skeletons/ListSkeleton"
 
-const MaintenanceList = ({ data, loading = false }) => {
+const MaintenanceList = ({ loading = false }) => {
+  const { maintenanceRecords } = useMaintenanceStore()
+
+  if (loading) return <ListSkeleton cardRows={3} hasMiddleContent={true} cardsCount={3} tableColumns={8} tableRows={5} />
+
+
   return (
     <>
+      <CommonSearch />
+
       {/* Cards for small screens */}
       <div className="block md:hidden">
         <MaintenanceCardsContainer
-          data={data}
-          loading={loading}
-          actions={actionItems}
-          actionKey="id"
+          data={maintenanceRecords}
+          actionKey="title"
           itemsPerPage={10}
-          searchable={true}
           emptyMessage="No maintenance requests found."
         />
       </div>
 
       {/* Table for medium+ screens */}
       <div className="hidden md:block">
-        <MaintenanceTable data={data} loading={loading} />
+        <MaintenanceTable data={maintenanceRecords} />
       </div>
     </>
   )

@@ -1,13 +1,14 @@
 import React from "react"
 import useStatsStore from "../../../dummyDataStore/useStatsStore"
 import DashboardStatCard from "./DashboardStatCard"
+import { cn } from "@/lib/utils"
 
-const DashboardStat = ({ stats: propStats }) => {
+const DashboardStat = ({ stats: propStats, className }) => {
     const { stats: storeStats } = useStatsStore()
     const stats = propStats || storeStats
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className={cn("grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6", className)}>
             {stats.map((stat, idx) => (
                 <DashboardStatCard
                     key={idx}

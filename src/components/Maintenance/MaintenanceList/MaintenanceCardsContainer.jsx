@@ -1,77 +1,56 @@
-import { useState, useRef, useEffect, useMemo } from "react"
-import { MoreHorizontal, Search } from "lucide-react"
-import { FormProvider, useForm } from "react-hook-form"
-import { cn } from "@/lib/utils"
-import CommonInput from "@/components/shared/Form/FormInput/CommonInput"
+import { useState, useMemo } from "react"
+import MaintenanceAction from "./MaintenanceAction/MaintenanceAction"
 import TablePagination from "@/components/shared/CommonTable/TablePagination"
+
+const getPriorityBadge = (priority) => {
+  switch (priority.toLowerCase()) {
+    case "high":
+      return "bg-warning-tag-bg border border-warning-tag-border text-warning-tag-text"
+    case "medium":
+      return "bg-medium-tag-bg border border-medium-tag-border text-medium-tag-text"
+    case "low":
+      return "bg-success-tag-bg border border-success-tag-border text-success-tag-text"
+    default:
+      return ""
+  }
+}
+
+const getStatusBadge = (status) => {
+  switch (status.toLowerCase()) {
+    case "in progress":
+    case "inprogress":
+      return "bg-progress-tag-bg border border-progress-tag-border text-progress-tag-text"
+    case "open":
+      return "bg-open-tag-bg border border-open-tag-border text-open-tag-text"
+    case "complete":
+    case "paid":
+      return "bg-success-tag-bg border border-success-tag-border text-success-tag-text"
+    default:
+      return ""
+  }
+}
 
 const MaintenanceCardsContainer = ({
   data = [],
-  loading = false,
-  actions = [],
-  actionKey = "id",
+  actionKey = "title",
   itemsPerPage = 10,
-  searchable = false,
-  searchPlaceholder = "Search .....",
   emptyMessage = "No maintenance requests found.",
 }) => {
   const [currentPage, setCurrentPage] = useState(1)
-  const [activeDropdownId, setActiveDropdownId] = useState(null)
-  const dropdownRef = useRef(null)
-  const searchForm = useForm({ defaultValues: { search: "" } })
-
-  useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setActiveDropdownId(null)
-      }
-    }
-    window.addEventListener("click", handleOutsideClick)
-    return () => window.removeEventListener("click", handleOutsideClick)
-  }, [])
 
   const paginatedData = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage
     return data.slice(start, start + itemsPerPage)
   }, [data, currentPage, itemsPerPage])
 
-  const getStatusBadge = (status) => (
-    <span className="bg-open-tag-bg text-open-tag-text border border-open-tag-border px-2.5 py-0.5 rounded-[6px] text-xs font-semibold inline-block">
-      {status}
+  const Badge = ({ className, children }) => (
+    <span className={`${className} px-2.5 py-0.5 rounded-[6px] text-xs font-semibold inline-block`}>
+      {children}
     </span>
   )
 
-  if (loading) {
-    return (
-      <div className="space-y-3">
-        {Array.from({ length: 3 }).map((_, idx) => (
-          <div key={idx} className="bg-white border border-[#E2E8F0] rounded-2xl p-4 shadow-sm space-y-3">
-            <div className="flex justify-between">
-              <div className="h-5 bg-slate-100 rounded animate-pulse w-28" />
-              <div className="h-5 bg-slate-100 rounded animate-pulse w-16" />
-            </div>
-            <div className="space-y-2">
-              <div className="h-4 bg-slate-100 rounded animate-pulse w-full" />
-              <div className="h-4 bg-slate-100 rounded animate-pulse w-3/4" />
-              <div className="h-4 bg-slate-100 rounded animate-pulse w-2/3" />
-            </div>
-          </div>
-        ))}
-      </div>
-    )
-  }
-
   return (
     <div>
-      {/* Search */}
-      {searchable && (
-        <div className="w-full max-w-xs mb-4">
-          <FormProvider {...searchForm}>
-            <CommonInput name="search" icon={Search} placeholder={searchPlaceholder} />
-          </FormProvider>
-        </div>
-      )}
-
       {/* Cards */}
       <div className="space-y-3">
         {paginatedData.length > 0 ? (
@@ -80,79 +59,48 @@ const MaintenanceCardsContainer = ({
             return (
               <div
                 key={rowId}
-                className="bg-white border border-[#E2E8F0] rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-card border border-border rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow"
               >
-                {/* Header row: Ticket ID + Status */}
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-primary font-semibold text-sm">
-                    {row.ticketId}
+                {/* Title + Status */}
+                <div className="flex items-start justify-between mb-3">
+                  <span className="text-primary font-semibold text-sm flex-1 mr-2">
+                    {row.title}
                   </span>
-                  {getStatusBadge(row.status)}
+                  <Badge className={getStatusBadge(row.status)}>
+                    {row.status}
+                  </Badge>
                 </div>
-
-                {/* Issue */}
-                <p className="text-dark-accent font-medium text-sm mb-3 line-clamp-2">
-                  {row.issue}
-                </p>
 
                 {/* Details */}
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center justify-between">
                     <span className="text-dark-gray text-xs font-semibold uppercase tracking-wider">Category</span>
-                    <span className="text-dark-gray">{row.type}</span>
+                    <span className="text-dark-gray">{row.category}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-dark-gray text-xs font-semibold uppercase tracking-wider">Building</span>
+                    <span className="text-dark-gray">{row.building}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-dark-gray text-xs font-semibold uppercase tracking-wider">Flat</span>
                     <span className="text-dark-gray">{row.flat}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-dark-gray text-xs font-semibold uppercase tracking-wider">Tenant</span>
-                    <span className="text-dark-accent">{row.tenant}</span>
+                    <span className="text-dark-gray text-xs font-semibold uppercase tracking-wider">Priority</span>
+                    <Badge className={getPriorityBadge(row.priority)}>
+                      {row.priority}
+                    </Badge>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-dark-gray text-xs font-semibold uppercase tracking-wider">Vendor</span>
+                    <span className="text-dark-accent">{row.vendor}</span>
                   </div>
                 </div>
 
                 {/* Actions dropdown */}
-                {actions.length > 0 && (
-                  <div className="mt-3 pt-3 border-t border-[#E2E8F0] flex justify-end">
-                    <div className="relative">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          setActiveDropdownId(activeDropdownId === rowId ? null : rowId)
-                        }}
-                        className="p-1.5 hover:bg-slate-100 rounded-full transition-colors text-slate-500 cursor-pointer"
-                      >
-                        <MoreHorizontal className="w-5 h-5" />
-                      </button>
-
-                      {activeDropdownId === rowId && (
-                        <div
-                          ref={dropdownRef}
-                          className="absolute right-0 top-10 z-50 w-36 bg-white border border-[#E2E8F0] rounded-xl shadow-lg p-1"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          {actions.map((action, actIdx) => (
-                            <button
-                              key={actIdx}
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                action.onClick?.(row)
-                                setActiveDropdownId(null)
-                              }}
-                              className={cn(
-                                "w-full text-left px-3 py-2 text-xs rounded-lg flex items-center gap-2 transition-colors",
-                                action.className || "text-dark-accent hover:bg-slate-50"
-                              )}
-                            >
-                              {action.icon}
-                              {action.label}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
+                <div className="mt-3">
+                  <MaintenanceAction maintenance={row} />
+                </div>
               </div>
             )
           })

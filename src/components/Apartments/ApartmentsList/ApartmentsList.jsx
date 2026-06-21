@@ -1,25 +1,32 @@
-import ApartmentsTable, { actionItems } from "./ApartmentsTable"
+import CommonSearch from "@/components/shared/CommonSearch/CommonSearch"
+import ApartmentsTable from "./ApartmentsTable"
 import ApartmentCardsContainer from "./ApartmentCardsContainer"
+import useApartmentStore from "@/dummyDataStore/useApartmentStore"
+import ListSkeleton from "@/components/skeletons/ListSkeleton"
 
-const ApartmentsList = ({ data, loading = false }) => {
+const ApartmentsList = ({ loading = false }) => {
+  const { apartmentRecords } = useApartmentStore()
+
+  if (loading) return <ListSkeleton cardRows={4} hasMiddleContent={false} cardsCount={3} tableColumns={7} tableRows={5} />
+
+
   return (
     <>
+      <CommonSearch />
+
       {/* Cards for small screens */}
       <div className="block md:hidden">
         <ApartmentCardsContainer
-          data={data}
-          loading={loading}
-          actions={actionItems}
+          data={apartmentRecords}
           actionKey="id"
           itemsPerPage={10}
-          searchable={true}
           emptyMessage="No apartments found."
         />
       </div>
 
       {/* Table for medium+ screens */}
       <div className="hidden md:block">
-        <ApartmentsTable data={data} loading={loading} />
+        <ApartmentsTable data={apartmentRecords} />
       </div>
     </>
   )

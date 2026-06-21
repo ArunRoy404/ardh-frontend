@@ -18,7 +18,7 @@ const CommonTab = ({
           <TabsTrigger
             key={tab.value}
             value={tab.value}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 data-active:bg-white data-active:border data-active:border-slate-200 data-active:shadow-sm data-active:text-primary bg-[#F8FAFC] text-dark-gray border border-transparent hover:text-primary"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 data-active:bg-card data-active:border data-active:border-border data-active:shadow-sm data-active:text-primary bg-muted text-dark-gray border border-transparent hover:text-primary"
           >
             {tab.icon}
             {tab.label}

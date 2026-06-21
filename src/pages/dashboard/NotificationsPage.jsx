@@ -10,28 +10,28 @@ const getNotificationIconData = (type) => {
     switch (type) {
         case "vacant":
             return {
-                icon: <ApartmentsIcon className={`${sizeClass} text-[#D97706]`} />,
-                bg: "bg-[#FEF3C7]",
+                icon: <ApartmentsIcon className={`${sizeClass} text-progress-tag-text`} />,
+                bg: "bg-progress-tag-bg",
             }
         case "maintenance-info":
             return {
-                icon: <MaintenanceIcon className={`${sizeClass} text-[#64748B]`} />,
-                bg: "bg-[#F1F5F9]",
+                icon: <MaintenanceIcon className={`${sizeClass} text-dark-gray`} />,
+                bg: "bg-muted",
             }
         case "critical":
             return {
-                icon: <AlertCircle className={`${sizeClass} text-[#D97706]`} />,
-                bg: "bg-[#FEF3C7]",
+                icon: <AlertCircle className={`${sizeClass} text-progress-tag-text`} />,
+                bg: "bg-progress-tag-bg",
             }
         case "payment":
             return {
-                icon: <IncomeIcon className={`${sizeClass} text-[#16A34A]`} />,
-                bg: "bg-[#DCFCE7]",
+                icon: <IncomeIcon className={`${sizeClass} text-success-tag-text`} />,
+                bg: "bg-success-tag-bg",
             }
         default:
             return {
-                icon: <AlertCircle className={`${sizeClass} text-slate-500`} />,
-                bg: "bg-slate-100",
+                icon: <AlertCircle className={`${sizeClass} text-dark-gray`} />,
+                bg: "bg-muted",
             }
     }
 }
@@ -54,7 +54,7 @@ const NotificationsPage = () => {
                     return (
                         <div
                             key={idx}
-                            className="flex p-3 items-start gap-3 self-stretch border-b border-[#EEE] justify-between hover:bg-slate-50 transition-colors"
+                            className="flex p-3 items-start gap-3 self-stretch border-b border-border justify-between hover:bg-muted transition-colors"
                         >
                             <div className="flex gap-3 items-start">
                                 <div className={`p-2.5 rounded-full flex items-center justify-center ${iconData.bg}`}>
@@ -62,13 +62,13 @@ const NotificationsPage = () => {
                                 </div>
                                 <div className="flex flex-col justify-center min-h-[36px]">
                                     <h3
-                                        className="text-[15px] font-medium text-[#1A1A1A] leading-tight"
+                                        className="text-[15px] font-medium text-card-inner-title leading-tight"
                                         style={{ fontFamily: "'Adobe Aldine', Georgia, serif" }}
                                     >
                                         {item.title}
                                     </h3>
                                     <p
-                                        className="text-[12px] font-normal text-[#64748B] mt-0.5"
+                                        className="text-[12px] font-normal text-dark-gray mt-0.5"
                                         style={{ fontFamily: "'DM Sans', sans-serif" }}
                                     >
                                         {item.detail}
@@ -77,7 +77,7 @@ const NotificationsPage = () => {
                             </div>
 
                             <span
-                                className="text-[12px] font-normal text-[#64748B] whitespace-nowrap pt-1"
+                                className="text-[12px] font-normal text-dark-gray whitespace-nowrap pt-1"
                                 style={{ fontFamily: "'DM Sans', sans-serif" }}
                             >
                                 {item.date}

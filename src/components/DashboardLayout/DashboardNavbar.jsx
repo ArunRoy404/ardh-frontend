@@ -1,10 +1,10 @@
 import { SidebarTrigger } from "../ui/sidebar"
 import LogoutIcon from "../SvgIcons/LogoutIcon"
 import { NotificationsIcon } from "../SvgIcons/NotificationsIcon"
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip"
 import { Link } from "react-router"
 import { toast } from "sonner"
+import CommonAvatar from "../shared/CommonAvatar/CommonAvatar"
 
 const DashboardNavbar = () => {
     return (
@@ -16,20 +16,14 @@ const DashboardNavbar = () => {
             <div className="flex items-center gap-4">
                 <Link to="/notifications" className="relative cursor-pointer text-muted-foreground hover:text-foreground flex items-center justify-center">
                     <NotificationsIcon className="size-6" />
-                    <span className="absolute top-0 right-0 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">3</span>
+                    <span className="absolute top-0 right-0 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-primary-foreground">3</span>
                 </Link>
 
-                <div className="flex items-center justify-center gap-2">
-                    <Avatar className="cursor-pointer size-8">
-                        <AvatarImage src="https://github.com/shadcn.png" alt="Profile" />
-                        <AvatarFallback>PR</AvatarFallback>
-                    </Avatar>
-                    <p className="text-xs text-dark-gray">John Doe</p>
-                </div>
+                <CommonAvatar src="https://github.com/shadcn.png" alt="John Doe" />
 
                 <TooltipProvider>
                     <Tooltip>
-                        <TooltipTrigger className="flex items-center justify-center text-red-500 hover:text-red-600 cursor-pointer" onClick={() => toast.warning('Functionality not implemented yet.')}>
+                        <TooltipTrigger className="flex items-center justify-center text-destructive hover:text-destructive/80 cursor-pointer" onClick={() => toast.warning('Functionality not implemented yet.')}>
                             <LogoutIcon className="size-6" />
                         </TooltipTrigger>
                         <TooltipContent>

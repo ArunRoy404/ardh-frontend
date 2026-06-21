@@ -1,9 +1,12 @@
 export const openMaintenance = [
-    { title: "Water Leakage in bathroom", location: "Sunrise Tower • 101", priority: "High", status: "InProgress" },
-    { title: "Ac Not cooling", location: "Skyline Residency • 301", priority: "High", status: "InProgress" },
-    { title: "Parking lot lights broken", location: "Sunrise Tower", priority: "Medium", status: "Open" },
-    { title: "Common area painting", location: "Green Valley Apartments", priority: "Low", status: "Open" },
-]
+    { title: "Water leakage in...", category: "Electrical", building: "Sunrise Building", flat: "A1", priority: "Low", vendor: "Spark electricals", status: "Complete" },
+    { title: "AC not cooling", category: "Plumbing", building: "Sunrise Building", flat: "101", priority: "Low", vendor: "Quick Fix Plumbing", status: "Complete" },
+    { title: "Parking lot lights...", category: "Electrical", building: "Sunrise Building", flat: "101", priority: "Low", vendor: "Quick Fix Plumbing", status: "Complete" },
+    { title: "Common area p...", category: "Plumbing", building: "Sunrise Building", flat: "301", priority: "High", vendor: "-", status: "Open" },
+    { title: "CCTV camera m...", category: "painting", building: "Sunrise Building", flat: "301", priority: "High", vendor: "-", status: "Open" },
+    { title: "Kitchen sink rep...", category: "Electrical", building: "Sunrise Building", flat: "-", priority: "Medium", vendor: "Spark Electricals", status: "In progress" },
+    { title: "Water leakage in...", category: "Electrical", building: "Sunrise Building", flat: "-", priority: "Medium", vendor: "Spark Electricals", status: "In progress" }
+];
 
 export const getPriorityBadge = (priority) => {
     switch (priority.toLowerCase()) {

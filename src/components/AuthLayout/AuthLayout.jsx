@@ -3,7 +3,7 @@ import AuthHeader from "@/components/AuthLayout/AuthHeader";
 
 function AuthLayout() {
   return (
-    <div className="flex min-h-screen w-full text-[#1a202c] antialiased">
+    <div className="flex min-h-screen w-full text-dark-accent antialiased">
       <AuthHeader
         title={
           <span>

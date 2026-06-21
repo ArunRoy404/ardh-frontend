@@ -94,7 +94,7 @@
     --dark-accent: #0F172A;
     --primary: #1E3A5F;
     --secondary: #1961FF;
-    --dark-gray: #64748B;
+    --dark-gray: #64748B; 
 
     /* --- Text Colors --- */
     --foreground: #0A0A0A;
@@ -120,9 +120,9 @@
     --primary-foreground: #FFFFFF;
     --secondary-foreground: #FFFFFF;
     --muted: #F8FAFC;
-    --muted-foreground: #64748B;
+    --muted-foreground: #64748B; 
     --accent: #1961FF;
-    --accent-foreground: #FFFFFF;
+    --accent-foreground: #FFFFFF; 
     --destructive: #DC2626;
     --border: #E2E8F0;
     --input: #E2E8F0;

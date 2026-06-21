@@ -52,7 +52,7 @@ function CommonOTPInput({
       />
 
       {error && (
-        <p className="absolute -bottom-6 text-xs text-red-500 text-center w-full">{error}</p>
+        <p className="absolute -bottom-6 text-xs text-destructive text-center w-full">{error}</p>
       )}
     </div>
   );

@@ -57,7 +57,7 @@ function CommonInput({
             <button
               type="button"
               onClick={() => setShowPassword((prev) => !prev)}
-              className="text-slate-400 hover:text-slate-600 transition-colors"
+              className="text-muted-foreground hover:text-foreground transition-colors"
               tabIndex={-1}
             >
               {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
@@ -66,7 +66,7 @@ function CommonInput({
         )}
       </div>
       {error && (
-        <p className="absolute -bottom-1 translate-y-full text-[10px] text-red-500 font-semibold">{error}</p>
+        <p className="px-1 bg-background absolute bottom-1.5 translate-y-full text-[10px] text-destructive font-semibold">{error}</p>
       )}
     </div>
   );

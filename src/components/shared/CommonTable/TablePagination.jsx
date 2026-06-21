@@ -14,7 +14,7 @@ const TablePagination = ({
 
   if (totalPages <= 1) {
     return (
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-6 py-4 border-t border-[#E2E8F0] bg-white">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-6 py-4 border-t border-border bg-card">
         <span className="text-dark-gray font-normal text-xs font-['Poppins']">
           Showing {showingStart} to {showingEnd} of {totalItems} results
         </span>
@@ -55,7 +55,7 @@ const TablePagination = ({
   const visiblePages = getVisiblePages()
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-6 py-4 border-t border-[#E2E8F0] bg-white">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-6 py-4 border-t border-border bg-card">
       <span className="text-dark-gray font-normal text-xs font-['Poppins']">
         Showing {showingStart} to {showingEnd} of {totalItems} results
       </span>
@@ -63,14 +63,14 @@ const TablePagination = ({
         <button
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           disabled={currentPage === 1}
-          className="w-8 h-8 flex items-center justify-center border border-slate-200 rounded-lg text-slate-500 hover:bg-slate-50 cursor-pointer disabled:opacity-40 disabled:hover:bg-white disabled:cursor-not-allowed transition-colors"
+          className="w-8 h-8 flex items-center justify-center border border-border rounded-lg text-dark-gray hover:bg-muted cursor-pointer disabled:opacity-40 disabled:hover:bg-card disabled:cursor-not-allowed transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
 
         {visiblePages.map((page, idx) =>
           page === "..." ? (
-            <span key={`ellipsis-${idx}`} className="text-slate-400 text-xs px-1">
+            <span key={`ellipsis-${idx}`} className="text-dark-gray text-xs px-1">
               ...
             </span>
           ) : (
@@ -79,8 +79,8 @@ const TablePagination = ({
               onClick={() => onPageChange(page)}
               className={`w-8 h-8 flex items-center justify-center rounded-lg font-semibold text-xs transition-colors cursor-pointer ${
                 currentPage === page
-                  ? "bg-[#1E3A5F] text-white"
-                  : "border border-slate-200 text-slate-500 hover:bg-slate-50"
+                  ? "bg-primary text-primary-foreground"
+                  : "border border-border text-dark-gray hover:bg-muted"
               }`}
             >
               {page}
@@ -91,7 +91,7 @@ const TablePagination = ({
         <button
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           disabled={currentPage === totalPages}
-          className="w-8 h-8 flex items-center justify-center border border-slate-200 rounded-lg text-slate-500 hover:bg-slate-50 cursor-pointer disabled:opacity-40 disabled:hover:bg-white disabled:cursor-not-allowed transition-colors"
+          className="w-8 h-8 flex items-center justify-center border border-border rounded-lg text-dark-gray hover:bg-muted cursor-pointer disabled:opacity-40 disabled:hover:bg-card disabled:cursor-not-allowed transition-colors"
         >
           <ChevronRight className="w-4 h-4" />
         </button>
