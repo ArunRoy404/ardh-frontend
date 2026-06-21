@@ -1,8 +1,11 @@
 import CommonSearch from "@/components/shared/CommonSearch/CommonSearch"
 import ApartmentsTable from "./ApartmentsTable"
 import ApartmentCardsContainer from "./ApartmentCardsContainer"
+import useApartmentStore from "@/dummyDataStore/useApartmentStore"
 
-const ApartmentsList = ({ data, loading = false }) => {
+const ApartmentsList = () => {
+  const { apartmentRecords } = useApartmentStore()
+
   return (
     <>
       <CommonSearch />
@@ -10,8 +13,7 @@ const ApartmentsList = ({ data, loading = false }) => {
       {/* Cards for small screens */}
       <div className="block md:hidden">
         <ApartmentCardsContainer
-          data={data}
-          loading={loading}
+          data={apartmentRecords}
           actionKey="id"
           itemsPerPage={10}
           emptyMessage="No apartments found."
@@ -20,7 +22,7 @@ const ApartmentsList = ({ data, loading = false }) => {
 
       {/* Table for medium+ screens */}
       <div className="hidden md:block">
-        <ApartmentsTable data={data} loading={loading} />
+        <ApartmentsTable data={apartmentRecords} />
       </div>
     </>
   )
