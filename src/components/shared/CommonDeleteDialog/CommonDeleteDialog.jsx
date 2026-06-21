@@ -25,8 +25,13 @@ const CommonDeleteDialog = ({
   itemType = "Building",
   onDelete,
   trigger,
+  open: openProp,
+  onOpenChange: onOpenChangeProp,
 }) => {
-  const [open, setOpen] = useState(false);
+  const isControlled = openProp !== undefined;
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = isControlled ? openProp : internalOpen;
+  const setOpen = isControlled ? onOpenChangeProp : setInternalOpen;
 
   const methods = useForm({
     resolver: zodResolver(deleteSchema),
@@ -47,9 +52,11 @@ const CommonDeleteDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        {trigger}
-      </DialogTrigger>
+      {trigger && (
+        <DialogTrigger asChild>
+          {trigger}
+        </DialogTrigger>
+      )}
       <DialogContent className="sm:max-w-sm max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3">
