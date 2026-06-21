@@ -1,5 +1,5 @@
 import UserAction from "@/components/UserManagement/UserManagementList/UserAction/UserAction"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import CommonAvatar from "../shared/CommonAvatar/CommonAvatar"
 
 // ─── Status Badge ────────────────────────────────────────────────────────────
 
@@ -34,13 +34,7 @@ export const userColumns = [
     accessorKey: "name",
     header: "Name",
     cell: ({ row }) => (
-      <div className="flex items-center gap-3">
-        <Avatar className="size-8">
-          <AvatarImage src={row.original.avatar} alt={row.original.name} />
-          <AvatarFallback>{row.original.name.charAt(0)}</AvatarFallback>
-        </Avatar>
-        <span className="text-primary font-semibold">{row.original.name}</span>
-      </div>
+      <CommonAvatar src={row.original.avatar} alt={row.original.name} />
     ),
   },
   {

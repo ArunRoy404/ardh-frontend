@@ -1,8 +1,8 @@
 import { useState, useMemo } from "react"
 import UserAction from "./UserAction/UserAction"
 import { getStatusBadge } from "@/dummyData/userRecords"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import TablePagination from "@/components/shared/CommonTable/TablePagination"
+import CommonAvatar from "@/components/shared/CommonAvatar/CommonAvatar"
 
 const UserCardsContainer = ({
   data = [],
@@ -37,15 +37,8 @@ const UserCardsContainer = ({
               >
                 {/* Header row: Avatar + Name + Status */}
                 <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <Avatar className="size-8">
-                      <AvatarImage src={row.avatar} alt={row.name} />
-                      <AvatarFallback>{row.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <span className="text-primary font-semibold text-sm">
-                      {row.name}
-                    </span>
-                  </div>
+                  <CommonAvatar src={row.avatar} alt={row.name} />
+                 
                   {renderStatusBadge(row.status)}
                 </div>
 
