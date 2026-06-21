@@ -1,7 +1,8 @@
 import VendorsList from "@/components/Vendors/VendorsList/VendorsList";
 import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader";
 import { Button } from "@/components/ui/button";
-import { PlusCircle } from "lucide-react";
+import { Upload } from "lucide-react";
+import AddNewVendors from "@/components/Vendors/AddNewVendors/AddNewVendors";
 
 const VendorsPage = () => {
   return (
@@ -12,10 +13,11 @@ const VendorsPage = () => {
         showBreadcrumb
       >
         <div className="flex items-center justify-end gap-2">
-          <Button>
-            <PlusCircle className="w-4 h-4" />
-            Add New Vendors
+          <Button variant="outline">
+            <Upload />
+            Bulk Upload
           </Button>
+          <AddNewVendors />
         </div>
       </DashboardHeader>
 
