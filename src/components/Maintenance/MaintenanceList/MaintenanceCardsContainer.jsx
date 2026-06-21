@@ -1,7 +1,34 @@
 import { useState, useMemo } from "react"
 import MaintenanceAction from "./MaintenanceAction/MaintenanceAction"
 import TablePagination from "@/components/shared/CommonTable/TablePagination"
-import { getPriorityBadge, getStatusBadge } from "@/dummyData/maintenanceRecords"
+
+const getPriorityBadge = (priority) => {
+  switch (priority.toLowerCase()) {
+    case "high":
+      return "bg-warning-tag-bg border border-warning-tag-border text-warning-tag-text"
+    case "medium":
+      return "bg-medium-tag-bg border border-medium-tag-border text-medium-tag-text"
+    case "low":
+      return "bg-success-tag-bg border border-success-tag-border text-success-tag-text"
+    default:
+      return ""
+  }
+}
+
+const getStatusBadge = (status) => {
+  switch (status.toLowerCase()) {
+    case "in progress":
+    case "inprogress":
+      return "bg-progress-tag-bg border border-progress-tag-border text-progress-tag-text"
+    case "open":
+      return "bg-open-tag-bg border border-open-tag-border text-open-tag-text"
+    case "complete":
+    case "paid":
+      return "bg-success-tag-bg border border-success-tag-border text-success-tag-text"
+    default:
+      return ""
+  }
+}
 
 const MaintenanceCardsContainer = ({
   data = [],
