@@ -4,7 +4,6 @@ import TablePagination from "@/components/shared/CommonTable/TablePagination"
 
 const ApartmentCardsContainer = ({
   data = [],
-  loading = false,
   actionKey = "id",
   itemsPerPage = 10,
   emptyMessage = "No apartments found.",
@@ -27,26 +26,6 @@ const ApartmentCardsContainer = ({
       >
         {status}
       </span>
-    )
-  }
-
-  if (loading) {
-    return (
-      <div className="space-y-3">
-        {Array.from({ length: 3 }).map((_, idx) => (
-          <div key={idx} className="bg-card border border-border rounded-2xl p-4 shadow-sm space-y-3">
-            <div className="flex justify-between">
-              <div className="h-5 bg-muted rounded animate-pulse w-24" />
-              <div className="h-5 bg-muted rounded animate-pulse w-16" />
-            </div>
-            <div className="space-y-2">
-              <div className="h-4 bg-muted rounded animate-pulse w-full" />
-              <div className="h-4 bg-muted rounded animate-pulse w-3/4" />
-              <div className="h-4 bg-muted rounded animate-pulse w-1/2" />
-            </div>
-          </div>
-        ))}
-      </div>
     )
   }
 

@@ -2,9 +2,13 @@ import CommonSearch from "@/components/shared/CommonSearch/CommonSearch"
 import IncomeTable from "./IncomeTable"
 import IncomeCardsContainer from "./IncomeCardsContainer"
 import useIncomeStore from "@/dummyDataStore/useIncomeStore"
+import ListSkeleton from "@/components/skeletons/ListSkeleton"
 
-const IncomeList = () => {
+const IncomeList = ({ loading = false }) => {
   const { incomeRecords } = useIncomeStore()
+
+  if (loading) return <ListSkeleton cardRows={4} cardsCount={3} tableColumns={8} tableRows={5} />
+
 
   return (
     <>

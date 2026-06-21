@@ -4,7 +4,6 @@ import TablePagination from "@/components/shared/CommonTable/TablePagination"
 
 const MaintenanceCardsContainer = ({
   data = [],
-  loading = false,
   actionKey = "id",
   itemsPerPage = 10,
   emptyMessage = "No maintenance requests found.",
@@ -21,26 +20,6 @@ const MaintenanceCardsContainer = ({
       {status}
     </span>
   )
-
-  if (loading) {
-    return (
-      <div className="space-y-3">
-        {Array.from({ length: 3 }).map((_, idx) => (
-          <div key={idx} className="bg-card border border-border rounded-2xl p-4 shadow-sm space-y-3">
-            <div className="flex justify-between">
-              <div className="h-5 bg-muted rounded animate-pulse w-28" />
-              <div className="h-5 bg-muted rounded animate-pulse w-16" />
-            </div>
-            <div className="space-y-2">
-              <div className="h-4 bg-muted rounded animate-pulse w-full" />
-              <div className="h-4 bg-muted rounded animate-pulse w-3/4" />
-              <div className="h-4 bg-muted rounded animate-pulse w-2/3" />
-            </div>
-          </div>
-        ))}
-      </div>
-    )
-  }
 
   return (
     <div>

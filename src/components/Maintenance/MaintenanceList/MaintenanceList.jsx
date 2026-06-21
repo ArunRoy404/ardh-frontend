@@ -2,9 +2,13 @@ import CommonSearch from "@/components/shared/CommonSearch/CommonSearch"
 import MaintenanceTable from "./MaintenanceTable"
 import MaintenanceCardsContainer from "./MaintenanceCardsContainer"
 import useMaintenanceStore from "@/dummyDataStore/useMaintenanceStore"
+import ListSkeleton from "@/components/skeletons/ListSkeleton"
 
-const MaintenanceList = () => {
+const MaintenanceList = ({ loading = false }) => {
   const { maintenanceRecords } = useMaintenanceStore()
+
+  if (loading) return <ListSkeleton cardRows={3} cardsCount={3} tableColumns={7} tableRows={5} />
+
 
   return (
     <>
