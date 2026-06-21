@@ -16,6 +16,8 @@ import UserManagementPage from "@/pages/dashboard/UserManagementPage";
 import SettingsPage from "@/pages/dashboard/SettingsPage";
 import ApartmentDetails from "@/pages/ApartmentDetails/ApartmentDetails";
 import TenantDetails from "@/pages/TenantDetails/TenantDetails";
+import OwnerDetailsPage from "@/pages/OwnerDetails/OwnerDetailsPage";
+
 
 
 const dashboardRoutes = {
@@ -56,6 +58,10 @@ const dashboardRoutes = {
     {
       path: "/owners",
       element: <OwnersPage />,
+    },
+    {
+      path: "/owners/:ownerid",
+      element: <OwnerDetailsPage />,
     },
     {
       path: "/income",
