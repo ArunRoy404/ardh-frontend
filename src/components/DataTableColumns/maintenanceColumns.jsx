@@ -1,10 +1,19 @@
 import MaintenanceAction from "@/components/Maintenance/MaintenanceList/MaintenanceAction/MaintenanceAction"
+import { getPriorityBadge, getStatusBadge } from "@/dummyData/maintenanceRecords"
 
 // ─── Status Badge ────────────────────────────────────────────────────────────
 
 const StatusBadge = ({ status }) => (
-  <span className="bg-open-tag-bg text-open-tag-text border border-open-tag-border px-2.5 py-0.5 rounded-[6px] text-xs font-semibold inline-block">
+  <span className={`${getStatusBadge(status)} px-2.5 py-0.5 rounded-[6px] text-xs font-semibold inline-block`}>
     {status}
+  </span>
+)
+
+// ─── Priority Badge ──────────────────────────────────────────────────────────
+
+const PriorityBadge = ({ priority }) => (
+  <span className={`${getPriorityBadge(priority)} px-2.5 py-0.5 rounded-[6px] text-xs font-semibold inline-block`}>
+    {priority}
   </span>
 )
 
@@ -12,17 +21,24 @@ const StatusBadge = ({ status }) => (
 
 export const maintenanceColumns = [
   {
-    accessorKey: "ticketId",
-    header: "Ticket ID",
+    accessorKey: "title",
+    header: "Title",
     cell: ({ getValue }) => (
       <span className="text-primary font-semibold">{getValue()}</span>
     ),
   },
   {
-    accessorKey: "issue",
-    header: "Issue",
+    accessorKey: "category",
+    header: "Category",
     cell: ({ getValue }) => (
-      <span className="text-dark-accent font-medium">{getValue()}</span>
+      <span className="text-dark-gray">{getValue()}</span>
+    ),
+  },
+  {
+    accessorKey: "building",
+    header: "Building",
+    cell: ({ getValue }) => (
+      <span className="text-dark-gray">{getValue()}</span>
     ),
   },
   {
@@ -33,17 +49,15 @@ export const maintenanceColumns = [
     ),
   },
   {
-    accessorKey: "type",
-    header: "Category",
-    cell: ({ getValue }) => (
-      <span className="text-dark-gray">{getValue()}</span>
-    ),
+    accessorKey: "priority",
+    header: "Priority",
+    cell: ({ row }) => <PriorityBadge priority={row.getValue("priority")} />,
   },
   {
-    accessorKey: "tenant",
-    header: "Tenant",
+    accessorKey: "vendor",
+    header: "Vendor",
     cell: ({ getValue }) => (
-      <span className="text-dark-accent">{getValue()}</span>
+      <span className="text-dark-gray">{getValue()}</span>
     ),
   },
   {

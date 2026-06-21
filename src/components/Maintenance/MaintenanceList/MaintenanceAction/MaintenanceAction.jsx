@@ -5,17 +5,18 @@ import CommonDeleteDialog from "@/components/shared/CommonDeleteDialog/CommonDel
 
 const MaintenanceAction = ({ maintenance }) => {
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+    const slug = maintenance.title?.toLowerCase().replace(/\s+/g, "-") || "item"
 
     const items = [
         {
             icon: Eye,
             label: "View Details",
-            link: `/maintenance/${maintenance.id}`,
+            link: `/maintenance/${slug}`,
         },
         {
             icon: Pencil,
             label: "Edit",
-            link: `/maintenance/${maintenance.id}/edit`,
+            link: `/maintenance/${slug}/edit`,
         },
         {
             icon: Trash2,
@@ -33,7 +34,7 @@ const MaintenanceAction = ({ maintenance }) => {
             <CommonDeleteDialog
                 open={deleteDialogOpen}
                 onOpenChange={setDeleteDialogOpen}
-                itemName={`${maintenance.issue}`}
+                itemName={`${maintenance.title}`}
                 itemType="Maintenance"
             />
         </>
