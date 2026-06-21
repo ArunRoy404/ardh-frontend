@@ -21,6 +21,8 @@ import IncomeDetailsPage from "@/pages/IncomeDetails/IncomeDetailsPage";
 import ExpensesDetailsPage from "@/pages/ExpensesDetails/ExpensesDetailsPage";
 import EquipmentDetailsPage from "@/pages/EquipmentDetails/EquipmentDetailsPage";
 import VendorsDetailsPage from "@/pages/VendorDetails/VendorsDetailsPage";
+import MaintenanceDetailsPage from "@/pages/MaintenanceDetails/MaintenanceDetailsPage";
+
 
 
 
@@ -88,6 +90,10 @@ const dashboardRoutes = {
     {
       path: "/maintenance",
       element: <MaintenancePage />,
+    },
+    {
+      path: "/maintenance/:maintenanceid",
+      element: <MaintenanceDetailsPage />,
     },
     {
       path: "/equipment",
