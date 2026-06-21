@@ -37,14 +37,14 @@ const ExpenseBreakdown = () => {
                         <CartesianGrid
                             horizontal={false}
                             strokeDasharray="3 3"
-                            stroke="#E2E8F0"
+                            stroke="var(--border)"
                         />
                         <XAxis
                             type="number"
                             domain={[0, 120000]}
                             ticks={[0, 30000, 60000, 90000, 120000]}
                             tickFormatter={(value) => `₹${value.toLocaleString()}`}
-                            stroke="#64748B"
+                            stroke="var(--dark-gray)"
                             fontSize={10}
                             tickLine={false}
                             axisLine={false}
@@ -55,7 +55,7 @@ const ExpenseBreakdown = () => {
                             type="category"
                             tickLine={false}
                             axisLine={false}
-                            stroke="#64748B"
+                            stroke="var(--dark-gray)"
                             fontSize={12}
                             width={75}
                             tickFormatter={(val) => val}

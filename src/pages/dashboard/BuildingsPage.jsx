@@ -53,8 +53,8 @@ const BuildingsPage = () => {
               <div
                 className={
                   building.status === "Active"
-                    ? "bg-[#16A34A33] text-[#16A34A] border border-[#16A34A] px-3 py-1 rounded-[6px] text-xs font-semibold font-['DM_Sans']"
-                    : "bg-[#64748B33] text-[#64748B] border border-[#64748B] px-3 py-1 rounded-[6px] text-xs font-semibold font-['DM_Sans']"
+                    ? "bg-success-tag-bg text-success-tag-text border border-success-tag-border px-3 py-1 rounded-[6px] text-xs font-semibold font-['DM_Sans']"
+                    : "bg-dark-gray/20 text-dark-gray border border-dark-gray px-3 py-1 rounded-[6px] text-xs font-semibold font-['DM_Sans']"
                 }
               >
                 {building.status}
@@ -74,9 +74,9 @@ const BuildingsPage = () => {
             {/* 3. Tags Container */}
             <div className="flex items-center gap-3 my-3">
               {building?.tags?.map((tag, index) => (
-                <div key={index} className="flex items-center justify-center gap-1 px-4 py-2 border border-[#F8FAFC] bg-white rounded-[4px] ">
-                  <Layers className="w-3.5 h-3.5 text-[#64748B]" />
-                  <span className="text-[#64748B] text-center text-xs font-normal leading-normal font-['DM_Sans']">
+                <div key={index} className="flex items-center justify-center gap-1 px-4 py-2 border border-muted bg-card rounded-[4px] ">
+                  <Layers className="w-3.5 h-3.5 text-dark-gray" />
+                  <span className="text-dark-gray text-center text-xs font-normal leading-normal font-['DM_Sans']">
                     {tag}
                   </span>
                 </div>

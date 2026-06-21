@@ -16,7 +16,7 @@ const DashboardNavbar = () => {
             <div className="flex items-center gap-4">
                 <Link to="/notifications" className="relative cursor-pointer text-muted-foreground hover:text-foreground flex items-center justify-center">
                     <NotificationsIcon className="size-6" />
-                    <span className="absolute top-0 right-0 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">3</span>
+                    <span className="absolute top-0 right-0 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-primary-foreground">3</span>
                 </Link>
 
                 <div className="flex items-center justify-center gap-2">
@@ -29,7 +29,7 @@ const DashboardNavbar = () => {
 
                 <TooltipProvider>
                     <Tooltip>
-                        <TooltipTrigger className="flex items-center justify-center text-red-500 hover:text-red-600 cursor-pointer" onClick={() => toast.warning('Functionality not implemented yet.')}>
+                        <TooltipTrigger className="flex items-center justify-center text-destructive hover:text-destructive/80 cursor-pointer" onClick={() => toast.warning('Functionality not implemented yet.')}>
                             <LogoutIcon className="size-6" />
                         </TooltipTrigger>
                         <TooltipContent>

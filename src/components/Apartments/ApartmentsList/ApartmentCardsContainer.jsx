@@ -34,15 +34,15 @@ const ApartmentCardsContainer = ({
     return (
       <div className="space-y-3">
         {Array.from({ length: 3 }).map((_, idx) => (
-          <div key={idx} className="bg-white border border-[#E2E8F0] rounded-2xl p-4 shadow-sm space-y-3">
+          <div key={idx} className="bg-card border border-border rounded-2xl p-4 shadow-sm space-y-3">
             <div className="flex justify-between">
-              <div className="h-5 bg-slate-100 rounded animate-pulse w-24" />
-              <div className="h-5 bg-slate-100 rounded animate-pulse w-16" />
+              <div className="h-5 bg-muted rounded animate-pulse w-24" />
+              <div className="h-5 bg-muted rounded animate-pulse w-16" />
             </div>
             <div className="space-y-2">
-              <div className="h-4 bg-slate-100 rounded animate-pulse w-full" />
-              <div className="h-4 bg-slate-100 rounded animate-pulse w-3/4" />
-              <div className="h-4 bg-slate-100 rounded animate-pulse w-1/2" />
+              <div className="h-4 bg-muted rounded animate-pulse w-full" />
+              <div className="h-4 bg-muted rounded animate-pulse w-3/4" />
+              <div className="h-4 bg-muted rounded animate-pulse w-1/2" />
             </div>
           </div>
         ))}
@@ -60,7 +60,7 @@ const ApartmentCardsContainer = ({
             return (
               <div
                 key={rowId}
-                className="bg-white border border-[#E2E8F0] rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-card border border-border rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow"
               >
                 {/* Header row: Flat + Status */}
                 <div className="flex items-center justify-between mb-3">

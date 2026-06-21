@@ -16,6 +16,6 @@ export const expenseData = expenseCategories.map((item) => ({
 export const expenseConfig = {
     value: {
         label: "Expense",
-        color: "#1961FF",
+        color: "var(--accent)",
     },
 }

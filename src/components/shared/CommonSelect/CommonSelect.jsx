@@ -7,7 +7,7 @@ const CommonSelect = ({ defaultValue, placeholder, options, onValueChange, value
     return (
         <Select value={value} onValueChange={onValueChange} defaultValue={defaultValue} {...props}>
             <SelectTrigger className={cn(
-                "min-w-[120px] text-xs font-sans border-border bg-white text-[#1A1A1A]",
+                "min-w-[120px] text-xs font-sans border-border bg-background text-card-inner-title",
                 triggerClassname
             )}>
                 <SelectValue placeholder={placeholder} />

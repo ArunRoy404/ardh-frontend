@@ -13,11 +13,11 @@ const MaintenanceTable = ({ data = [], loading = false }) => {
 
   if (loading) {
     return (
-      <div className="bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-sm">
+      <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-left">
             <thead>
-              <tr className="bg-[#F8FAFC] border-b border-[#E2E8F0]">
+              <tr className="bg-muted border-b border-border">
                 {["Ticket ID", "Issue", "Flat", "Category", "Tenant", "Status", "Action"].map((col) => (
                   <th
                     key={col}
@@ -30,10 +30,10 @@ const MaintenanceTable = ({ data = [], loading = false }) => {
             </thead>
             <tbody>
               {Array.from({ length: 5 }).map((_, idx) => (
-                <tr key={idx} className="border-b border-[#E2E8F0]">
+                <tr key={idx} className="border-b border-border">
                   {Array.from({ length: 7 }).map((__, colIdx) => (
                     <td key={colIdx} className="px-6 py-4">
-                      <div className="h-4 bg-slate-100 rounded animate-pulse w-3/4" />
+                      <div className="h-4 bg-muted rounded animate-pulse w-3/4" />
                     </td>
                   ))}
                 </tr>

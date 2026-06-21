@@ -28,7 +28,7 @@ export function DataTable({
       <table className="w-full border-collapse text-left">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="bg-[#F8FAFC] border-b border-[#E2E8F0]">
+            <tr key={headerGroup.id} className="bg-muted border-b border-border">
               {headerGroup.headers.map((header) => {
                 return (
                   <th
@@ -57,8 +57,8 @@ export function DataTable({
                 <tr
                   key={row.id}
                   className={cn(
-                    "border-b border-[#E2E8F0] transition-colors hover:bg-slate-50/50",
-                    rowColored && "even:bg-[#EFEFEF]"
+                    "border-b border-border transition-colors hover:bg-muted/50",
+                    rowColored && "even:bg-muted/50"
                   )}
                 >
                   {row.getVisibleCells().map((cell) => (

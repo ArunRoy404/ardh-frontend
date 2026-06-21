@@ -71,11 +71,11 @@ const CommonTable = ({
   // Loading skeleton
   if (loading) {
     return (
-      <div className={cn("bg-white border border-[#E2E8F0] rounded-2xl overflow-hidden shadow-sm", className)}>
+      <div className={cn("bg-card border border-border rounded-2xl overflow-hidden shadow-sm", className)}>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-left">
             <thead>
-              <tr className="bg-[#F8FAFC] border-b border-[#E2E8F0]">
+              <tr className="bg-muted border-b border-border">
                 {columns.map((col) => (
                   <th
                     key={col.key}
@@ -93,15 +93,15 @@ const CommonTable = ({
             </thead>
             <tbody>
               {Array.from({ length: 5 }).map((_, idx) => (
-                <tr key={idx} className="border-b border-[#E2E8F0]">
+                <tr key={idx} className="border-b border-border">
                   {columns.map((col) => (
                     <td key={col.key} className="px-6 py-4">
-                      <div className="h-4 bg-slate-100 rounded animate-pulse w-3/4" />
+                      <div className="h-4 bg-muted rounded animate-pulse w-3/4" />
                     </td>
                   ))}
                   {actions.length > 0 && (
                     <td className="px-6 py-4">
-                      <div className="h-4 w-5 bg-slate-100 rounded animate-pulse" />
+                      <div className="h-4 w-5 bg-muted rounded animate-pulse" />
                     </td>
                   )}
                 </tr>
@@ -132,7 +132,7 @@ const CommonTable = ({
       <div className="">
         <table className="w-full border-collapse text-left">
           <thead>
-            <tr className="bg-[#F8FAFC] border-b border-[#E2E8F0]">
+            <tr className="bg-muted border-b border-border">
               {columns.map((col) => (
                 <th
                   key={col.key}
@@ -162,8 +162,8 @@ const CommonTable = ({
                   <tr
                     key={rowId}
                     className={cn(
-                      "border-b border-[#E2E8F0] transition-colors",
-                      onRowClick ? "hover:bg-slate-50/50 cursor-pointer" : "hover:bg-slate-50/50"
+                      "border-b border-border transition-colors",
+                      onRowClick ? "hover:bg-muted/50 cursor-pointer" : "hover:bg-muted/50"
                     )}
                     onClick={() => onRowClick?.(row)}
                   >
@@ -179,7 +179,7 @@ const CommonTable = ({
                       <td className="px-6 py-4 text-sm relative" onClick={(e) => e.stopPropagation()}>
                         <button
                           onClick={(e) => handleDropdownToggle(e, rowId)}
-                          className="p-1 hover:bg-slate-100 rounded-full transition-colors text-slate-500 cursor-pointer"
+                          className="p-1 hover:bg-muted rounded-full transition-colors text-dark-gray cursor-pointer"
                         >
                           <MoreHorizontal className="w-5 h-5" />
                         </button>
@@ -188,7 +188,7 @@ const CommonTable = ({
                         {activeDropdownId === rowId && (
                           <div
                             ref={dropdownRef}
-                            className="absolute right-6 top-12 z-50 w-36 bg-white border border-[#E2E8F0] rounded-xl shadow-lg p-1 animate-in fade-in-50 slide-in-from-top-1"
+                            className="absolute right-6 top-12 z-50 w-36 bg-popover border border-border rounded-xl shadow-lg p-1 animate-in fade-in-50 slide-in-from-top-1"
                             onClick={(e) => e.stopPropagation()}
                           >
                             {actions.map((action, actIdx) => (
@@ -201,7 +201,7 @@ const CommonTable = ({
                                 }}
                                 className={cn(
                                   "w-full text-left px-3 py-2 text-xs rounded-lg flex items-center gap-2 transition-colors",
-                                  action.className || "text-dark-accent hover:bg-slate-50"
+                                  action.className || "text-dark-accent hover:bg-muted"
                                 )}
                               >
                                 {action.icon}
@@ -220,7 +220,7 @@ const CommonTable = ({
                 <td colSpan={columns.length + (actions.length > 0 ? 1 : 0)}>
                   {/* Empty State */}
                   <div className="flex flex-col items-center justify-center py-16 px-6">
-                    <EmptyIcon className="w-16 h-16 text-slate-200 mb-4" />
+                    <EmptyIcon className="w-16 h-16 text-muted-foreground mb-4" />
                     <p className="text-sm text-dark-gray font-medium">{emptyMessage}</p>
                   </div>
                 </td>

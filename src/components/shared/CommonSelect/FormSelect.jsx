@@ -34,7 +34,7 @@ const FormSelect = ({
         )}
       />
       {error && (
-        <p className="absolute -bottom-2.5 text-[10px] text-red-500 font-semibold">{error}</p>
+        <p className="absolute -bottom-2.5 text-[10px] text-destructive font-semibold">{error}</p>
       )}
     </div>
   );

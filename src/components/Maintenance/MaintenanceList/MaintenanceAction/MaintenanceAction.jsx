@@ -12,7 +12,7 @@ const MaintenanceAction = ({ maintenance }) => {
         <DropdownMenu>
             <DropdownMenuTrigger
                 render={
-                    <button className="p-1 hover:bg-slate-100 rounded-full transition-colors text-slate-500 cursor-pointer" />
+                    <button className="p-1 hover:bg-muted rounded-full transition-colors text-dark-gray cursor-pointer" />
                 }
             >
                 <MoreHorizontal className="w-5 h-5" />
@@ -21,22 +21,21 @@ const MaintenanceAction = ({ maintenance }) => {
                 align="end"
                 side="bottom"
                 sideOffset={8}
-                className="w-36 bg-white border border-[#E2E8F0] rounded-xl shadow-lg p-1"
+                className="w-36 bg-popover border border-border rounded-xl shadow-lg p-1"
             >
                 <DropdownMenuItem
                     onClick={() => {
                         toast.info(`Viewing maintenance ${maintenance.ticketId} — Not implemented yet`)
-                    }}
-                    className="px-3 py-2 text-xs rounded-lg flex items-center gap-2 transition-colors text-dark-accent hover:bg-slate-50 focus:bg-slate-50 cursor-pointer"
-                >
-                    <Eye className="w-3.5 h-3.5 text-dark-gray" />
-                    View Details
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                    onClick={() => {
-                        toast.info(`Editing maintenance ${maintenance.ticketId} — Not implemented yet`)
-                    }}
-                    className="px-3 py-2 text-xs rounded-lg flex items-center gap-2 transition-colors text-dark-accent hover:bg-slate-50 focus:bg-slate-50 cursor-pointer"
+                    }}className="px-3 py-2 text-xs rounded-lg flex items-center gap-2 transition-colors text-dark-accent hover:bg-muted focus:bg-muted cursor-pointer"
+                    >
+                        <Eye className="w-3.5 h-3.5 text-dark-gray" />
+                        View Details
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                        onClick={() => {
+                            toast.info(`Editing maintenance ${maintenance.ticketId} — Not implemented yet`)
+                        }}
+                        className="px-3 py-2 text-xs rounded-lg flex items-center gap-2 transition-colors text-dark-accent hover:bg-muted focus:bg-muted cursor-pointer"
                 >
                     <Pencil className="w-3.5 h-3.5 text-dark-gray" />
                     Edit
@@ -46,7 +45,7 @@ const MaintenanceAction = ({ maintenance }) => {
                     onClick={() => {
                         toast.error(`Deleting maintenance ${maintenance.ticketId} — Not implemented yet`)
                     }}
-                    className="px-3 py-2 text-xs rounded-lg flex items-center gap-2 transition-colors hover:bg-red-50 focus:bg-red-50 cursor-pointer"
+                    className="px-3 py-2 text-xs rounded-lg flex items-center gap-2 transition-colors hover:bg-destructive/10 focus:bg-destructive/10 cursor-pointer"
                 >
                     <Trash2 className="w-3.5 h-3.5 text-destructive" />
                     Delete

@@ -60,10 +60,10 @@ const CommonDeleteDialog = ({
       <DialogContent className="sm:max-w-sm max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-11 h-11 rounded-full bg-[#DC26261A] text-[#DC2626]">
+            <div className="flex items-center justify-center w-11 h-11 rounded-full bg-destructive/10 text-destructive">
               <Trash2 className="w-5 h-5" />
             </div>
-            <span className="text-[28px] font-medium font-['Adobe_Aldine'] text-[#1E3A5F]">
+            <span className="text-[28px] font-medium font-['Adobe_Aldine'] text-primary">
               Confirm Deletion
             </span>
           </DialogTitle>
@@ -75,10 +75,10 @@ const CommonDeleteDialog = ({
           >
             {/* Confirmation Text */}
             <div className="space-y-3">
-              <p className="text-sm font-['Poppins'] text-[#64748B] leading-relaxed">
-                You are about to permanently delete <span className="font-semibold text-[#0F172A]">{itemName}</span>. This action cannot be undone.
+              <p className="text-sm font-['Poppins'] text-dark-gray leading-relaxed">
+                You are about to permanently delete <span className="font-semibold text-dark-accent">{itemName}</span>. This action cannot be undone.
               </p>
-              <p className="text-sm font-['Poppins'] text-[#64748B]">
+              <p className="text-sm font-['Poppins'] text-dark-gray">
                 Enter the admin password to proceed.
               </p>
             </div>
@@ -104,7 +104,7 @@ const CommonDeleteDialog = ({
                   />
                 }
               >
-                <XCircle className="w-4 h-4 text-slate-500" />
+                <XCircle className="w-4 h-4 text-dark-gray" />
                 Cancel
               </DialogClose>
               <Button
