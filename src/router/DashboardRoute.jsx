@@ -19,6 +19,9 @@ import TenantDetails from "@/pages/TenantDetails/TenantDetails";
 import OwnerDetailsPage from "@/pages/OwnerDetails/OwnerDetailsPage";
 import IncomeDetailsPage from "@/pages/IncomeDetails/IncomeDetailsPage";
 import ExpensesDetailsPage from "@/pages/ExpensesDetails/ExpensesDetailsPage";
+import EquipmentDetailsPage from "@/pages/EquipmentDetails/EquipmentDetailsPage";
+import VendorsDetailsPage from "@/pages/VendorDetails/VendorsDetailsPage";
+
 
 
 
@@ -91,8 +94,16 @@ const dashboardRoutes = {
       element: <EquipmentPage />,
     },
     {
+      path: "/equipment/:equipmentid",
+      element: <EquipmentDetailsPage />,
+    },
+    {
       path: "/vendors",
       element: <VendorsPage />,
+    },
+    {
+      path: "/vendors/:vendorid",
+      element: <VendorsDetailsPage />,
     },
     {
       path: "/reports",
