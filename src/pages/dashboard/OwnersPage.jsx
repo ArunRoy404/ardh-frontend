@@ -1,7 +1,8 @@
 import OwnersList from "@/components/Owners/OwnersList/OwnersList";
 import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
+import AddOwner from "@/components/Owners/AddOwner/AddOwner";
 
 const OwnersPage = () => {
   return (
@@ -16,10 +17,7 @@ const OwnersPage = () => {
             <Upload />
             Bulk Upload
           </Button>
-          <Button>
-            <PlusCircle className="w-4 h-4" />
-            Add New Owner
-          </Button>
+          <AddOwner />
         </div>
       </DashboardHeader>
 
