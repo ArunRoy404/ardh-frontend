@@ -17,6 +17,9 @@ import SettingsPage from "@/pages/dashboard/SettingsPage";
 import ApartmentDetails from "@/pages/ApartmentDetails/ApartmentDetails";
 import TenantDetails from "@/pages/TenantDetails/TenantDetails";
 import OwnerDetailsPage from "@/pages/OwnerDetails/OwnerDetailsPage";
+import IncomeDetailsPage from "@/pages/IncomeDetails/IncomeDetailsPage";
+import ExpensesDetailsPage from "@/pages/ExpensesDetails/ExpensesDetailsPage";
+
 
 
 
@@ -68,8 +71,16 @@ const dashboardRoutes = {
       element: <IncomePage />,
     },
     {
+      path: "/income/:incomeid",
+      element: <IncomeDetailsPage />,
+    },
+    {
       path: "/expenses",
       element: <ExpensesPage />,
+    },
+    {
+      path: "/expenses/:expenseid",
+      element: <ExpensesDetailsPage />,
     },
     {
       path: "/maintenance",
