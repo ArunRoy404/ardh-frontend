@@ -8,10 +8,15 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import useDeletedHistoryDialogStore from "@/dummyDataStore/useDeletedHistoryDialogStore";
 
-const HistoryDelete = ({ item, open, onOpenChange }) => {
+const HistoryDelete = () => {
+  const item = useDeletedHistoryDialogStore((state) => state.deletingItem);
+  const closeDelete = useDeletedHistoryDialogStore((state) => state.closeDelete);
+  if (!item) return null;
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={!!item} onOpenChange={(open) => { if (!open) closeDelete(); }}>
       <DialogContent className="sm:max-w-sm">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3 text-xl font-medium font-['Adobe_Aldine'] text-primary">

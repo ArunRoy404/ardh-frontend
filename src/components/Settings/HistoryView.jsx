@@ -12,6 +12,7 @@ import { IncomeIcon } from "@/components/SvgIcons/IncomeIcon";
 import { ExpensesIcon } from "@/components/SvgIcons/ExpensesIcon";
 import { TenantsIcon } from "@/components/SvgIcons/TenantsIcon";
 import { VendorsIcon } from "@/components/SvgIcons/VendorsIcon";
+import useDeletedHistoryDialogStore from "@/dummyDataStore/useDeletedHistoryDialogStore";
 
 const getBadgeDetails = (type) => {
   switch (type) {
@@ -123,12 +124,14 @@ const getDescription = (type) => {
   }
 };
 
-const HistoryView = ({ item, open, onOpenChange }) => {
+const HistoryView = () => {
+  const item = useDeletedHistoryDialogStore((state) => state.viewingItem);
+  const closeView = useDeletedHistoryDialogStore((state) => state.closeView);
   if (!item) return null;
   const badge = getBadgeDetails(item.type);
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={!!item} onOpenChange={(open) => { if (!open) closeView(); }}>
       <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto p-6 font-['Poppins']">
         {/* Dialog Body */}
         <div className="space-y-4">
