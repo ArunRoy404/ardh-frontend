@@ -1,5 +1,5 @@
-import HistoryFilter from "@/components/Settings/HistoryFilter";
-import HistoryContainer from "@/components/Settings/HistoryContainer";
+import HistoryFilter from "@/components/Settings/SetingsHistory/HistoryFilter";
+import HistoryContainer from "@/components/Settings/SetingsHistory/HistoryContainer";
 
 const SettingsDeletedHistory = () => {
   return (
