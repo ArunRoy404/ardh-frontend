@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import TenantDetailsInfo from "@/components/TenantDetails/TenantDetailsInfo"
 import useTenantDetailsStore from "@/dummyDataStore/useTenantDetailsStore"
+import MoveOutTenant from "@/components/Tenants/MoveOutTenant/MoveOutTenant"
 
 const TenantDetails = () => {
   const { tenantDetails } = useTenantDetailsStore()
@@ -20,10 +21,7 @@ const TenantDetails = () => {
             <Pencil className="w-4 h-4" />
             Edit
           </Button>
-          <Button variant="destructive" isNotImplemented>
-            <LogOut className="w-4 h-4" />
-            Move Out
-          </Button>
+          <MoveOutTenant triggerVariant="destructive" />
         </div>
       </DashboardHeader>
 
