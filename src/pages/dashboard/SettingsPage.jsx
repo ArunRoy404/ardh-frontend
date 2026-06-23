@@ -1,8 +1,24 @@
+import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader";
+import { Tabs } from "@/components/ui/tabs";
+import SettingsTabs from "@/components/Settings/SettingsTab/SettingsTabs";
+import SettingsTabsContainer from "@/components/Settings/SettingsTab/SettingsTabsContainer";
+
 const SettingsPage = () => {
   return (
-    <div>
-      <h1 className="text-2xl font-bold">Settings</h1>
-    </div>
+    <>
+      {/* Header Block */}
+      <DashboardHeader
+        title="Settings"
+        showBreadcrumb 
+      />
+
+      {/* Tabs Container */}
+      <Tabs defaultValue="general" className="w-full mt-6 flex flex-col gap-4">
+        <SettingsTabs />
+        <SettingsTabsContainer />
+      </Tabs>
+    </>
   );
 };
+
 export default SettingsPage;
