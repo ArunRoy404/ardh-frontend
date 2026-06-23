@@ -3,19 +3,11 @@ import gsap from "gsap";
 import Logo from "@/components/shared/Logo/Logo";
 
 function AuthHeader({ title, subtitle }) {
-  const imgRef = useRef(null);
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Image: subtle cinematic zoom from 1.08 → 1 over 3s
-      gsap.fromTo(
-        imgRef.current,
-        { scale: 1.08 },
-        { scale: 1, duration: 2, ease: "power2.out" }
-      );
-
       // Title: fades in and slides up over 1.5s
       gsap.fromTo(
         titleRef.current,
@@ -31,37 +23,16 @@ function AuthHeader({ title, subtitle }) {
       );
     });
 
-    // Hover effect for the image — fast and responsive
-    const img = imgRef.current;
-    let hoverTween;
-
-    const onEnter = () => {
-      if (hoverTween) hoverTween.kill();
-      hoverTween = gsap.to(img, { scale: 1.05, duration: 0.4, ease: "power2.out" });
-    };
-
-    const onLeave = () => {
-      if (hoverTween) hoverTween.kill();
-      hoverTween = gsap.to(img, { scale: 1, duration: 0.4, ease: "power2.out" });
-    };
-
-    img?.addEventListener("mouseenter", onEnter);
-    img?.addEventListener("mouseleave", onLeave);
-
     return () => {
       ctx.revert();
-      img?.removeEventListener("mouseenter", onEnter);
-      img?.removeEventListener("mouseleave", onLeave);
-      if (hoverTween) hoverTween.kill();
     };
   }, []);
 
 
   return (
     <div className="relative hidden w-1/2 flex-col justify-between overflow-hidden p-12 lg:flex">
-      {/* Background Image with slow zoom + hover effect */}
+      {/* Background Image */}
       <img
-        ref={imgRef}
         src="/images/ardh.png"
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
