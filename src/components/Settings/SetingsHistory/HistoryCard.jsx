@@ -41,7 +41,7 @@ const getBadgeDetails = (type) => {
   }
 };
 
-const HistoryCard = ({ item, onDelete }) => {
+const HistoryCard = ({ item, onDelete, onView }) => {
   const badge = getBadgeDetails(item.type);
 
   return (
@@ -73,7 +73,7 @@ const HistoryCard = ({ item, onDelete }) => {
         </div>
 
         {/* Actions */}
-        <HistoryCardAction item={item} onDelete={onDelete} />
+        <HistoryCardAction item={item} onDelete={onDelete} onView={onView} />
       </div>
     </CommonDetailCard>
   );

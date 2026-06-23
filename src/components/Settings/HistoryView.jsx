@@ -124,6 +124,7 @@ const getDescription = (type) => {
 };
 
 const HistoryView = ({ item, open, onOpenChange }) => {
+  if (!item) return null;
   const badge = getBadgeDetails(item.type);
 
   return (
