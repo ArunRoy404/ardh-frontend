@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useDeletedHistoryStore from "@/dummyDataStore/useDeletedHistoryStore";
 import HistoryCard from "@/components/Settings/SetingsHistory/HistoryCard";
-import HistoryDelete from "@/components/Settings/SetingsHistory/HistoryDelete";
+import HistoryDelete from "@/components/Settings/HistoryCardAction/HistoryDelete";
 
 const HistoryContainer = () => {
   const records = useDeletedHistoryStore((state) => state.deletedHistoryRecords);

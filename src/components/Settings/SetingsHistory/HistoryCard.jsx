@@ -1,10 +1,10 @@
-import { Clock, Eye, Pencil, Trash2 } from "lucide-react";
+import { Clock } from "lucide-react";
 import CommonDetailCard from "@/components/shared/DetailCard/CommonDetailCard";
 import { IncomeIcon } from "@/components/SvgIcons/IncomeIcon";
 import { ExpensesIcon } from "@/components/SvgIcons/ExpensesIcon";
 import { TenantsIcon } from "@/components/SvgIcons/TenantsIcon";
 import { VendorsIcon } from "@/components/SvgIcons/VendorsIcon";
-import { toast } from "sonner";
+import HistoryCardAction from "@/components/Settings/HistoryCardAction/HistoryCardAction";
 
 const getBadgeDetails = (type) => {
   switch (type) {
@@ -44,10 +44,6 @@ const getBadgeDetails = (type) => {
 const HistoryCard = ({ item, onDelete }) => {
   const badge = getBadgeDetails(item.type);
 
-  const handleAction = (action) => {
-    toast.warning(`${action} feature for "${item.title}" is not implemented yet!`);
-  };
-
   return (
     <CommonDetailCard>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -77,29 +73,7 @@ const HistoryCard = ({ item, onDelete }) => {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-4 self-end sm:self-center">
-          <button
-            onClick={() => handleAction("View")}
-            className="text-success-tag-text hover:text-success-tag-text/80 bg-transparent flex items-center gap-1.5 text-xs font-semibold cursor-pointer transition-colors"
-          >
-            <Eye className="w-4 h-4 text-success-tag-text" />
-            View
-          </button>
-          <button
-            onClick={() => handleAction("Edit")}
-            className="text-secondary hover:text-secondary/80 bg-transparent flex items-center gap-1.5 text-xs font-semibold cursor-pointer transition-colors"
-          >
-            <Pencil className="w-4 h-4 text-secondary" />
-            Edit
-          </button>
-          <button
-            onClick={() => onDelete?.(item)}
-            className="text-destructive hover:text-destructive/80 bg-transparent flex items-center gap-1.5 text-xs font-semibold cursor-pointer transition-colors"
-          >
-            <Trash2 className="w-4 h-4 text-destructive" />
-            Delete
-          </button>
-        </div>
+        <HistoryCardAction item={item} onDelete={onDelete} />
       </div>
     </CommonDetailCard>
   );
