@@ -2,7 +2,6 @@ import { Clock, XCircle, RotateCcw } from "lucide-react";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
@@ -130,31 +129,32 @@ const HistoryView = ({ item, open, onOpenChange }) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto p-6 font-['Poppins']">
-        {/* Dialog Header Block */}
-        <DialogHeader className="bg-input-bg/40 p-4 rounded-t-lg -mx-6 -mt-6 border-b border-border">
-          <div className="flex flex-col gap-2 text-left">
-            <div className="flex flex-wrap items-center gap-3">
-              <span
-                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] text-xs font-semibold ${badge.classes}`}
-              >
-                {badge.icon}
-                {badge.label}
-              </span>
-              <h3 className="text-sm font-semibold text-primary font-sans leading-snug">
-                {item.title}
-              </h3>
+        {/* Dialog Body */}
+        <div className="space-y-4">
+          {/* Entity Info Card (badge, title, timestamp) */}
+          <CommonDetailCard>
+            <div className="flex flex-col gap-2.5">
+              <div className="flex flex-wrap items-center gap-3">
+                <span
+                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] text-xs font-semibold ${badge.classes}`}
+                >
+                  {badge.icon}
+                  {badge.label}
+                </span>
+                <h3 className="text-sm font-semibold text-primary font-sans leading-snug">
+                  {item.title}
+                </h3>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-dark-gray font-normal font-sans">
+                <Clock className="w-3.5 h-3.5 text-dark-gray" />
+                <span>
+                  Deleted : {item.timestamp} By : {item.user}
+                </span>
+              </div>
             </div>
-            <div className="flex items-center gap-1.5 text-xs text-dark-gray font-normal font-sans">
-              <Clock className="w-3.5 h-3.5 text-dark-gray" />
-              <span>
-                Deleted : {item.timestamp} By : {item.user}
-              </span>
-            </div>
-          </div>
-        </DialogHeader>
+          </CommonDetailCard>
 
-        {/* Dialog Body (Record Data) */}
-        <div className="mt-4">
+          {/* Record Data Card */}
           <CommonDetailCard title="Record Data" cardClassName="text-sm">
             <div className="space-y-6">
               {renderRecordDetails(item)}
