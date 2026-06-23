@@ -1,9 +1,7 @@
 import { SidebarTrigger } from "../ui/sidebar"
-import LogoutIcon from "../SvgIcons/LogoutIcon"
+import Logout from "./Logout"
 import { NotificationsIcon } from "../SvgIcons/NotificationsIcon"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip"
 import { Link } from "react-router"
-import { toast } from "sonner"
 import CommonAvatar from "../shared/CommonAvatar/CommonAvatar"
 
 const DashboardNavbar = () => {
@@ -21,16 +19,7 @@ const DashboardNavbar = () => {
 
                 <CommonAvatar src="https://github.com/shadcn.png" alt="John Doe" />
 
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger className="flex items-center justify-center text-destructive hover:text-destructive/80 cursor-pointer" onClick={() => toast.warning('Functionality not implemented yet.')}>
-                            <LogoutIcon className="size-6" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>Logout</p>
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
+                <Logout />
             </div>
         </nav>
     )

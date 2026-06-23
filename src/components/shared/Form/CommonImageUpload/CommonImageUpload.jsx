@@ -7,6 +7,7 @@ const CommonImageUpload = ({
     onImagesChange,
     accept = "image/*",
     multiple = true,
+    placeholder = "Upload image",
 }) => {
     const fileInputRef = useRef(null);
 
@@ -17,7 +18,11 @@ const CommonImageUpload = ({
                 file,
                 url: URL.createObjectURL(file),
             }));
-            onImagesChange?.([...images, ...newImages]);
+            if (multiple) {
+                onImagesChange?.([...images, ...newImages]);
+            } else {
+                onImagesChange?.(newImages.slice(0, 1));
+            }
         }
         if (fileInputRef.current) fileInputRef.current.value = "";
     };
@@ -62,7 +67,7 @@ const CommonImageUpload = ({
                 className="flex flex-col items-center justify-center gap-2 py-6 rounded-md border border-dashed border-border bg-input-bg cursor-pointer hover:border-primary/40 transition-colors"
             >
                 <Upload className="w-5 h-5 text-dark-gray" />
-                <span className="text-sm text-dark-gray font-sans">Upload image</span>
+                <span className="text-sm text-dark-gray font-sans">{placeholder}</span>
             </div>
             <input
                 ref={fileInputRef}

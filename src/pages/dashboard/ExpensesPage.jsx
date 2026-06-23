@@ -1,7 +1,8 @@
 import ExpensesList from "@/components/Expenses/ExpensesList/ExpensesList";
 import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
+import AddNewExpensesRecord from "@/components/Expenses/AddNewExpensesRecord/AddNewExpensesRecord";
 
 const ExpensesPage = () => {
   return (
@@ -16,10 +17,7 @@ const ExpensesPage = () => {
             <Upload />
             Bulk Upload
           </Button>
-          <Button>
-            <PlusCircle className="w-4 h-4" />
-            Add New Expenses Record
-          </Button>
+          <AddNewExpensesRecord />
         </div>
       </DashboardHeader>
 

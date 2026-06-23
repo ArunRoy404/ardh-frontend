@@ -6,7 +6,7 @@ const FormSelect = ({
   label,
   options,
   placeholder,
-  triggerClassname = "w-full py-5.5 border-none",
+  triggerClassname = "w-full py-5.5 px-4 border-none",
   ...props
 }) => {
   const { control, formState: { errors } } = useFormContext();

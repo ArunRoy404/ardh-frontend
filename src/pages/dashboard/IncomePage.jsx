@@ -1,7 +1,8 @@
 import IncomeList from "@/components/Income/IncomeList/IncomeList";
 import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
+import RecordNewIncome from "@/components/Income/RecordNewIncome/RecordNewIncome";
 
 const IncomePage = () => {
   return (
@@ -16,10 +17,7 @@ const IncomePage = () => {
             <Upload />
             Bulk Upload
           </Button>
-          <Button>
-            <PlusCircle className="w-4 h-4" />
-            Add New Income Record
-          </Button>
+          <RecordNewIncome />
         </div>
       </DashboardHeader>
 

@@ -1,7 +1,8 @@
 import TenantsList from "@/components/Tenants/TenantsList/TenantsList";
 import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
+import AddTenants from "@/components/Tenants/AddTenants/AddTenants";
 
 const TenantsPage = () => {
   return (
@@ -16,10 +17,7 @@ const TenantsPage = () => {
             <Upload />
             Bulk Upload
           </Button>
-          <Button>
-            <PlusCircle className="w-4 h-4" />
-            Add New Tenant
-          </Button>
+          <AddTenants />
         </div>
       </DashboardHeader>
 

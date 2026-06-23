@@ -13,6 +13,7 @@ const CommonDialog = ({
   titleClassName,
   icon = <PlusCircle className="w-4 h-4" />,
   children,
+  triggerVariant
 }) => {
   const [open, setOpen] = useState(false);
   const [dialogKey, setDialogKey] = useState(0);
@@ -26,7 +27,7 @@ const CommonDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <Button onClick={() => setOpen(true)}>
+      <Button onClick={() => setOpen(true)} variant={triggerVariant}>
         {icon}
         {title}
       </Button>

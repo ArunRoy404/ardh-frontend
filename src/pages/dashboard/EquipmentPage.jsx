@@ -1,7 +1,8 @@
 import EquipmentList from "@/components/Equipment/EquipmentList/EquipmentList";
 import DashboardHeader from "@/components/DashboardLayout/DashbaordHeader";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
+import AddNewEquipment from "@/components/Equipment/AddNewEquipment/AddNewEquipment";
 
 const EquipmentPage = () => {
   return (
@@ -16,10 +17,7 @@ const EquipmentPage = () => {
             <Upload />
             Bulk Upload
           </Button>
-          <Button>
-            <PlusCircle className="w-4 h-4" />
-            Add New Equipment
-          </Button>
+          <AddNewEquipment />
         </div>
       </DashboardHeader>
 
