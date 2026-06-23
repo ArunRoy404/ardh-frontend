@@ -61,10 +61,7 @@ function Button({
   return (
     <ButtonPrimitive
       data-slot="button"
-      className={cn(
-        buttonVariants({ variant, size, className }),
-        isLoading && "cursor-not-allowed bg-secondary/80"
-      )}
+      className={cn(buttonVariants({ variant, size, className }))}
       disabled={isLoading || props.disabled}
       onClick={handleClick}
       {...props}

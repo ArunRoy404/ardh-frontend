@@ -16,10 +16,6 @@ import LogoutIcon from "@/components/SvgIcons/LogoutIcon";
 const Logout = () => {
   const [open, setOpen] = useState(false);
 
-  const handleLogout = () => {
-    console.log("User logged out");
-    setOpen(false);
-  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -63,7 +59,8 @@ const Logout = () => {
           <Button
             type="button"
             variant="destructive"
-            onClick={handleLogout}
+            isNotImplemented
+            isLoading
           >
             <LogOut className="w-4 h-4" />
             Log Out
