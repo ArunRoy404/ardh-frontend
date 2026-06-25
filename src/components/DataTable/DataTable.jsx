@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   flexRender,
   getCoreRowModel,
@@ -7,6 +8,9 @@ import {
 } from "@tanstack/react-table";
 import { cn } from "@/lib/utils";
 import NoDataFound from "../shared/NoDataState";
+import DataTableColumnVisibility from "./DataTableColumnVisibility";
+
+
 
 export function DataTable({
   columns,
@@ -15,16 +19,26 @@ export function DataTable({
   markRow,
   markRowColor,
 }) {
+
+  const [columnVisibility, setColumnVisibility] = useState({})
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    state: { columnVisibility },
+    onColumnVisibilityChange: setColumnVisibility,
   });
 
   return (
-    <div className="overflow-x-auto">
+    <div className="space-y-4">
+
+      <div className="flex justify-end">
+        <DataTableColumnVisibility table={table} />
+      </div>
+
       <table className="w-full border-collapse text-left">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
