@@ -54,21 +54,29 @@ const AddApartmentForm = () => {
 
         {/* Row 2: Nestaway ID, Flat Number */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <FormSelect
+          <CommonInput
             name="nestawayId"
             label="Nestaway ID*"
-            options={[
-              { label: "e.g..NW-1234", value: "nw-1234" },
-              { label: "NW-5678", value: "nw-5678" },
-            ]}
-            placeholder="Select Nestaway ID"
+            placeholder="Type nestaway ID..."
+            className="pl-4"
           />
 
-          <CommonInput
+          <FormSelect
             name="flatNumber"
             label="Flat Number*"
-            placeholder="Type flat no..."
-            className="pl-4"
+            options={[
+              { label: "101", value: "101" },
+              { label: "102", value: "102" },
+              { label: "103", value: "103" },
+              { label: "104", value: "104" },
+              { label: "201", value: "201" },
+              { label: "202", value: "202" },
+              { label: "203", value: "203" },
+              { label: "301", value: "301" },
+              { label: "302", value: "302" },
+              { label: "303", value: "303" },
+            ]}
+            placeholder="Select flat no"
           />
         </div>
 

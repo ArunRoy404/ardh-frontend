@@ -3,6 +3,7 @@ export const maintenanceDetails = {
   category: "Plumbing",
   building: "Sunrise Tower",
   vendor: "Quick Fix Plumbing",
+  equipment: "Water Pump",
   scheduled: "-",
   priority: "High",
   apartment: "101",

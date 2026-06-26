@@ -11,6 +11,7 @@ const MaintenanceDetailsInfo = ({ details }) => {
             <CommonDetailLabel label="Categories" value={details.category} />
             <CommonDetailLabel label="Building" value={details.building} />
             <CommonDetailLabel label="Vendor" value={details.vendor} />
+            <CommonDetailLabel label="Equipment" value={details.equipment || "-"} />
             <CommonDetailLabel label="Scheduled" value={details.scheduled} />
           </div>
 
