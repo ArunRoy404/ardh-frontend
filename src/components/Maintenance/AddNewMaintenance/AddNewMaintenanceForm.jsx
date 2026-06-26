@@ -107,17 +107,31 @@ const AddNewMaintenanceForm = () => {
           />
         </div>
 
-        {/* Vendor - Full Width */}
-        <FormSelect
-          name="vendor"
-          label="Vendor *"
-          options={[
-            { label: "Vendor A", value: "Vendor A" },
-            { label: "Vendor B", value: "Vendor B" },
-            { label: "Vendor C", value: "Vendor C" },
-          ]}
-          placeholder="select"
-        />
+        {/* Vendor & Equipment - 2 columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <FormSelect
+            name="vendor"
+            label="Vendor *"
+            options={[
+              { label: "Vendor A", value: "Vendor A" },
+              { label: "Vendor B", value: "Vendor B" },
+              { label: "Vendor C", value: "Vendor C" },
+            ]}
+            placeholder="select"
+          />
+          <FormSelect
+            name="equipment"
+            label="Equipment *"
+            options={[
+              { label: "Main Elevator", value: "Main Elevator" },
+              { label: "Backup Generator", value: "Backup Generator" },
+              { label: "Fire Extinguisher", value: "Fire Extinguisher" },
+              { label: "Water Pump", value: "Water Pump" },
+              { label: "CCTV DVR", value: "CCTV DVR" },
+            ]}
+            placeholder="select"
+          />
+        </div>
 
         {/* Building & Apartment - 2 columns */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
