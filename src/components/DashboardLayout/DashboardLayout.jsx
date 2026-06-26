@@ -12,7 +12,7 @@ const DashboardLayout = () => {
             <AppSidebar />
             <SidebarInset>
                 <DashboardHeader />
-                <div  className="flex flex-col gap-6 p-4 w-full max-w-480 mx-auto">
+                <div className="flex flex-col gap-4 p-4 w-full max-w-480 mx-auto">
                     <Outlet />
                 </div>
             </SidebarInset>
